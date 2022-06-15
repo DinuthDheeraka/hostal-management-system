@@ -21,7 +21,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Student implements SuperEntity{
     @Id
     @Column(length = 10)
     private String studentId;
@@ -36,6 +36,6 @@ public class Student {
     private String contactNo;
     private Date dob;
     private String gender;
-    @OneToMany(mappedBy = "studentId")
+    @OneToMany(mappedBy = "student")
     List<Reserve> reserves = new ArrayList();
 }

@@ -19,7 +19,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reserve {
+public class Reserve implements SuperEntity{
     @Id
     @Column(length = 10)
     private String reserveId;
@@ -27,7 +27,7 @@ public class Reserve {
     private Date date;
     private double keyMoney;
     @ManyToOne
-    private Student studentId;
+    private Student student;
     @ManyToOne
-    private Room roomId;
+    private Room room;
 }

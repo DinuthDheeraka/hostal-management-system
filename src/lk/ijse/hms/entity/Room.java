@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Room {
+public class Room implements SuperEntity{
     @Id
     @Column(length = 10)
     private String roomId;
@@ -28,6 +28,6 @@ public class Room {
     private double monthlyRental;
     private boolean availability;
     private int qty;
-    @OneToMany(mappedBy = "roomId")
+    @OneToMany(mappedBy = "room")
     List<Reserve> reserves = new ArrayList();
 }

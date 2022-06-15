@@ -5,6 +5,9 @@
  */
 package lk.ijse.hms.util;
 
+import lk.ijse.hms.entity.Reserve;
+import lk.ijse.hms.entity.Room;
+import lk.ijse.hms.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,11 +22,15 @@ public class FactoryConfiguration {
 
     private FactoryConfiguration() throws IOException {
         Configuration configuration = new Configuration();
-
+        //configuring properties file
         Properties p = new Properties();
         p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
-
         configuration.setProperties(p);
+
+        //configuring entities
+        configuration.addAnnotatedClass(Student.class);
+        configuration.addAnnotatedClass(Room.class);
+        configuration.addAnnotatedClass(Reserve.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }
