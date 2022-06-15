@@ -1,0 +1,33 @@
+/**
+ * @author : Dinuth Dheeraka
+ * Project Name: hostal-management-system
+ * Created     : 6/15/2022 7:50 PM
+ */
+package lk.ijse.hms.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.util.Date;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Reserve {
+    @Id
+    @Column(length = 10)
+    private String reserveId;
+    @Column(nullable = false)
+    private Date date;
+    private double keyMoney;
+    @ManyToOne
+    private Student studentId;
+    @ManyToOne
+    private Room roomId;
+}
