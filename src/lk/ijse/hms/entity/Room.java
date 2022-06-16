@@ -27,7 +27,6 @@ public class Room implements SuperEntity{
     private String type;
     private double monthlyRental;
     private boolean availability;
-    private int qty;
     @OneToMany(mappedBy = "room")
     List<Reserve> reserves = new ArrayList();
 }
