@@ -5,5 +5,36 @@
  */
 package lk.ijse.hms.controller;
 
-public class MainFormController {
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import lk.ijse.hms.util.NavigateUI;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainFormController implements Initializable {
+    public AnchorPane mainFormContext;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void studentsBtnOnAction(ActionEvent actionEvent) {
+        try {
+            NavigateUI.getNavigateUI().addParentToCurrentStage("Students-Form",mainFormContext);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void roomBtnOnAction(ActionEvent actionEvent) {
+        try {
+            NavigateUI.getNavigateUI().addParentToCurrentStage("Rooms-Form",mainFormContext);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

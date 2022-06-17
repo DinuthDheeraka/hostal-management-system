@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="1012.0" prefWidth="1898.0" style="-fx-background-color: #d9d7d7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hms.controller.MainFormController">
@@ -25,13 +27,22 @@
                   <Font name="Arial" size="21.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="12.0" text="D24 HOSTALS">
+            <Label layoutX="21.0" layoutY="3.0" text="D" textFill="#20a4d0">
                <font>
-                  <Font size="23.0" />
+                  <Font name="Arial Bold" size="39.0" />
                </font>
             </Label>
+            <Label layoutX="49.0" layoutY="21.0" text="24" textFill="#20a4d0">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Line endX="-52.0" layoutX="113.0" layoutY="5.0" startX="-100.0" stroke="#129bc9" />
+            <Line endX="-100.0" endY="43.0" layoutX="113.0" layoutY="6.0" startX="-100.0" stroke="#129bc9" />
+            <Line endX="-52.0" layoutX="114.0" layoutY="49.0" startX="-100.0" stroke="#129bc9" />
+            <Line endX="-100.0" endY="35.0" layoutX="162.0" layoutY="-12.0" startX="-100.0" startY="17.0" stroke="#129bc9" />
          </children></AnchorPane>
-      <AnchorPane layoutX="11.0" layoutY="63.0" prefHeight="939.0" prefWidth="1875.0" style="-fx-background-color: #d9d7d7; -fx-border-color: #d9d7d7;">
+      <AnchorPane fx:id="mainFormContext" layoutX="11.0" layoutY="63.0" prefHeight="939.0" prefWidth="1875.0" style="-fx-background-color: #d9d7d7; -fx-border-color: #d9d7d7;">
          <children>
             <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="254.0" prefWidth="1875.0" style="-fx-background-color: #d9d7d7;">
                <children>
@@ -42,7 +53,7 @@
                               <Image url="@assets/images/group-students-talking-over-white-background-education-high-school-people-concept-smiling-139366005.jpg" />
                            </image>
                            <effect>
-                              <Lighting diffuseConstant="0.71" specularConstant="0.03" surfaceScale="0.0">
+                              <Lighting diffuseConstant="0.81" specularConstant="0.03" surfaceScale="0.0">
                                  <bumpInput>
                                     <Shadow />
                                  </bumpInput>
@@ -57,7 +68,7 @@
                               <Image url="@assets/images/HD-wallpaper-white-interior-design-window-interior-design-bedroom-room-white-bed.jpg" />
                            </image>
                            <effect>
-                              <Lighting diffuseConstant="0.71" specularConstant="0.03" surfaceScale="0.0">
+                              <Lighting diffuseConstant="0.81" specularConstant="0.03" surfaceScale="0.0">
                                  <bumpInput>
                                     <Shadow />
                                  </bumpInput>
@@ -72,7 +83,7 @@
                               <Image url="@assets/images/q.jpg" />
                            </image>
                            <effect>
-                              <Lighting diffuseConstant="0.71" specularConstant="0.03" surfaceScale="0.0">
+                              <Lighting diffuseConstant="0.81" specularConstant="0.03" surfaceScale="0.0">
                                  <bumpInput>
                                     <Shadow />
                                  </bumpInput>
@@ -87,7 +98,7 @@
                               <Image url="@assets/images/getty_165667384_2000133420009280406_105064.jpg" />
                            </image>
                            <effect>
-                              <Lighting diffuseConstant="0.71" specularConstant="0.03" surfaceScale="0.0">
+                              <Lighting diffuseConstant="0.81" specularConstant="0.03" surfaceScale="0.0">
                                  <bumpInput>
                                     <Shadow />
                                  </bumpInput>
@@ -101,25 +112,37 @@
                   </HBox>
                   <HBox prefHeight="254.0" prefWidth="1875.0" spacing="10.0">
                      <children>
-                        <JFXButton prefHeight="254.0" prefWidth="425.0" text="STUDENTS" textFill="WHITE">
+                        <JFXButton onAction="#studentsBtnOnAction" prefHeight="254.0" prefWidth="425.0" text="STUDENTS" textFill="WHITE">
                            <font>
-                              <Font name="SansSerif Regular" size="27.0" />
+                              <Font size="28.0" />
                            </font>
+                           <effect>
+                              <Glow level="0.64" />
+                           </effect>
                         </JFXButton>
-                        <JFXButton layoutX="10.0" layoutY="10.0" prefHeight="254.0" prefWidth="473.0" text="ROOMS" textFill="WHITE">
+                        <JFXButton layoutX="10.0" layoutY="10.0" onAction="#roomBtnOnAction" prefHeight="254.0" prefWidth="473.0" text="ROOMS" textFill="WHITE">
                            <font>
-                              <Font name="SansSerif Regular" size="27.0" />
+                              <Font size="28.0" />
                            </font>
+                           <effect>
+                              <Glow level="0.64" />
+                           </effect>
                         </JFXButton>
                         <JFXButton layoutX="445.0" layoutY="10.0" prefHeight="254.0" prefWidth="473.0" text="PAYEMENTS" textFill="WHITE">
                            <font>
-                              <Font name="SansSerif Regular" size="27.0" />
+                              <Font size="28.0" />
                            </font>
+                           <effect>
+                              <Glow level="0.64" />
+                           </effect>
                         </JFXButton>
                         <JFXButton layoutX="880.0" layoutY="10.0" prefHeight="254.0" prefWidth="475.0" text="RESERVATIONS" textFill="WHITE">
                            <font>
-                              <Font name="SansSerif Regular" size="27.0" />
+                              <Font size="28.0" />
                            </font>
+                           <effect>
+                              <Glow level="0.64" />
+                           </effect>
                         </JFXButton>
                      </children>
                   </HBox>
