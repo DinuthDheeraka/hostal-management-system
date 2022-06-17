@@ -24,7 +24,7 @@
                      <children>
                         <ImageView fitHeight="908.0" fitWidth="1881.0" layoutX="-4.0" layoutY="-4.0" pickOnBounds="true">
                            <image>
-                              <Image url="@assets/images/using-art-in-minimalist-bedrooms.jpg" />
+                              <Image url="@assets/images/bedroom-lighting.jpg" />
                            </image>
                            <effect>
                               <Lighting diffuseConstant="0.83">
@@ -49,7 +49,12 @@
                            </columnResizePolicy>
                         </TableView>
                         <TextField layoutX="5.0" layoutY="221.0" minHeight="54.0" minWidth="1868.0" style="-fx-border-radius: 20; -fx-border-color: #cccfcd; -fx-background-color: null;" />
-                        <JFXButton buttonType="RAISED" layoutX="1604.0" layoutY="38.0" minHeight="55.0" minWidth="249.0" style="-fx-background-color: #974ced;" text="ADD NEW ROOM" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" layoutX="1621.0" layoutY="10.0" minHeight="55.0" minWidth="249.0" style="-fx-border-color: white;" text="ADD NEW ROOM" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="5.0" layoutY="13.0" onAction="#backToHomeBtnOnAction" prefHeight="46.0" prefWidth="170.0" style="-fx-border-color: #cccfcd;" text="BACK TO HOME" textFill="#fffafa">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

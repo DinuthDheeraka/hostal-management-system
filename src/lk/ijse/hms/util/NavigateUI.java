@@ -34,7 +34,7 @@ public class NavigateUI {
     public void setNewStage(String location) throws IOException {
         Stage stage = new Stage();
         Scene scene = (new Scene(FXMLLoader.load(getClass().getResource
-                ("/lk/ijse/pos/view/"+location+".fxml"))));
+                ("/lk/ijse/hms/view/"+location+".fxml"))));
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
