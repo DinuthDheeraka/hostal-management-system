@@ -30,4 +30,6 @@ public class Reserve implements SuperEntity{
     private Student student;
     @ManyToOne
     private Room room;
+    private boolean reservationStatus;
+    private boolean paymentStatus;
 }

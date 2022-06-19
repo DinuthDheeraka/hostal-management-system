@@ -10,13 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.hms.util.NavigateUI;
+import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainFormController implements Initializable {
@@ -33,7 +33,7 @@ public class MainFormController implements Initializable {
 
     public void studentsBtnOnAction(ActionEvent actionEvent) {
         try {
-            NavigateUI.getNavigateUI().addParentToCurrentStage("Students-Form",mainFormContext);
+            Navigations.getInstance().addParentToCurrentStage("Students-Form",mainFormContext);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class MainFormController implements Initializable {
 
     public void roomBtnOnAction(ActionEvent actionEvent) {
         try {
-            NavigateUI.getNavigateUI().addParentToCurrentStage("Rooms-Form",mainFormContext);
+            Navigations.getInstance().addParentToCurrentStage("Rooms-Form",mainFormContext);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,9 +66,9 @@ public class MainFormController implements Initializable {
     }
 
     public void showDate(){
-        String pattern = "dd MMMMM yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("En", "SL"));
-        String date = simpleDateFormat.format(new Date());
-        lblSystemDate.setText(date);
+//        String pattern = "dd MMMMM yyyy";
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("En", "SL"));
+//        String date = simpleDateFormat.format(new Date());
+        lblSystemDate.setText(String.valueOf(LocalDate.now()));
     }
 }

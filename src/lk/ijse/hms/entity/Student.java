@@ -8,6 +8,7 @@ package lk.ijse.hms.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,6 +37,8 @@ public class Student implements SuperEntity{
     private String contactNo;
     private Date dob;
     private String gender;
+    @CreationTimestamp
+    private Date joinedDate;
     @OneToMany(mappedBy = "student")
     List<Reserve> reserves = new ArrayList();
 }

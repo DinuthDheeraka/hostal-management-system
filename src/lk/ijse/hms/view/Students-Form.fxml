@@ -37,29 +37,29 @@
                               </Lighting>
                            </effect>
                         </ImageView>
-                        <TableView layoutY="301.0" prefHeight="602.0" prefWidth="1875.0">
+                        <TableView fx:id="studentTbl" layoutY="340.0" prefHeight="563.0" prefWidth="1875.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Student-ID" />
-                            <TableColumn prefWidth="75.0" text="Name" />
-                              <TableColumn prefWidth="75.0" text="DOB" />
-                              <TableColumn prefWidth="75.0" text="Contact-No" />
-                              <TableColumn prefWidth="75.0" text="Address" />
-                              <TableColumn prefWidth="75.0" text="City" />
-                              <TableColumn prefWidth="75.0" text="District" />
-                              <TableColumn prefWidth="75.0" text="Province" />
-                              <TableColumn prefWidth="75.0" text="Gender" />
-                              <TableColumn prefWidth="75.0" text="Joined-Date" />
+                            <TableColumn fx:id="colStdId" prefWidth="75.0" text="Student-ID" />
+                            <TableColumn fx:id="colStdName" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="colStdDOB" prefWidth="75.0" text="DOB" />
+                              <TableColumn fx:id="colStdContactNo" prefWidth="75.0" text="Contact-No" />
+                              <TableColumn fx:id="colStdAddress" prefWidth="75.0" text="Address" />
+                              <TableColumn fx:id="colStdCity" prefWidth="75.0" text="City" />
+                              <TableColumn fx:id="colStdDistrict" prefWidth="75.0" text="District" />
+                              <TableColumn fx:id="colStdProvince" prefWidth="75.0" text="Province" />
+                              <TableColumn fx:id="colStdGender" prefWidth="75.0" text="Gender" />
+                              <TableColumn fx:id="colStdJoinedDate" prefWidth="75.0" text="Joined-Date" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <JFXButton buttonType="RAISED" layoutX="1620.0" layoutY="10.0" prefHeight="55.0" prefWidth="249.0" style="-fx-border-color: white;" text="ADD NEW STUDENT" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" layoutX="1620.0" layoutY="10.0" onAction="#addNewStudentOnAction" prefHeight="55.0" prefWidth="249.0" style="-fx-background-color: green;" text="ADD NEW STUDENT" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <TextField layoutX="4.0" layoutY="222.0" prefHeight="54.0" prefWidth="1868.0" style="-fx-border-radius: 20; -fx-background-color: null; -fx-border-color: #cccfcd;">
+                        <TextField fx:id="txtSearchBar" layoutX="4.0" layoutY="275.0" prefHeight="54.0" prefWidth="1868.0" style="-fx-border-radius: 20; -fx-background-color: null; -fx-border-color: #cccfcd;">
                            <font>
                               <Font size="20.0" />
                            </font>

@@ -5,5 +5,66 @@
  */
 package lk.ijse.hms.controller;
 
-public class AddRoomsFormController {
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import lk.ijse.hms.bo.BOFactory;
+import lk.ijse.hms.bo.custom.RoomBO;
+import lk.ijse.hms.dto.RoomDTO;
+import lk.ijse.hms.util.Navigations;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AddRoomsFormController implements Initializable {
+    public Label txtTitle;
+    public JFXTextField txtRoomId;
+    public JFXTextField txtMonthlyRental;
+    public JFXComboBox<String> cmbxRoomType;
+    public JFXComboBox<String> cmbxRoomAvailability;
+    public JFXButton addBtn;
+
+    //DI
+    RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setRoomTypeCmbxData();
+        setRoomAvailabilityCmbxData();
+    }
+
+    private void setRoomAvailabilityCmbxData() {
+        cmbxRoomAvailability.setItems(FXCollections.observableArrayList(
+                "Available","Not Available"
+        ));
+    }
+
+    private void setRoomTypeCmbxData() {
+        cmbxRoomType.setItems(FXCollections.observableArrayList(
+                "Non-AC","Non-AC/Food","AC","AC/Food"
+        ));
+    }
+
+    public AddRoomsFormController() throws IOException {
+    }
+
+    public void canselBtnOnAction(ActionEvent actionEvent) {
+        Navigations.getInstance().closeStage(actionEvent);
+    }
+
+    public void addRoomBtnOnAction(ActionEvent actionEvent) {
+        try {
+            roomBO.addRoom(new RoomDTO(
+                    txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
+                    Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem()
+            ));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

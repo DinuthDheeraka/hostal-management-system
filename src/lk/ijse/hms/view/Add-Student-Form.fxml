@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.hms.controller.AddStudentFormController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="863.0" prefWidth="793.0" style="-fx-background-color: #d9d7d7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hms.controller.AddStudentFormController">
+   <children>
+      <AnchorPane layoutX="1.0" prefHeight="49.0" prefWidth="791.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="txtTitle" layoutX="14.0" layoutY="12.0" text="STUDENT REGISTRATION" textFill="#515354">
+               <font>
+                  <Font name="Tahoma" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1.0" layoutY="57.0" prefHeight="805.0" prefWidth="791.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="805.0" fitWidth="791.0" layoutX="-1.0" layoutY="-2.0" pickOnBounds="true">
+               <image>
+                  <Image url="@assets/images/1JynjM.jpg" />
+               </image>
+            </ImageView>
+            <VBox layoutX="13.0" layoutY="25.0" prefHeight="637.0" prefWidth="766.0" spacing="40.0">
+               <children>
+                  <JFXTextField fx:id="txtStdId" focusColor="#514e4e" labelFloat="true" promptText="Student-Id" unFocusColor="#868686">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXTextField>
+                  <JFXTextField fx:id="txtName" focusColor="#514e4e" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Name" unFocusColor="#868686">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXTextField>
+                  <JFXTextField fx:id="txtContactNo" focusColor="#514e4e" labelFloat="true" layoutX="10.0" layoutY="41.0" promptText="Contact Number" unFocusColor="#868686">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXTextField>
+                  <JFXDatePicker fx:id="dpkDOB" defaultColor="#868686" prefHeight="31.0" prefWidth="778.0" promptText="Select Date of Birth" />
+                  <JFXTextField fx:id="txtAddress" focusColor="#514e4e" labelFloat="true" promptText="Enter Address" unFocusColor="#868686">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXTextField>
+                  <JFXComboBox fx:id="cmbxCity" focusColor="#0d0d0d" labelFloat="true" prefHeight="31.0" prefWidth="767.0" promptText="Select City" unFocusColor="#868686" />
+                  <JFXComboBox fx:id="cmbxDistrict" focusColor="#0d0d0d" labelFloat="true" layoutX="10.0" layoutY="196.0" prefHeight="31.0" prefWidth="767.0" promptText="Select District" unFocusColor="#868686" />
+                  <JFXComboBox fx:id="cmbxProvince" focusColor="#0d0d0d" labelFloat="true" layoutX="10.0" layoutY="227.0" prefHeight="31.0" prefWidth="767.0" promptText="Select Province" unFocusColor="#868686" />
+                  <JFXComboBox fx:id="cmbxGender" focusColor="#0d0d0d" labelFloat="true" prefHeight="31.0" prefWidth="768.0" promptText="Select Gender" unFocusColor="#868686" />
+               </children>
+            </VBox>
+            <JFXButton buttonType="RAISED" layoutX="547.0" layoutY="739.0" prefHeight="55.0" prefWidth="230.0" style="-fx-background-color: green;" text="ADD STUDENT" textFill="#eeeeee">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="302.0" layoutY="739.0" onAction="#canselBtnOnAction" prefHeight="55.0" prefWidth="230.0" style="-fx-background-color: white; -fx-border-color: black;" text="CANSEL">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

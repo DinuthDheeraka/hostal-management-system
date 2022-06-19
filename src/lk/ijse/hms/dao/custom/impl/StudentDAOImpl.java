@@ -7,10 +7,20 @@ package lk.ijse.hms.dao.custom.impl;
 
 import lk.ijse.hms.dao.custom.StudentDAO;
 import lk.ijse.hms.entity.Student;
+import lk.ijse.hms.util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
+
+    Session session = FactoryConfiguration.getInstance().getSession();
+
+    public StudentDAOImpl() throws IOException {
+    }
+
     @Override
     public boolean add(Student entity) throws Exception {
         return false;
@@ -33,7 +43,8 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public List<Student> findAll() throws Exception {
-        return null;
+        Query query = session.createQuery("from Student s");
+        return query.list();
     }
 
     @Override
