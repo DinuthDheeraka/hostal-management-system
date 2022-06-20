@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -53,6 +55,15 @@
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#refreshCtxmOnAction" text="Refresh" />
+                                    <MenuItem mnemonicParsing="false" onAction="#updateCtxmOnAction" text="Update" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteCtxmOnAction" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
                         </TableView>
                         <JFXButton buttonType="RAISED" layoutX="1620.0" layoutY="10.0" onAction="#addNewStudentOnAction" prefHeight="55.0" prefWidth="249.0" style="-fx-background-color: green;" text="ADD NEW STUDENT" textFill="WHITE">
                            <font>

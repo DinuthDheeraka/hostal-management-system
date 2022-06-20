@@ -13,6 +13,7 @@ import lk.ijse.hms.entity.Student;
 import lk.ijse.hms.service.DataConvertor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -47,5 +48,28 @@ public class StudentBOImpl implements StudentBO {
                 student.getStudentId(),student.getName(),student.getAddress(),student.getCity(),
                 student.getDistrict(),student.getProvince(),student.getContactNo(),student.getDob(),student.getGender(),
                 student.getJoinedDate());
+    }
+
+    @Override
+    public boolean deleteStudent(String studentId) throws Exception {
+        return studentDAO.delete(studentId);
+    }
+
+    @Override
+    public boolean addStudent(StudentDTO studentDTO) throws Exception {
+        return studentDAO.add(new Student(
+                studentDTO.getStudentId(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getCity(),
+                studentDTO.getDistrict(),studentDTO.getProvince(),studentDTO.getContactNo(),studentDTO.getDob(),
+                studentDTO.getGender(),studentDTO.getJoinedDate(),new ArrayList()
+        ));
+    }
+
+    @Override
+    public boolean updateStudent(StudentDTO studentDTO) throws Exception {
+        return studentDAO.update(new Student(
+                studentDTO.getStudentId(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getCity(),
+                studentDTO.getDistrict(),studentDTO.getProvince(),studentDTO.getContactNo(),studentDTO.getDob(),
+                studentDTO.getGender(),studentDTO.getJoinedDate(),new ArrayList()
+        ));
     }
 }

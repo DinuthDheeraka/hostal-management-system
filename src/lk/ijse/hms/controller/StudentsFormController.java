@@ -7,11 +7,15 @@ package lk.ijse.hms.controller;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.StudentBO;
 import lk.ijse.hms.dto.StudentDTO;
@@ -38,6 +42,13 @@ public class StudentsFormController implements Initializable {
     public TableColumn colStdJoinedDate;
     public TextField txtSearchBar;
 
+    private Stage stage;
+    private Scene scene;
+    private Parent parent;
+
+    //selected Student
+    StudentDTO selectedStudent;
+
     //DI
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
     DataConvertor dataConvertor = DataConvertor.getInstance();
@@ -62,6 +73,18 @@ public class StudentsFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        studentTbl.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if(newValue!=null)setSelectedStudentData(newValue);
+                });
+    }
+
+    private void setSelectedStudentData(StudentTM newValue) {
+        selectedStudent = new StudentDTO(
+                newValue.getStudentId(),newValue.getName(),newValue.getAddress(),
+                newValue.getCity(),newValue.getDistrict(),newValue.getProvince(),newValue.getContactNo(),
+                newValue.getDOB(),newValue.getGender(),newValue.getJoinedDate());
     }
 
     private void setStudentTblData() throws Exception {
@@ -87,6 +110,42 @@ public class StudentsFormController implements Initializable {
         try {
             Navigations.getInstance().setNewStage("Add-Student-Form");
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshCtxmOnAction(ActionEvent actionEvent) {
+        try {
+            setStudentTblData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCtxmOnAction(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Add-Student-Form.fxml"));
+
+        try {
+            parent = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Transfer Room Data to Update Form
+        AddStudentFormController controller = fxmlLoader.getController();
+        controller.setValuesForInputFields(selectedStudent);
+
+        stage = new Stage();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+
+        Navigations.getInstance().transparentUi(stage,scene);
+    }
+
+    public void deleteCtxmOnAction(ActionEvent actionEvent) {
+        try {
+            studentBO.deleteStudent(selectedStudent.getStudentId());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

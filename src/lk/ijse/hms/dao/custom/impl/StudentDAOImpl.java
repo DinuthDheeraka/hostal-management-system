@@ -9,6 +9,7 @@ import lk.ijse.hms.dao.custom.StudentDAO;
 import lk.ijse.hms.entity.Student;
 import lk.ijse.hms.util.FactoryConfiguration;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
@@ -21,17 +22,30 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean add(Student entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(entity);
+        transaction.commit();
+        return true;
     }
 
     @Override
     public boolean update(Student entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public boolean delete(String s) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Student student = session.load(Student.class,s);
+        session.delete(student);
+        session.close();
+        return true;
     }
 
     @Override

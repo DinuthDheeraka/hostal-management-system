@@ -54,7 +54,7 @@
                   <JFXComboBox fx:id="cmbxGender" focusColor="#0d0d0d" labelFloat="true" prefHeight="31.0" prefWidth="768.0" promptText="Select Gender" unFocusColor="#868686" />
                </children>
             </VBox>
-            <JFXButton buttonType="RAISED" layoutX="547.0" layoutY="739.0" prefHeight="55.0" prefWidth="230.0" style="-fx-background-color: green;" text="ADD STUDENT" textFill="#eeeeee">
+            <JFXButton fx:id="addBtn" buttonType="RAISED" layoutX="547.0" layoutY="739.0" onAction="#addStudentBtnOnAction" prefHeight="55.0" prefWidth="230.0" style="-fx-background-color: green;" text="ADD STUDENT" textFill="#eeeeee">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
