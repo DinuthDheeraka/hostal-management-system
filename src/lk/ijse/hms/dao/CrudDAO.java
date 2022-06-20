@@ -17,4 +17,6 @@ public interface CrudDAO<Entity extends SuperEntity,ID> extends SuperDAO {
     List<Entity> findAll() throws Exception;
 
     ID findLastId() throws Exception;
+
+    List<ID> findAllIds() throws Exception;
 }

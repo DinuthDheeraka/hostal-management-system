@@ -16,8 +16,6 @@ import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
 
-    Session session = FactoryConfiguration.getInstance().getSession();
-
     public StudentDAOImpl() throws IOException {
     }
 
@@ -43,6 +41,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public List<Student> findAll() throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
         Query query = session.createQuery("from Student s");
         return query.list();
     }
@@ -50,5 +49,12 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public String findLastId() throws Exception {
         return null;
+    }
+
+    @Override
+    public List<String> findAllIds() throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("select s.studentId from Student s");
+        return query.list();
     }
 }

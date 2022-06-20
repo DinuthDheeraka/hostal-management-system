@@ -34,4 +34,9 @@ public class StudentBOImpl implements StudentBO {
             );
         return  dataConvertor.convert(studentDAO.findAll(),function);
     }
+
+    @Override
+    public List<String> getAllStudentIds() throws Exception {
+        return studentDAO.findAllIds();
+    }
 }

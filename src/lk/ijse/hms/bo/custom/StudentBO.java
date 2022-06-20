@@ -8,4 +8,5 @@ import java.util.List;
 public interface StudentBO extends SuperBO {
 
     List<StudentDTO> getAllStudents() throws Exception;
+    List<String> getAllStudentIds() throws Exception;
 }

@@ -40,4 +40,9 @@ public class ReserveDAOImpl implements ReserveDAO {
     public String findLastId() throws Exception {
         return null;
     }
+
+    @Override
+    public List<String> findAllIds() throws Exception {
+        return null;
+    }
 }

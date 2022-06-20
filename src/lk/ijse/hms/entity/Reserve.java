@@ -8,6 +8,7 @@ package lk.ijse.hms.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +25,7 @@ public class Reserve implements SuperEntity{
     @Column(length = 10)
     private String reserveId;
     @Column(nullable = false)
+    @CreationTimestamp
     private Date date;
     private double keyMoney;
     @ManyToOne
@@ -32,4 +34,5 @@ public class Reserve implements SuperEntity{
     private Room room;
     private boolean reservationStatus;
     private boolean paymentStatus;
+    private double paidKeyMoney;
 }

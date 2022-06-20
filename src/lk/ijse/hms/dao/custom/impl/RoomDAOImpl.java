@@ -16,9 +16,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class RoomDAOImpl implements RoomDAO {
-    //DI
-    //Session session = FactoryConfiguration.getInstance().getSession();
-//    Transaction transaction = session.beginTransaction();
 
     public RoomDAOImpl() throws IOException {
     }
@@ -68,5 +65,12 @@ public class RoomDAOImpl implements RoomDAO {
     @Override
     public String findLastId() throws Exception {
         return null;
+    }
+
+    @Override
+    public List<String> findAllIds() throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("select  r.roomId from Room r");
+        return query.list();
     }
 }
