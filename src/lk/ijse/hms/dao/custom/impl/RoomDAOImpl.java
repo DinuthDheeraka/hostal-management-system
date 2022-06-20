@@ -52,7 +52,10 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public Room find(String s) throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Room room = session.get(Room.class,s);
+        session.close();
+        return room;
     }
 
     @Override

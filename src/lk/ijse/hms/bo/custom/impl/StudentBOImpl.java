@@ -39,4 +39,13 @@ public class StudentBOImpl implements StudentBO {
     public List<String> getAllStudentIds() throws Exception {
         return studentDAO.findAllIds();
     }
+
+    @Override
+    public StudentDTO getStudent(String studentId) throws Exception {
+        Student student = studentDAO.find(studentId);
+        return new StudentDTO(
+                student.getStudentId(),student.getName(),student.getAddress(),student.getCity(),
+                student.getDistrict(),student.getProvince(),student.getContactNo(),student.getDob(),student.getGender(),
+                student.getJoinedDate());
+    }
 }

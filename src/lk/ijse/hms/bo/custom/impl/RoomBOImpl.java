@@ -54,4 +54,15 @@ public class RoomBOImpl implements RoomBO {
                 new ArrayList()
         ));
     }
+
+    @Override
+    public List<String> getAllRoomIds() throws Exception {
+        return roomDAO.findAllIds();
+    }
+
+    @Override
+    public RoomDTO getRoom(String roomId) throws Exception {
+        Room room = roomDAO.find(roomId);
+        return new RoomDTO(room.getRoomId(),room.getType(), room.getMonthlyRental(), room.getAvailability());
+    }
 }
