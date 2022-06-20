@@ -9,10 +9,14 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import lk.ijse.hms.util.Navigations;
 
-public class AddStudentFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AddStudentFormController implements Initializable {
     public Label txtTitle;
     public JFXTextField txtStdId;
     public JFXTextField txtName;
@@ -23,6 +27,11 @@ public class AddStudentFormController {
     public JFXComboBox cmbxDistrict;
     public JFXComboBox cmbxProvince;
     public JFXComboBox cmbxGender;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     public void canselBtnOnAction(ActionEvent actionEvent) {
         Navigations.getInstance().closeStage(actionEvent);

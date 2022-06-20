@@ -7,11 +7,15 @@ package lk.ijse.hms.controller;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.RoomBO;
 import lk.ijse.hms.dto.RoomDTO;
@@ -31,6 +35,10 @@ public class RoomsFormController implements Initializable {
     public TableColumn colRoomType;
     public TableColumn colAvailability;
     public TextField txtSearchBar;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent parent;
 
     //selected Room Data
     private String selectedRoomId;
@@ -96,7 +104,7 @@ public class RoomsFormController implements Initializable {
         }
     }
 
-    public void refreshCtxmOnAction(ActionEvent actionEvent) {
+    public void refreshCtxmOnAction(ActionEvent actionEvent) throws Exception {
         try {
             setRoomsTblData();
         } catch (Exception e) {
@@ -110,5 +118,25 @@ public class RoomsFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateCtxmOnAction(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Add-Rooms-Form.fxml"));
+
+        try {
+            parent = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Transfer Room Data to Update Form
+        AddRoomsFormController controller = fxmlLoader.getController();
+        controller.setValuesForInputFields(new RoomDTO(selectedRoomId,selectedRoomType,selectedMonthlyRental,selectedAvailability));
+
+        stage = new Stage();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+
+        Navigations.getInstance().transparentUi(stage,scene);
     }
 }

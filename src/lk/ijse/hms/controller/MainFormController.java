@@ -47,6 +47,14 @@ public class MainFormController implements Initializable {
         }
     }
 
+    public void rservationBtnOnAction(ActionEvent actionEvent) {
+        try {
+            Navigations.getInstance().addParentToCurrentStage("Make-Reservation-Form",mainFormContext);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void showTime(){
         Thread thread = new Thread(()->{
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
@@ -66,9 +74,6 @@ public class MainFormController implements Initializable {
     }
 
     public void showDate(){
-//        String pattern = "dd MMMMM yyyy";
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("En", "SL"));
-//        String date = simpleDateFormat.format(new Date());
         lblSystemDate.setText(String.valueOf(LocalDate.now()));
     }
 }

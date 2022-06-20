@@ -17,28 +17,39 @@ import java.util.List;
 
 public class RoomDAOImpl implements RoomDAO {
     //DI
-    Session session = FactoryConfiguration.getInstance().getSession();
-    Transaction transaction = session.beginTransaction();
+    //Session session = FactoryConfiguration.getInstance().getSession();
+//    Transaction transaction = session.beginTransaction();
 
     public RoomDAOImpl() throws IOException {
     }
 
     @Override
     public boolean add(Room entity) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         session.save(entity);
         transaction.commit();
+        session.close();
         return true;
     }
 
     @Override
     public boolean update(Room entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public boolean delete(String s) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         session.delete(session.load(Room.class, s));
         transaction.commit();
+        session.close();
         return true;
     }
 
@@ -49,6 +60,7 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public List<Room> findAll() throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
         Query query = session.createQuery("from Room r");
         return query.list();
     }

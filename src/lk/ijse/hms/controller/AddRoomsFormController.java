@@ -23,11 +23,12 @@ import java.util.ResourceBundle;
 
 public class AddRoomsFormController implements Initializable {
     public Label txtTitle;
+    public JFXButton addBtn;
     public JFXTextField txtRoomId;
     public JFXTextField txtMonthlyRental;
     public JFXComboBox<String> cmbxRoomType;
     public JFXComboBox<String> cmbxRoomAvailability;
-    public JFXButton addBtn;
+
 
     //DI
     RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
@@ -39,15 +40,11 @@ public class AddRoomsFormController implements Initializable {
     }
 
     private void setRoomAvailabilityCmbxData() {
-        cmbxRoomAvailability.setItems(FXCollections.observableArrayList(
-                "Available","Not Available"
-        ));
+        cmbxRoomAvailability.setItems(FXCollections.observableArrayList("Available","Not Available"));
     }
 
     private void setRoomTypeCmbxData() {
-        cmbxRoomType.setItems(FXCollections.observableArrayList(
-                "Non-AC","Non-AC/Food","AC","AC/Food"
-        ));
+        cmbxRoomType.setItems(FXCollections.observableArrayList("Non-AC","Non-AC/Food","AC","AC/Food"));
     }
 
     public AddRoomsFormController() throws IOException {
@@ -57,14 +54,31 @@ public class AddRoomsFormController implements Initializable {
         Navigations.getInstance().closeStage(actionEvent);
     }
 
-    public void addRoomBtnOnAction(ActionEvent actionEvent) {
-        try {
-            roomBO.addRoom(new RoomDTO(
-                    txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
-                    Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem()
+    public void addRoomBtnOnAction(ActionEvent actionEvent) throws Exception {
+
+        if("UPDATE ROOM".equals(addBtn.getText())){
+                roomBO.updateRoom(new RoomDTO(
+                        txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
+                        Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem()
             ));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else{
+            try {
+                roomBO.addRoom(new RoomDTO(
+                        txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
+                        Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem()
+                ));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    public void setValuesForInputFields(RoomDTO roomDTO) {
+        txtTitle.setText("UPDATE ROOM");
+        addBtn.setText("UPDATE ROOM");
+        txtRoomId.setText(roomDTO.getRoomId());
+        txtMonthlyRental.setText(String.valueOf(roomDTO.getMonthlyRental()));
+        cmbxRoomType.getSelectionModel().select(roomDTO.getType());
+        cmbxRoomAvailability.getSelectionModel().select(roomDTO.getAvailability());
     }
 }

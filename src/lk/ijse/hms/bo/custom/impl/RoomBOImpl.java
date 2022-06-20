@@ -46,4 +46,12 @@ public class RoomBOImpl implements RoomBO {
     public boolean deleteRoom(String roomId) throws Exception {
         return roomDAO.delete(roomId);
     }
+
+    @Override
+    public boolean updateRoom(RoomDTO roomDTO) throws Exception {
+        return roomDAO.update(new Room(
+                roomDTO.getRoomId(), roomDTO.getType(), roomDTO.getMonthlyRental(), roomDTO.getAvailability(),
+                new ArrayList()
+        ));
+    }
 }
