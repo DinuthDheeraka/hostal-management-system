@@ -1,21 +1,21 @@
 /**
  * @author : Dinuth Dheeraka
  * Project Name: hostal-management-system
- * Created     : 6/15/2022 11:48 PM
+ * Created     : 6/22/2022 12:05 AM
  */
 package lk.ijse.hms.dao.custom.impl;
 
-import lk.ijse.hms.dao.custom.ReserveDAO;
-import lk.ijse.hms.entity.Reserve;
+import lk.ijse.hms.dao.custom.PaymentDAO;
+import lk.ijse.hms.entity.Payment;
 import lk.ijse.hms.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class ReserveDAOImpl implements ReserveDAO {
+public class PaymentDAOImpl implements PaymentDAO {
     @Override
-    public boolean add(Reserve entity) throws Exception {
+    public boolean add(Payment entity) throws Exception {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.save(entity);
@@ -25,7 +25,7 @@ public class ReserveDAOImpl implements ReserveDAO {
     }
 
     @Override
-    public boolean update(Reserve entity) throws Exception {
+    public boolean update(Payment entity) throws Exception {
         return false;
     }
 
@@ -35,12 +35,12 @@ public class ReserveDAOImpl implements ReserveDAO {
     }
 
     @Override
-    public Reserve find(String s) throws Exception {
+    public Payment find(String s) throws Exception {
         return null;
     }
 
     @Override
-    public List<Reserve> findAll() throws Exception {
+    public List<Payment> findAll() throws Exception {
         return null;
     }
 
@@ -51,7 +51,6 @@ public class ReserveDAOImpl implements ReserveDAO {
 
     @Override
     public List<String> findAllIds() throws Exception {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        return session.createQuery("select r.reserveId from Reserve r ").list();
+        return null;
     }
 }

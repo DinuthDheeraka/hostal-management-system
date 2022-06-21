@@ -15,7 +15,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="939.0" prefWidth="1875.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hms.controller.PaymentFormController">
@@ -41,33 +40,6 @@
                               </Lighting>
                            </effect>
                         </ImageView>
-                        <AnchorPane layoutX="6.0" layoutY="546.0" prefHeight="221.0" prefWidth="1855.0" style="-fx-border-radius: 5;">
-                           <children>
-                              <HBox layoutX="12.0" layoutY="104.0" prefHeight="100.0" prefWidth="1831.0" spacing="30.0">
-                                 <children>
-                                    <JFXTextField prefHeight="31.0" prefWidth="436.0" />
-                                    <JFXComboBox prefHeight="31.0" prefWidth="603.0" />
-                                    <JFXComboBox prefHeight="31.0" prefWidth="731.0" />
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="14.0" layoutY="291.0" prefHeight="56.0" prefWidth="1080.0" spacing="30.0">
-                                 <children>
-                                    <JFXTextField prefHeight="31.0" prefWidth="444.0" />
-                                    <JFXTextField prefHeight="31.0" prefWidth="596.0" />
-                                 </children>
-                              </HBox>
-                              <JFXButton buttonType="RAISED" layoutX="1490.0" layoutY="265.0" prefHeight="58.0" prefWidth="355.0" style="-fx-background-color: green;" text="MAKE PAYMENT" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </JFXButton>
-                              <JFXButton buttonType="RAISED" layoutX="1112.0" layoutY="265.0" onAction="#canselBtnOnAction" prefHeight="58.0" prefWidth="363.0" style="-fx-border-color: black;" text="CANSEL">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                        </AnchorPane>
                         <LineChart horizontalGridLinesVisible="false" layoutX="-12.0" layoutY="151.0" prefHeight="471.0" prefWidth="1875.0" verticalGridLinesVisible="false">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
@@ -77,6 +49,33 @@
                           </yAxis>
                         </LineChart>
                         <TextField layoutX="24.0" layoutY="43.0" prefHeight="67.0" prefWidth="1824.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" />
+                        <JFXButton buttonType="RAISED" layoutX="1140.0" layoutY="817.0" onAction="#canselBtnOnAction" prefHeight="58.0" prefWidth="356.0" style="-fx-border-color: black;" text="CANSEL">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" layoutX="1516.0" layoutY="816.0" onAction="#makePaymentBtnOnAction" prefHeight="58.0" prefWidth="341.0" style="-fx-background-color: green;" text="MAKE PAYMENT" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXTextField fx:id="txtMonth" labelFloat="true" layoutX="22.0" layoutY="832.0" prefHeight="31.0" prefWidth="452.0" promptText="Month" unFocusColor="#1b1a1a">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXComboBox fx:id="cmbxStudentIds" labelFloat="true" layoutX="515.0" layoutY="700.0" prefHeight="31.0" prefWidth="603.0" promptText="Select Student" unFocusColor="#1b1a1a" />
+                        <JFXTextField fx:id="txtPaymentId" labelFloat="true" layoutX="27.0" layoutY="687.0" prefHeight="31.0" prefWidth="445.0" promptText="Payment-Id" unFocusColor="#252424">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXComboBox fx:id="cmbxRservationIds" labelFloat="true" layoutX="1140.0" layoutY="700.0" prefHeight="31.0" prefWidth="713.0" promptText="Select Reservation-Id" unFocusColor="#1b1a1a" />
+                        <JFXTextField fx:id="txtPaidAmount" labelFloat="true" layoutX="514.0" layoutY="831.0" prefHeight="31.0" prefWidth="609.0" promptText="Paid Amount" unFocusColor="#1b1a1a">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXTextField>
                      </children>
                   </AnchorPane>
               </content>

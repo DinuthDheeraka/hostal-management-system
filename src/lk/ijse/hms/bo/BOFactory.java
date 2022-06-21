@@ -5,9 +5,7 @@
  */
 package lk.ijse.hms.bo;
 
-import lk.ijse.hms.bo.custom.impl.ReserveBOImpl;
-import lk.ijse.hms.bo.custom.impl.RoomBOImpl;
-import lk.ijse.hms.bo.custom.impl.StudentBOImpl;
+import lk.ijse.hms.bo.custom.impl.*;
 
 import java.io.IOException;
 
@@ -18,7 +16,7 @@ public class BOFactory {
     private BOFactory(){}
 
     public static enum BOType{
-        STUDENT,ROOM,RESERVATION
+        STUDENT,ROOM,RESERVATION,PAYMENT,JOIN_QUERY
     }
 
     public SuperBO getBO(BOType boType) throws IOException {
@@ -26,6 +24,8 @@ public class BOFactory {
             case ROOM:return new RoomBOImpl();
             case STUDENT:return new StudentBOImpl();
             case RESERVATION:return new ReserveBOImpl();
+            case PAYMENT:return new PaymentBOImpl();
+            case JOIN_QUERY:return new JoinQueryBOImpl();
             default:return null;
         }
     }

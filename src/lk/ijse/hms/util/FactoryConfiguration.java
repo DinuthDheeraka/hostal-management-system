@@ -5,6 +5,7 @@
  */
 package lk.ijse.hms.util;
 
+import lk.ijse.hms.entity.Payment;
 import lk.ijse.hms.entity.Reserve;
 import lk.ijse.hms.entity.Room;
 import lk.ijse.hms.entity.Student;
@@ -31,6 +32,7 @@ public class FactoryConfiguration {
         configuration.addAnnotatedClass(Student.class);
         configuration.addAnnotatedClass(Room.class);
         configuration.addAnnotatedClass(Reserve.class);
+        configuration.addAnnotatedClass(Payment.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }

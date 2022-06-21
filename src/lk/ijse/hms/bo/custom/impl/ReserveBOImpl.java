@@ -12,6 +12,7 @@ import lk.ijse.hms.dto.ReserveDTO;
 import lk.ijse.hms.entity.Reserve;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ReserveBOImpl implements ReserveBO {
 
@@ -28,5 +29,10 @@ public class ReserveBOImpl implements ReserveBO {
                 reserveDTO.getStudent(),reserveDTO.getRoom(),reserveDTO.getReservationStatus(),
                 reserveDTO.getPaidKeyMoney()
         ));
+    }
+
+    @Override
+    public List<String> getAllReservationIds() throws Exception {
+        return reserveDAO.findAllIds();
     }
 }

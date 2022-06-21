@@ -41,4 +41,20 @@ public class Student implements SuperEntity{
     private Date joinedDate;
     @OneToMany(mappedBy = "student")
     List<Reserve> reserves = new ArrayList();
+    @OneToMany(mappedBy = "student")
+    List<Payment> payments = new ArrayList();
+
+    public Student(String studentId, String name, String address, String city, String district, String province, String contactNo, Date dob, String gender, Date joinedDate, List<Reserve> reserves) {
+        this.studentId = studentId;
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.district = district;
+        this.province = province;
+        this.contactNo = contactNo;
+        this.dob = dob;
+        this.gender = gender;
+        this.joinedDate = joinedDate;
+        this.reserves = reserves;
+    }
 }

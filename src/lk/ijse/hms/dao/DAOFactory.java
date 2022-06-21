@@ -5,9 +5,7 @@
  */
 package lk.ijse.hms.dao;
 
-import lk.ijse.hms.dao.custom.impl.ReserveDAOImpl;
-import lk.ijse.hms.dao.custom.impl.RoomDAOImpl;
-import lk.ijse.hms.dao.custom.impl.StudentDAOImpl;
+import lk.ijse.hms.dao.custom.impl.*;
 
 import java.io.IOException;
 
@@ -18,7 +16,7 @@ public class DAOFactory {
     private DAOFactory(){}
 
     public static enum DAOType{
-        STUDENT,ROOM,RESERVATION
+        STUDENT,ROOM,RESERVATION,PAYMENT,JOIN_QUERY
     }
 
     public SuperDAO getDAO(DAOType daoType) throws IOException {
@@ -26,6 +24,8 @@ public class DAOFactory {
             case ROOM:return new RoomDAOImpl();
             case STUDENT:return new StudentDAOImpl();
             case RESERVATION:return new ReserveDAOImpl();
+            case PAYMENT:return new PaymentDAOImpl();
+            case JOIN_QUERY:return new JoinQueryDAOImpl();
             default:return null;
         }
     }
