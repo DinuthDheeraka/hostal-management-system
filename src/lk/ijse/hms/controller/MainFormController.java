@@ -55,6 +55,14 @@ public class MainFormController implements Initializable {
         }
     }
 
+    public void paymentBtnOnAction(ActionEvent actionEvent) {
+        try {
+            Navigations.getInstance().addParentToCurrentStage("Payment-Form",mainFormContext);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void showTime(){
         Thread thread = new Thread(()->{
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
@@ -76,4 +84,5 @@ public class MainFormController implements Initializable {
     public void showDate(){
         lblSystemDate.setText(String.valueOf(LocalDate.now()));
     }
+
 }

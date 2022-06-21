@@ -24,7 +24,6 @@ import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MakeReservationFormController implements Initializable {
@@ -126,20 +125,13 @@ public class MakeReservationFormController implements Initializable {
             e.printStackTrace();
         }
     }
-    private String reserveId;
-    private Date date;
-    private double keyMoney;
-    private Student student;
-    private Room room;
-    private String reservationStatus;
-    private double paidKeyMoney;
 
     public void makeReservationBtnOnAction(ActionEvent actionEvent) {
         //Getting Student
         Student student = new Student();
         student.setStudentId(cmbxStudentIds.getSelectionModel().getSelectedItem());
-        //Getting Room
 
+        //Getting Room
         Room room = new Room();
         room.setRoomId(cmbxRoomIds.getSelectionModel().getSelectedItem());
 
@@ -152,7 +144,7 @@ public class MakeReservationFormController implements Initializable {
             ));
             new Alert(Alert.AlertType.CONFIRMATION,"Reservation Placed Successfully").show();
         } catch (Exception e) {
-            new Alert(Alert.AlertType.CONFIRMATION,"Something went wrong!").show();
+            new Alert(Alert.AlertType.ERROR,"Something went wrong!").show();
             e.printStackTrace();
         }
     }
