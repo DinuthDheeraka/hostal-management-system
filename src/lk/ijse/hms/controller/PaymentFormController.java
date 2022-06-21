@@ -29,8 +29,7 @@ public class PaymentFormController implements Initializable {
     public JFXTextField txtPaymentId;
     public JFXComboBox<String> cmbxRservationIds;
     public JFXTextField txtPaidAmount;
-
-    private double amountToPay;
+    public JFXTextField txtMonthlyRental;
 
     //DI
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
@@ -57,7 +56,7 @@ public class PaymentFormController implements Initializable {
 
     private void setReservationDataToTextFileds(String newValue) {
         try {
-            amountToPay =  joinQueryBO.getRoomMonthlyRentalByReservationId(newValue).getMonthlyRental();
+            txtMonthlyRental.setText(String.valueOf(joinQueryBO.getRoomMonthlyRentalByReservationId(newValue).getMonthlyRental()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -96,7 +95,7 @@ public class PaymentFormController implements Initializable {
         //Make Payment
         try {
             paymentBO.addPayment(new PaymentDTO(
-                    txtPaymentId.getText(), null,txtMonth.getText(),amountToPay,Double.valueOf(txtPaidAmount.getText()),
+                    txtPaymentId.getText(), null,txtMonth.getText(),Double.valueOf(txtMonthlyRental.getText()),Double.valueOf(txtPaidAmount.getText()),
                     cmbxRservationIds.getSelectionModel().getSelectedItem(), student
             ));
         } catch (Exception e) {

@@ -49,33 +49,34 @@
                           </yAxis>
                         </LineChart>
                         <TextField layoutX="24.0" layoutY="43.0" prefHeight="67.0" prefWidth="1824.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" />
-                        <JFXButton buttonType="RAISED" layoutX="1140.0" layoutY="817.0" onAction="#canselBtnOnAction" prefHeight="58.0" prefWidth="356.0" style="-fx-border-color: black;" text="CANSEL">
+                        <JFXButton buttonType="RAISED" layoutX="975.0" layoutY="818.0" onAction="#canselBtnOnAction" prefHeight="58.0" prefWidth="440.0" style="-fx-border-color: black;" text="CANSEL">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="1516.0" layoutY="816.0" onAction="#makePaymentBtnOnAction" prefHeight="58.0" prefWidth="341.0" style="-fx-background-color: green;" text="MAKE PAYMENT" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" layoutX="1460.0" layoutY="816.0" onAction="#makePaymentBtnOnAction" prefHeight="58.0" prefWidth="397.0" style="-fx-background-color: green;" text="MAKE PAYMENT" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXTextField fx:id="txtMonth" labelFloat="true" layoutX="22.0" layoutY="832.0" prefHeight="31.0" prefWidth="452.0" promptText="Month" unFocusColor="#1b1a1a">
+                        <JFXTextField fx:id="txtMonth" labelFloat="true" layoutX="22.0" layoutY="832.0" prefHeight="44.0" prefWidth="407.0" promptText="Month" unFocusColor="#1b1a1a">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </JFXTextField>
-                        <JFXComboBox fx:id="cmbxStudentIds" labelFloat="true" layoutX="515.0" layoutY="700.0" prefHeight="31.0" prefWidth="603.0" promptText="Select Student" unFocusColor="#1b1a1a" />
-                        <JFXTextField fx:id="txtPaymentId" labelFloat="true" layoutX="27.0" layoutY="687.0" prefHeight="31.0" prefWidth="445.0" promptText="Payment-Id" unFocusColor="#252424">
+                        <JFXComboBox fx:id="cmbxStudentIds" labelFloat="true" layoutX="453.0" layoutY="700.0" prefHeight="31.0" prefWidth="481.0" promptText="Select Student" unFocusColor="#1b1a1a" />
+                        <JFXTextField fx:id="txtPaymentId" labelFloat="true" layoutX="27.0" layoutY="687.0" prefHeight="44.0" prefWidth="395.0" promptText="Payment-Id" unFocusColor="#252424">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </JFXTextField>
-                        <JFXComboBox fx:id="cmbxRservationIds" labelFloat="true" layoutX="1140.0" layoutY="700.0" prefHeight="31.0" prefWidth="713.0" promptText="Select Reservation-Id" unFocusColor="#1b1a1a" />
-                        <JFXTextField fx:id="txtPaidAmount" labelFloat="true" layoutX="514.0" layoutY="831.0" prefHeight="31.0" prefWidth="609.0" promptText="Paid Amount" unFocusColor="#1b1a1a">
+                        <JFXComboBox fx:id="cmbxRservationIds" labelFloat="true" layoutX="975.0" layoutY="700.0" prefHeight="31.0" prefWidth="442.0" promptText="Select Reservation-Id" unFocusColor="#1b1a1a" />
+                        <JFXTextField fx:id="txtPaidAmount" labelFloat="true" layoutX="455.0" layoutY="831.0" prefHeight="44.0" prefWidth="483.0" promptText="Paid Amount" unFocusColor="#1b1a1a">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </JFXTextField>
+                        <JFXTextField fx:id="txtMonthlyRental" layoutX="1458.0" layoutY="700.0" prefHeight="31.0" prefWidth="391.0" promptText="Monthly Rental" unFocusColor="BLACK" />
                      </children>
                   </AnchorPane>
               </content>
