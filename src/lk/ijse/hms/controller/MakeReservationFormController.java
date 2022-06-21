@@ -10,15 +10,21 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import lk.ijse.hms.bo.BOFactory;
+import lk.ijse.hms.bo.custom.ReserveBO;
 import lk.ijse.hms.bo.custom.RoomBO;
 import lk.ijse.hms.bo.custom.StudentBO;
+import lk.ijse.hms.dto.ReserveDTO;
 import lk.ijse.hms.dto.RoomDTO;
 import lk.ijse.hms.dto.StudentDTO;
+import lk.ijse.hms.entity.Room;
+import lk.ijse.hms.entity.Student;
 import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MakeReservationFormController implements Initializable {
@@ -39,11 +45,12 @@ public class MakeReservationFormController implements Initializable {
     public JFXTextField txtRoomKeyMoney;
     public JFXTextField txtReservationId;
     public JFXComboBox<String> cmbxReservationCurrentStatus;
-    public JFXComboBox<String> txtRoomKeyMoneyStatus;
+    public JFXTextField txtRoomPaidKeyMoney;
 
     //DI
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
     RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
+    ReserveBO reserveBO = (ReserveBO) BOFactory.getInstance().getBO(BOFactory.BOType.RESERVATION);
     
 
     public MakeReservationFormController() throws IOException {
@@ -53,6 +60,7 @@ public class MakeReservationFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setCmbxRoomIdsData();
         setCmbxStudentIdsData();
+        setCmbxReservationStatusData();
 
         cmbxStudentIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 {
@@ -69,6 +77,10 @@ public class MakeReservationFormController implements Initializable {
                     }
                 }
         );
+    }
+
+    private void setCmbxReservationStatusData() {
+        cmbxReservationCurrentStatus.setItems(FXCollections.observableArrayList("Active","Not Active"));
     }
 
     private void setRoomDataToTextFileds(String newValue) {
@@ -114,8 +126,35 @@ public class MakeReservationFormController implements Initializable {
             e.printStackTrace();
         }
     }
+    private String reserveId;
+    private Date date;
+    private double keyMoney;
+    private Student student;
+    private Room room;
+    private String reservationStatus;
+    private double paidKeyMoney;
 
     public void makeReservationBtnOnAction(ActionEvent actionEvent) {
+        //Getting Student
+        Student student = new Student();
+        student.setStudentId(cmbxStudentIds.getSelectionModel().getSelectedItem());
+        //Getting Room
+
+        Room room = new Room();
+        room.setRoomId(cmbxRoomIds.getSelectionModel().getSelectedItem());
+
+        //Make Reservation
+        try {
+            reserveBO.addReservation(new ReserveDTO(
+                    txtReservationId.getText(),null,Double.valueOf(txtRoomKeyMoney.getText()),
+                    student,room, cmbxReservationCurrentStatus.getSelectionModel().getSelectedItem(),
+                    Double.valueOf(txtRoomPaidKeyMoney.getText())
+            ));
+            new Alert(Alert.AlertType.CONFIRMATION,"Reservation Placed Successfully").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.CONFIRMATION,"Something went wrong!").show();
+            e.printStackTrace();
+        }
     }
 
     public void canselBtnOnAction(ActionEvent actionEvent) {

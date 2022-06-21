@@ -114,14 +114,18 @@
                                     <Font size="18.0" />
                                  </font>
                               </JFXTextField>
+                              <JFXTextField fx:id="txtRoomPaidKeyMoney" focusColor="BLACK" labelFloat="true" layoutX="10.0" layoutY="10.0" minWidth="478.0" promptText="Paid Key Money">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
                            </children>
                         </HBox>
                         <JFXTextField fx:id="txtReservationId" layoutX="15.0" layoutY="626.0" prefHeight="31.0" prefWidth="306.0" promptText="Reservation Id">
                            <font>
                               <Font size="18.0" />
                            </font></JFXTextField>
-                        <JFXComboBox fx:id="cmbxReservationCurrentStatus" layoutX="1381.0" layoutY="634.0" prefHeight="31.0" prefWidth="478.0" promptText="Select Current Status" />
-                        <JFXComboBox fx:id="txtRoomKeyMoneyStatus" layoutX="880.0" layoutY="634.0" prefHeight="31.0" prefWidth="478.0" promptText="Select Key Money Status" />
+                        <JFXComboBox fx:id="cmbxReservationCurrentStatus" layoutX="1381.0" layoutY="634.0" prefHeight="31.0" prefWidth="478.0" promptText="Select Reservation Status" />
                         <JFXButton buttonType="RAISED" layoutX="1543.0" layoutY="822.0" onAction="#makeReservationBtnOnAction" prefHeight="66.0" prefWidth="323.0" style="-fx-background-color: green;" text="MAKE RESERVATION" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="17.0" />
