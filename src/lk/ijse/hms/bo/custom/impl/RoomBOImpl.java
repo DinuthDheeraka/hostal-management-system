@@ -65,4 +65,9 @@ public class RoomBOImpl implements RoomBO {
         Room room = roomDAO.find(roomId);
         return new RoomDTO(room.getRoomId(),room.getType(), room.getMonthlyRental(), room.getAvailability());
     }
+
+    @Override
+    public String getLastRoomId() throws Exception {
+        return roomDAO.findLastId();
+    }
 }

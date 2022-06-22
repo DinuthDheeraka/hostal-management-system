@@ -8,6 +8,7 @@ package lk.ijse.hms.dao.custom.impl;
 import lk.ijse.hms.dao.custom.RoomDAO;
 import lk.ijse.hms.entity.Room;
 import lk.ijse.hms.util.FactoryConfiguration;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -67,7 +68,10 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public String findLastId() throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        SQLQuery sqlQuery = session.createSQLQuery("select roomId from Room order by roomId desc limit 1");
+        System.out.println(sqlQuery.getQueryString());
+        return String.valueOf(sqlQuery.list());
     }
 
     @Override

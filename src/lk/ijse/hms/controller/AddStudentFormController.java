@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.StudentBO;
 import lk.ijse.hms.dto.StudentDTO;
+import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
@@ -50,6 +51,7 @@ public class AddStudentFormController implements Initializable {
         setCmbxDistrictData();
         setCmbxProvinceData();
         setCmbxGenderData();
+        setGeneratedId();
     }
 
     private void setCmbxGenderData() {
@@ -120,9 +122,18 @@ public class AddStudentFormController implements Initializable {
                         Date.from(dpkDOB.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),cmbxGender.getSelectionModel().getSelectedItem(),
                         null
                 ));
+                setGeneratedId();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void setGeneratedId(){
+        try {
+            txtStdId.setText(IdsGenerator.generateId("ST-",studentBO.getLastStudentId()));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

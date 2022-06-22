@@ -17,6 +17,7 @@ import lk.ijse.hms.bo.custom.ReserveBO;
 import lk.ijse.hms.bo.custom.StudentBO;
 import lk.ijse.hms.dto.PaymentDTO;
 import lk.ijse.hms.entity.Student;
+import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
@@ -44,6 +45,7 @@ public class PaymentFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setCmbxStudentIdsData();
         setCmbxReservationIdsData();
+        setGeneratedId();
 
         cmbxRservationIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 {
@@ -52,6 +54,12 @@ public class PaymentFormController implements Initializable {
                     }
                 }
         );
+
+        try {
+            txtPaymentId.setText(IdsGenerator.generateId("PM-",paymentBO.getLastPaymentId()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setReservationDataToTextFileds(String newValue) {
@@ -98,6 +106,15 @@ public class PaymentFormController implements Initializable {
                     txtPaymentId.getText(), null,txtMonth.getText(),Double.valueOf(txtMonthlyRental.getText()),Double.valueOf(txtPaidAmount.getText()),
                     cmbxRservationIds.getSelectionModel().getSelectedItem(), student
             ));
+            setGeneratedId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setGeneratedId(){
+        try {
+            txtPaymentId.setText(IdsGenerator.generateId("PM-", paymentBO.getLastPaymentId()));
         } catch (Exception e) {
             e.printStackTrace();
         }

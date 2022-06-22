@@ -8,6 +8,7 @@ package lk.ijse.hms.dao.custom.impl;
 import lk.ijse.hms.dao.custom.ReserveDAO;
 import lk.ijse.hms.entity.Reserve;
 import lk.ijse.hms.util.FactoryConfiguration;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -46,7 +47,10 @@ public class ReserveDAOImpl implements ReserveDAO {
 
     @Override
     public String findLastId() throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        SQLQuery sqlQuery = session.createSQLQuery("select reserveId from Reserve order by reserveId desc limit 1");
+        System.out.println(sqlQuery.getQueryString());
+        return String.valueOf(sqlQuery.list());
     }
 
     @Override

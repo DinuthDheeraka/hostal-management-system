@@ -35,4 +35,9 @@ public class ReserveBOImpl implements ReserveBO {
     public List<String> getAllReservationIds() throws Exception {
         return reserveDAO.findAllIds();
     }
+
+    @Override
+    public String getLastReservationId() throws Exception {
+        return reserveDAO.findLastId();
+    }
 }

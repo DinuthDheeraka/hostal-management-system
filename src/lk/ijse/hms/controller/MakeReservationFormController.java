@@ -20,6 +20,7 @@ import lk.ijse.hms.dto.RoomDTO;
 import lk.ijse.hms.dto.StudentDTO;
 import lk.ijse.hms.entity.Room;
 import lk.ijse.hms.entity.Student;
+import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
@@ -76,6 +77,7 @@ public class MakeReservationFormController implements Initializable {
                     }
                 }
         );
+        setGeneratedId();
     }
 
     private void setCmbxReservationStatusData() {
@@ -142,6 +144,7 @@ public class MakeReservationFormController implements Initializable {
                     student,room, cmbxReservationCurrentStatus.getSelectionModel().getSelectedItem(),
                     Double.valueOf(txtRoomPaidKeyMoney.getText())
             ));
+            setGeneratedId();
             new Alert(Alert.AlertType.CONFIRMATION,"Reservation Placed Successfully").show();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,"Something went wrong!").show();
@@ -154,6 +157,14 @@ public class MakeReservationFormController implements Initializable {
             Navigations.getInstance().closeStage(actionEvent);
             Navigations.getInstance().setNewStage("Main-Form");
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setGeneratedId(){
+        try {
+            txtReservationId.setText(IdsGenerator.generateId("RS-", reserveBO.getLastReservationId()));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

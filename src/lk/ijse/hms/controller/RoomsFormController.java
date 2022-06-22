@@ -20,8 +20,11 @@ import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.RoomBO;
 import lk.ijse.hms.dto.RoomDTO;
 import lk.ijse.hms.service.DataConvertor;
+import lk.ijse.hms.util.FactoryConfiguration;
 import lk.ijse.hms.util.Navigations;
 import lk.ijse.hms.view.tdm.RoomTM;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,6 +73,7 @@ public class RoomsFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        tester();
     }
 
     private void setSelectedRoomData(RoomTM newValue) {
@@ -138,5 +142,16 @@ public class RoomsFormController implements Initializable {
         stage.setScene(scene);
 
         Navigations.getInstance().transparentUi(stage,scene);
+    }
+
+    public void tester(){
+        Session session = null;
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SQLQuery sqlQuery = session.createSQLQuery("select roomId from Room order by roomId desc limit 1");
+        System.out.println(sqlQuery.list().get(0));
     }
 }

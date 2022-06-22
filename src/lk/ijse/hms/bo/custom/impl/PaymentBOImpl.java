@@ -28,4 +28,9 @@ public class PaymentBOImpl implements PaymentBO {
                 paymentDTO.getPaidAmount(),paymentDTO.getReservationId(),paymentDTO.getStudent()
         ));
     }
+
+    @Override
+    public String getLastPaymentId() throws Exception {
+        return paymentDAO.findLastId();
+    }
 }

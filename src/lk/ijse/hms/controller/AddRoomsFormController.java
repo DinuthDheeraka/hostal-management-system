@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.RoomBO;
 import lk.ijse.hms.dto.RoomDTO;
+import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
@@ -37,6 +38,13 @@ public class AddRoomsFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setRoomTypeCmbxData();
         setRoomAvailabilityCmbxData();
+        setGeneratedId();
+
+        try {
+            txtRoomId.setText(IdsGenerator.generateId("RM-",roomBO.getLastRoomId()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setRoomAvailabilityCmbxData() {
@@ -67,6 +75,7 @@ public class AddRoomsFormController implements Initializable {
                         txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
                         Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem()
                 ));
+                setGeneratedId();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -80,5 +89,13 @@ public class AddRoomsFormController implements Initializable {
         txtMonthlyRental.setText(String.valueOf(roomDTO.getMonthlyRental()));
         cmbxRoomType.getSelectionModel().select(roomDTO.getType());
         cmbxRoomAvailability.getSelectionModel().select(roomDTO.getAvailability());
+    }
+
+    public void setGeneratedId(){
+        try {
+            txtRoomId.setText(IdsGenerator.generateId("RM-", roomBO.getLastRoomId()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

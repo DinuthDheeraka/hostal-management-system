@@ -13,4 +13,5 @@ public interface RoomBO extends SuperBO {
     boolean updateRoom(RoomDTO roomDTO) throws Exception;
     List<String> getAllRoomIds() throws Exception;
     RoomDTO getRoom(String roomId) throws Exception;
+    String getLastRoomId() throws Exception;
 }

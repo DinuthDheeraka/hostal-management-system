@@ -54,7 +54,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="1460.0" layoutY="816.0" onAction="#makePaymentBtnOnAction" prefHeight="58.0" prefWidth="397.0" style="-fx-background-color: green;" text="MAKE PAYMENT" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" layoutX="1460.0" layoutY="817.0" onAction="#makePaymentBtnOnAction" prefHeight="58.0" prefWidth="397.0" style="-fx-background-color: green;" text="MAKE PAYMENT" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -71,12 +71,15 @@
                            </font>
                         </JFXTextField>
                         <JFXComboBox fx:id="cmbxRservationIds" labelFloat="true" layoutX="975.0" layoutY="700.0" prefHeight="31.0" prefWidth="442.0" promptText="Select Reservation-Id" unFocusColor="#1b1a1a" />
-                        <JFXTextField fx:id="txtPaidAmount" labelFloat="true" layoutX="455.0" layoutY="831.0" prefHeight="44.0" prefWidth="483.0" promptText="Paid Amount" unFocusColor="#1b1a1a">
+                        <JFXTextField fx:id="txtPaidAmount" labelFloat="true" layoutX="455.0" layoutY="832.0" prefHeight="44.0" prefWidth="483.0" promptText="Paid Amount" unFocusColor="#1b1a1a">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtMonthlyRental" layoutX="1458.0" layoutY="700.0" prefHeight="31.0" prefWidth="391.0" promptText="Monthly Rental" unFocusColor="BLACK" />
+                        <JFXTextField fx:id="txtMonthlyRental" labelFloat="true" layoutX="1458.0" layoutY="686.0" prefHeight="45.0" prefWidth="388.0" promptText="Monthly Rental" unFocusColor="BLACK">
+                           <font>
+                              <Font size="21.0" />
+                           </font></JFXTextField>
                      </children>
                   </AnchorPane>
               </content>

@@ -72,4 +72,9 @@ public class StudentBOImpl implements StudentBO {
                 studentDTO.getGender(),studentDTO.getJoinedDate(),new ArrayList()
         ));
     }
+
+    @Override
+    public String getLastStudentId() throws Exception {
+        return studentDAO.findLastId();
+    }
 }
