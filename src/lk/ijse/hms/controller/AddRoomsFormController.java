@@ -29,6 +29,7 @@ public class AddRoomsFormController implements Initializable {
     public JFXTextField txtMonthlyRental;
     public JFXComboBox<String> cmbxRoomType;
     public JFXComboBox<String> cmbxRoomAvailability;
+    public JFXTextField txtKeyMoney;
 
 
     //DI
@@ -67,13 +68,13 @@ public class AddRoomsFormController implements Initializable {
         if("UPDATE ROOM".equals(addBtn.getText())){
                 roomBO.updateRoom(new RoomDTO(
                         txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
-                        Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem()
+                        Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
             ));
         } else{
             try {
                 roomBO.addRoom(new RoomDTO(
                         txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
-                        Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem()
+                        Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
                 ));
                 setGeneratedId();
             } catch (Exception e) {
@@ -89,6 +90,7 @@ public class AddRoomsFormController implements Initializable {
         txtMonthlyRental.setText(String.valueOf(roomDTO.getMonthlyRental()));
         cmbxRoomType.getSelectionModel().select(roomDTO.getType());
         cmbxRoomAvailability.getSelectionModel().select(roomDTO.getAvailability());
+        txtKeyMoney.setText(String.valueOf(roomDTO.getKeyMoney()));
     }
 
     public void setGeneratedId(){

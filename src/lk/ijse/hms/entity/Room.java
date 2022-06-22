@@ -29,4 +29,5 @@ public class Room implements SuperEntity{
     private String availability;
     @OneToMany(mappedBy = "room")
     List<Reserve> reserves = new ArrayList();
+    private double keyMoney;
 }

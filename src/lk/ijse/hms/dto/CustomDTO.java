@@ -34,6 +34,7 @@ public class CustomDTO {
     private String type;
     private double monthlyRental;
     private String availability;
+    private double roomKeyMoney;
 
     //Reservation Data
     private String reserveId;

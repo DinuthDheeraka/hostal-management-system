@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="627.0" prefWidth="624.0" style="-fx-background-color: #d9d7d7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hms.controller.AddRoomsFormController">
+<AnchorPane prefHeight="701.0" prefWidth="624.0" style="-fx-background-color: #d9d7d7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hms.controller.AddRoomsFormController">
    <children>
       <AnchorPane layoutX="1.0" prefHeight="53.0" prefWidth="623.0" style="-fx-background-color: white;">
          <children>
@@ -21,9 +21,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="1.0" layoutY="61.0" prefHeight="567.0" prefWidth="623.0" style="-fx-background-color: #e8e6e6;">
+      <AnchorPane layoutX="1.0" layoutY="61.0" prefHeight="640.0" prefWidth="623.0" style="-fx-background-color: #e8e6e6;">
          <children>
-            <ImageView fitHeight="567.0" fitWidth="623.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
+            <ImageView fitHeight="640.0" fitWidth="623.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
                <image>
                   <Image url="@assets/images/1JynjM.jpg" />
                </image>
@@ -40,16 +40,17 @@
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
+                  <JFXTextField fx:id="txtKeyMoney" focusColor="#101011" promptText="Key Money" />
                   <JFXComboBox fx:id="cmbxRoomType" focusColor="#3b3b3c" prefHeight="31.0" prefWidth="582.0" promptText="Select Type" />
                   <JFXComboBox fx:id="cmbxRoomAvailability" focusColor="#3b3b3c" layoutX="10.0" layoutY="72.0" prefHeight="31.0" prefWidth="582.0" promptText="Select Availability" />
                </children>
             </VBox>
-            <JFXButton fx:id="addBtn" buttonType="RAISED" layoutX="395.0" layoutY="500.0" onAction="#addRoomBtnOnAction" prefHeight="53.0" prefWidth="214.0" style="-fx-background-color: green;" text="ADD ROOM" textFill="WHITE">
+            <JFXButton fx:id="addBtn" buttonType="RAISED" layoutX="395.0" layoutY="579.0" onAction="#addRoomBtnOnAction" prefHeight="53.0" prefWidth="214.0" style="-fx-background-color: green;" text="ADD ROOM" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="172.0" layoutY="500.0" onAction="#canselBtnOnAction" prefHeight="53.0" prefWidth="214.0" style="-fx-border-color: black;" text="CANSEL">
+            <JFXButton buttonType="RAISED" layoutX="172.0" layoutY="579.0" onAction="#canselBtnOnAction" prefHeight="53.0" prefWidth="214.0" style="-fx-border-color: black;" text="CANSEL">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

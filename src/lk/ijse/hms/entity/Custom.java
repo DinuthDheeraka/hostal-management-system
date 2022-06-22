@@ -37,6 +37,7 @@ public class Custom implements SuperEntity{
     private double monthlyRental;
     private String availability;
     List<Reserve> roomReserves = new ArrayList();
+    private double roomKeyMoney;
 
     //Reservation Data
     private String reserveId;

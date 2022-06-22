@@ -19,4 +19,5 @@ public class RoomDTO {
     private String type;
     private double monthlyRental;
     private String availability;
+    private double keyMoney;
 }

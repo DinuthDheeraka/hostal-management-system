@@ -38,6 +38,7 @@ public class RoomsFormController implements Initializable {
     public TableColumn colRoomType;
     public TableColumn colAvailability;
     public TextField txtSearchBar;
+    public TableColumn colKeyMoney;
 
     private Stage stage;
     private Scene scene;
@@ -48,6 +49,7 @@ public class RoomsFormController implements Initializable {
     private double selectedMonthlyRental;
     private String selectedRoomType;
     private String selectedAvailability;
+    private double selectedKeyMoney;
 
     //DI
     RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
@@ -62,6 +64,7 @@ public class RoomsFormController implements Initializable {
         colRoomType.setCellValueFactory(new PropertyValueFactory("type"));
         colMonthlyRental.setCellValueFactory(new PropertyValueFactory("monthlyRental"));
         colAvailability.setCellValueFactory(new PropertyValueFactory("availability"));
+        colKeyMoney.setCellValueFactory(new PropertyValueFactory("keyMoney"));
 
         roomTbl.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
@@ -81,11 +84,12 @@ public class RoomsFormController implements Initializable {
         selectedRoomType = newValue.getType();
         selectedMonthlyRental = newValue.getMonthlyRental();
         selectedAvailability = newValue.getAvailability();
+        selectedKeyMoney = newValue.getKeyMoney();
     }
 
     private void setRoomsTblData() throws Exception {
         Function<RoomDTO,RoomTM> function = (dto)->new RoomTM(
-                dto.getRoomId(),dto.getType(),dto.getMonthlyRental(),dto.getAvailability()
+                dto.getRoomId(),dto.getType(),dto.getMonthlyRental(),dto.getAvailability(),dto.getKeyMoney()
         );
         roomTbl.getItems().clear();
         roomTbl.setItems(FXCollections.observableArrayList(dataConvertor.convert(roomBO.getAllRooms(),function)));
@@ -135,7 +139,7 @@ public class RoomsFormController implements Initializable {
 
         //Transfer Room Data to Update Form
         AddRoomsFormController controller = fxmlLoader.getController();
-        controller.setValuesForInputFields(new RoomDTO(selectedRoomId,selectedRoomType,selectedMonthlyRental,selectedAvailability));
+        controller.setValuesForInputFields(new RoomDTO(selectedRoomId,selectedRoomType,selectedMonthlyRental,selectedAvailability,selectedKeyMoney));
 
         stage = new Stage();
         scene = new Scene(parent);

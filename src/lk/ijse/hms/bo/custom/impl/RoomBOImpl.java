@@ -29,7 +29,7 @@ public class RoomBOImpl implements RoomBO {
     @Override
     public List<RoomDTO> getAllRooms() throws Exception {
         Function<Room,RoomDTO> function = (r)->new RoomDTO(
-                r.getRoomId(),r.getType(),r.getMonthlyRental(),r.getAvailability()
+                r.getRoomId(),r.getType(),r.getMonthlyRental(),r.getAvailability(),r.getKeyMoney()
         );
         return dataConvertor.convert(roomDAO.findAll(),function);
     }
@@ -38,7 +38,7 @@ public class RoomBOImpl implements RoomBO {
     public boolean addRoom(RoomDTO roomDTO) throws Exception {
         return roomDAO.add(new Room(
                 roomDTO.getRoomId(), roomDTO.getType(), roomDTO.getMonthlyRental(), roomDTO.getAvailability(),
-                new ArrayList<Reserve>()
+                new ArrayList<Reserve>(), roomDTO.getKeyMoney()
         ));
     }
 
@@ -51,7 +51,7 @@ public class RoomBOImpl implements RoomBO {
     public boolean updateRoom(RoomDTO roomDTO) throws Exception {
         return roomDAO.update(new Room(
                 roomDTO.getRoomId(), roomDTO.getType(), roomDTO.getMonthlyRental(), roomDTO.getAvailability(),
-                new ArrayList()
+                new ArrayList(), roomDTO.getKeyMoney()
         ));
     }
 
@@ -63,7 +63,7 @@ public class RoomBOImpl implements RoomBO {
     @Override
     public RoomDTO getRoom(String roomId) throws Exception {
         Room room = roomDAO.find(roomId);
-        return new RoomDTO(room.getRoomId(),room.getType(), room.getMonthlyRental(), room.getAvailability());
+        return new RoomDTO(room.getRoomId(),room.getType(), room.getMonthlyRental(), room.getAvailability(),room.getKeyMoney());
     }
 
     @Override
