@@ -10,4 +10,5 @@ public interface RoomSettingBO extends SuperBO {
 
     List<RoomSettingDTO> getAllRoomSettings() throws Exception;
     List<String> getRoomCategories() throws IOException;
+    int getMaxRoomCount(String roomType) throws IOException;
 }

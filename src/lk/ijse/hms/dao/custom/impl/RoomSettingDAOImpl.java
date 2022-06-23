@@ -58,4 +58,12 @@ public class RoomSettingDAOImpl implements RoomSettingDAO {
         Query query = session.createQuery("select rs.type from RoomSetting rs");
         return query.list();
     }
+
+    @Override
+    public int getMaxRoomCount(String roomType) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("select rs.maxCount from RoomSetting rs where rs.type = :roomType");
+        query.setParameter("roomType",roomType);
+        return (int) query.list().get(0);
+    }
 }

@@ -48,6 +48,14 @@ public class AddRoomsFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        cmbxRoomType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    if (newValue!=null){
+                        isEligibleToAddNewRoom();
+                    }
+                }
+        );
     }
 
     private void setRoomAvailabilityCmbxData() {
@@ -111,8 +119,10 @@ public class AddRoomsFormController implements Initializable {
     }
 
     public boolean isEligibleToAddNewRoom(){
-        switch (cmbxRoomType.getSelectionModel().getSelectedItem()){
-
+        try {
+            return roomBO.getAddedRoomCountByType(cmbxRoomType.getSelectionModel().getSelectedItem())< roomSettingBO.getMaxRoomCount(cmbxRoomType.getSelectionModel().getSelectedItem());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return true;
     }

@@ -80,4 +80,12 @@ public class RoomDAOImpl implements RoomDAO {
         Query query = session.createQuery("select  r.roomId from Room r");
         return query.list();
     }
+
+    @Override
+    public Long getAddedRoomCountByType(String roomType) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("select  count (r.roomId) from Room r where r.type = :type");
+        query.setParameter("type",roomType);
+        return (Long) query.list().get(0);
+    }
 }

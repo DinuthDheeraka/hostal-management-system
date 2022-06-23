@@ -36,4 +36,9 @@ public class RoomSettingBOImpl implements RoomSettingBO {
     public List<String> getRoomCategories() throws IOException {
         return roomSettingDAO.getRoomCategories();
     }
+
+    @Override
+    public int getMaxRoomCount(String roomType) throws IOException {
+        return roomSettingDAO.getMaxRoomCount(roomType);
+    }
 }

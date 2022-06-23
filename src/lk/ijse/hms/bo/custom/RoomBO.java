@@ -3,6 +3,7 @@ package lk.ijse.hms.bo.custom;
 import lk.ijse.hms.bo.SuperBO;
 import lk.ijse.hms.dto.RoomDTO;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface RoomBO extends SuperBO {
@@ -14,4 +15,5 @@ public interface RoomBO extends SuperBO {
     List<String> getAllRoomIds() throws Exception;
     RoomDTO getRoom(String roomId) throws Exception;
     String getLastRoomId() throws Exception;
+    Long getAddedRoomCountByType(String roomType) throws IOException;
 }

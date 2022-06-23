@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RoomSettingDAO extends CrudDAO<RoomSetting,String> {
     List<String> getRoomCategories() throws IOException;
+    int getMaxRoomCount(String roomType) throws IOException;
 }

@@ -70,4 +70,9 @@ public class RoomBOImpl implements RoomBO {
     public String getLastRoomId() throws Exception {
         return roomDAO.findLastId();
     }
+
+    @Override
+    public Long getAddedRoomCountByType(String roomType) throws IOException {
+        return roomDAO.getAddedRoomCountByType(roomType);
+    }
 }
