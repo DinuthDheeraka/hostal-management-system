@@ -77,7 +77,8 @@ public class RoomDAOImpl implements RoomDAO {
     @Override
     public List<String> findAllIds() throws Exception {
         Session session = FactoryConfiguration.getInstance().getSession();
-        Query query = session.createQuery("select  r.roomId from Room r");
+        Query query = session.createQuery("select  r.roomId from Room r where r.availability = :av");
+        query.setParameter("av","Available");
         return query.list();
     }
 

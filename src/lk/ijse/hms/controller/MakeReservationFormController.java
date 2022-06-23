@@ -146,9 +146,30 @@ public class MakeReservationFormController implements Initializable {
                     Double.valueOf(txtRoomPaidKeyMoney.getText())
             ));
             setGeneratedId();
+
+            //Update Room Status
+            updateRoomStatus();
+
             new Alert(Alert.AlertType.CONFIRMATION,"Reservation Placed Successfully").show();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,"Something went wrong!").show();
+            e.printStackTrace();
+        }
+    }
+
+    private void updateRoomStatus() {
+        try {
+            RoomDTO roomDTO = roomBO.getRoom(cmbxRoomIds.getSelectionModel().getSelectedItem());
+            Room room = new Room(
+                    roomDTO.getRoomId(),roomDTO.getType(),roomDTO.getMonthlyRental(),
+                    "Not Available",null,roomDTO.getKeyMoney());
+
+            roomBO.updateRoom(new RoomDTO(
+                    room.getRoomId(),room.getType(),room.getMonthlyRental(),room.getAvailability(),
+                    room.getKeyMoney()
+            ));
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

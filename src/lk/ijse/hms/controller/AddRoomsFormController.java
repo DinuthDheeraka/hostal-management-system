@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.RoomBO;
@@ -80,12 +81,15 @@ public class AddRoomsFormController implements Initializable {
 
     public void addRoomBtnOnAction(ActionEvent actionEvent) throws Exception {
 
+        //Update Room
         if("UPDATE ROOM".equals(addBtn.getText())){
                 roomBO.updateRoom(new RoomDTO(
                         txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
                         Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
             ));
         } else{
+
+            //Add New Room
             if(isEligibleToAddNewRoom()){
                 try {
                     roomBO.addRoom(new RoomDTO(
@@ -96,6 +100,8 @@ public class AddRoomsFormController implements Initializable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Max Room Count Reached").show();
             }
         }
     }
