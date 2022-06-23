@@ -112,6 +112,14 @@ public class RoomsFormController implements Initializable {
         }
     }
 
+    public void roomSettingsOnAction(ActionEvent actionEvent) {
+        try {
+            Navigations.getInstance().setNewStage("Room-Settings-Form");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void refreshCtxmOnAction(ActionEvent actionEvent) throws Exception {
         try {
             setRoomsTblData();

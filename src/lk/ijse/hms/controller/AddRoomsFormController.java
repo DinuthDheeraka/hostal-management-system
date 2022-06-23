@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.RoomBO;
+import lk.ijse.hms.bo.custom.RoomSettingBO;
 import lk.ijse.hms.dto.RoomDTO;
 import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
@@ -34,6 +35,7 @@ public class AddRoomsFormController implements Initializable {
 
     //DI
     RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
+    RoomSettingBO roomSettingBO = (RoomSettingBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM_SETTING_BO);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,7 +55,12 @@ public class AddRoomsFormController implements Initializable {
     }
 
     private void setRoomTypeCmbxData() {
-        cmbxRoomType.setItems(FXCollections.observableArrayList("Non-AC","Non-AC/Food","AC","AC/Food"));
+        try {
+            cmbxRoomType.setItems(FXCollections.observableArrayList(roomSettingBO.getRoomCategories()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //cmbxRoomType.setItems(FXCollections.observableArrayList("Non-AC","Non-AC/Food","AC","AC/Food"));
     }
 
     public AddRoomsFormController() throws IOException {

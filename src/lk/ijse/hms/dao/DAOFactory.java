@@ -16,7 +16,7 @@ public class DAOFactory {
     private DAOFactory(){}
 
     public static enum DAOType{
-        STUDENT,ROOM,RESERVATION,PAYMENT,JOIN_QUERY
+        STUDENT,ROOM,RESERVATION,PAYMENT,JOIN_QUERY,ROOM_SETTING
     }
 
     public SuperDAO getDAO(DAOType daoType) throws IOException {
@@ -26,6 +26,7 @@ public class DAOFactory {
             case RESERVATION:return new ReserveDAOImpl();
             case PAYMENT:return new PaymentDAOImpl();
             case JOIN_QUERY:return new JoinQueryDAOImpl();
+            case ROOM_SETTING:return new RoomSettingDAOImpl();
             default:return null;
         }
     }
