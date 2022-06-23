@@ -71,14 +71,16 @@ public class AddRoomsFormController implements Initializable {
                         Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
             ));
         } else{
-            try {
-                roomBO.addRoom(new RoomDTO(
-                        txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
-                        Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
-                ));
-                setGeneratedId();
-            } catch (Exception e) {
-                e.printStackTrace();
+            if(isEligibleToAddNewRoom()){
+                try {
+                    roomBO.addRoom(new RoomDTO(
+                            txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
+                            Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
+                    ));
+                    setGeneratedId();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -99,5 +101,12 @@ public class AddRoomsFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isEligibleToAddNewRoom(){
+        switch (cmbxRoomType.getSelectionModel().getSelectedItem()){
+
+        }
+        return true;
     }
 }

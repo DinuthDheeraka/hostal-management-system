@@ -5,6 +5,7 @@
  */
 package lk.ijse.hms.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +42,7 @@ public class StudentsFormController implements Initializable {
     public TableColumn colStdGender;
     public TableColumn colStdJoinedDate;
     public TextField txtSearchBar;
+    public JFXButton addStudentBtn;
 
     private Stage stage;
     private Scene scene;
@@ -78,6 +80,16 @@ public class StudentsFormController implements Initializable {
                 .addListener((observable, oldValue, newValue) -> {
                     if(newValue!=null)setSelectedStudentData(newValue);
                 });
+
+        controlAddStudentBtn();
+    }
+
+    private void controlAddStudentBtn() {
+        if (studentTbl.getItems().size() < 125) {
+            addStudentBtn.setDisable(false);
+        } else {
+            addStudentBtn.setDisable(true);
+        }
     }
 
     private void setSelectedStudentData(StudentTM newValue) {
@@ -120,6 +132,7 @@ public class StudentsFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        controlAddStudentBtn();
     }
 
     public void updateCtxmOnAction(ActionEvent actionEvent) {

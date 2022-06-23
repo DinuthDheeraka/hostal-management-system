@@ -5,10 +5,7 @@
  */
 package lk.ijse.hms.util;
 
-import lk.ijse.hms.entity.Payment;
-import lk.ijse.hms.entity.Reserve;
-import lk.ijse.hms.entity.Room;
-import lk.ijse.hms.entity.Student;
+import lk.ijse.hms.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -33,6 +30,7 @@ public class FactoryConfiguration {
         configuration.addAnnotatedClass(Room.class);
         configuration.addAnnotatedClass(Reserve.class);
         configuration.addAnnotatedClass(Payment.class);
+        configuration.addAnnotatedClass(RoomSetting.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }

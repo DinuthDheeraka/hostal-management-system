@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="712.0" prefWidth="1385.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hms.controller.RoomSettingsFormController">
+   <children>
+      <ImageView fitHeight="712.0" fitWidth="1385.0" pickOnBounds="true">
+         <image>
+            <Image url="@assets/images/1JynjM.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="roomCategoryTbl" layoutX="9.0" layoutY="311.0" prefHeight="393.0" prefWidth="1367.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="75.0" text="Category Id" />
+          <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="colMaxCount" prefWidth="75.0" text="Max Count" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <HBox layoutX="14.0" layoutY="141.0" prefHeight="44.0" prefWidth="1094.0" spacing="20.0">
+         <children>
+            <JFXTextField fx:id="txtId" labelFloat="true" minWidth="340.0" promptText="Category Id">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtType" labelFloat="true" minWidth="340.0" promptText="Type">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtMaxCount" labelFloat="true" minWidth="340.0" promptText="Max Count">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </HBox>
+      <TextField fx:id="txtSearchBar" layoutX="9.0" layoutY="236.0" onAction="#txtSearchBarOnAction" prefHeight="53.0" prefWidth="1367.0" style="-fx-background-radius: 20;" />
+      <JFXButton fx:id="addBtn" layoutX="1097.0" layoutY="132.0" onAction="#addBtnOnAction" prefHeight="53.0" prefWidth="277.0" style="-fx-background-color: green;" text="ADD" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="14.0" layoutY="14.0" text="ROOM SETTINGS">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

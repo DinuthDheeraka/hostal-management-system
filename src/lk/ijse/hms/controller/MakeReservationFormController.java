@@ -90,6 +90,7 @@ public class MakeReservationFormController implements Initializable {
             txtRoomType.setText(roomDTO.getType());
             txtRoomAvailability.setText(roomDTO.getAvailability());
             txtRoomRent.setText(String.valueOf(roomDTO.getMonthlyRental()));
+            txtRoomKeyMoney.setText(String.valueOf(roomDTO.getKeyMoney()));
         } catch (Exception e) {
             e.printStackTrace();
         }
