@@ -9,11 +9,15 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.ReserveBO;
 import lk.ijse.hms.bo.custom.RoomBO;
@@ -62,6 +66,13 @@ public class MakeReservationFormController implements Initializable {
     public TableColumn colAmountToPay;
     public TableColumn colStatus;
 
+    //Selected Reservation Data
+    private ReserveDTO selectedReserveDTO;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent parent;
+
     //DI
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
     RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
@@ -108,7 +119,31 @@ public class MakeReservationFormController implements Initializable {
                     }
                 }
         );
+
+        reserveTbl.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if(newValue!=null)setSelectedReservationData(newValue);
+                });
+
         setGeneratedId();
+    }
+
+    private void setSelectedReservationData(ReserveTM newValue) {
+        selectedReserveDTO = new ReserveDTO();
+
+        Student student = new Student();
+        student.setStudentId(newValue.getStudentId());
+
+        Room room = new Room();
+        room.setRoomId(newValue.getRoomId());
+
+        selectedReserveDTO.setDate(newValue.getDate());
+        selectedReserveDTO.setKeyMoney(newValue.getKeyMoney());
+        selectedReserveDTO.setReserveId(newValue.getReserveId());
+        selectedReserveDTO.setRoom(room);
+        selectedReserveDTO.setReservationStatus(newValue.getStatus());
+        selectedReserveDTO.setPaidKeyMoney(newValue.getPaidKeyMoney());
+        selectedReserveDTO.setStudent(student);
     }
 
     private void setReservationTblData() throws Exception {
@@ -228,5 +263,36 @@ public class MakeReservationFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void refreshCtxmOnAction(ActionEvent actionEvent) {
+        try {
+            setReservationTblData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCtxmOnAction(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Update-Reservation-Form.fxml"));
+
+        try {
+            parent = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Transfer Room Data to Update Form
+        UpdateReservationFormController controller = fxmlLoader.getController();
+        controller.setValuesForInputFields(selectedReserveDTO);
+
+        stage = new Stage();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+
+        Navigations.getInstance().transparentUi(stage,scene);
+    }
+
+    public void deleteCtxmOnAction(ActionEvent actionEvent) {
     }
 }

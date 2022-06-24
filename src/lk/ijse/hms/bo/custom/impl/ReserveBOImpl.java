@@ -52,4 +52,22 @@ public class ReserveBOImpl implements ReserveBO {
         );
         return dataConvertor.convert(reserveDAO.findAll(), function);
     }
+
+    @Override
+    public ReserveDTO getReserve(String reserveId) throws Exception {
+        Reserve reserve = reserveDAO.find(reserveId);
+        return new ReserveDTO(
+                reserve.getReserveId(),reserve.getDate(),reserve.getKeyMoney(),
+                reserve.getStudent(),reserve.getRoom(),reserve.getReservationStatus(),
+                reserve.getPaidKeyMoney()
+        );
+    }
+
+    @Override
+    public boolean updateReservation(ReserveDTO reserveDTO) throws Exception {
+        return reserveDAO.update(new Reserve(
+                reserveDTO.getReserveId(),reserveDTO.getDate(),reserveDTO.getKeyMoney(),reserveDTO.getStudent(),
+                reserveDTO.getRoom(),reserveDTO.getReservationStatus(),reserveDTO.getPaidKeyMoney()
+        ));
+    }
 }

@@ -28,7 +28,12 @@ public class ReserveDAOImpl implements ReserveDAO {
 
     @Override
     public boolean update(Reserve entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
@@ -38,7 +43,10 @@ public class ReserveDAOImpl implements ReserveDAO {
 
     @Override
     public Reserve find(String s) throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Reserve reserve = session.get(Reserve.class,s);
+        session.close();
+        return reserve;
     }
 
     @Override

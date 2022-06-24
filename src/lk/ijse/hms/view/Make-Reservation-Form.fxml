@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -194,6 +196,15 @@
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#refreshCtxmOnAction" text="Refresh" />
+                                    <MenuItem mnemonicParsing="false" onAction="#updateCtxmOnAction" text="Update" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteCtxmOnAction" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
                         </TableView>
                         <TextField layoutX="9.0" layoutY="277.0" prefHeight="54.0" prefWidth="1857.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;">
                            <font>
