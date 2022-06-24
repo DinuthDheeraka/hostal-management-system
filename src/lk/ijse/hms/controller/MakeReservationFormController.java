@@ -11,6 +11,9 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.ReserveBO;
 import lk.ijse.hms.bo.custom.RoomBO;
@@ -20,12 +23,15 @@ import lk.ijse.hms.dto.RoomDTO;
 import lk.ijse.hms.dto.StudentDTO;
 import lk.ijse.hms.entity.Room;
 import lk.ijse.hms.entity.Student;
+import lk.ijse.hms.service.DataConvertor;
 import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
+import lk.ijse.hms.view.tdm.ReserveTM;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
 public class MakeReservationFormController implements Initializable {
     public JFXComboBox<String> cmbxStudentIds;
@@ -46,11 +52,21 @@ public class MakeReservationFormController implements Initializable {
     public JFXTextField txtReservationId;
     public JFXComboBox<String> cmbxReservationCurrentStatus;
     public JFXTextField txtRoomPaidKeyMoney;
+    public TableView<ReserveTM> reserveTbl;
+    public TableColumn colReserveId;
+    public TableColumn colStdId;
+    public TableColumn colRoomId;
+    public TableColumn colDate;
+    public TableColumn colKeyMoney;
+    public TableColumn colPaidKeyMoney;
+    public TableColumn colAmountToPay;
+    public TableColumn colStatus;
 
     //DI
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
     RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
     ReserveBO reserveBO = (ReserveBO) BOFactory.getInstance().getBO(BOFactory.BOType.RESERVATION);
+    DataConvertor dataConvertor = DataConvertor.getInstance();
     
 
     public MakeReservationFormController() throws IOException {
@@ -58,9 +74,24 @@ public class MakeReservationFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        colStdId.setCellValueFactory(new PropertyValueFactory("studentId"));
+        colReserveId.setCellValueFactory(new PropertyValueFactory("reserveId"));
+        colRoomId.setCellValueFactory(new PropertyValueFactory("roomId"));
+        colDate.setCellValueFactory(new PropertyValueFactory("date"));
+        colAmountToPay.setCellValueFactory(new PropertyValueFactory("amountToPay"));
+        colPaidKeyMoney.setCellValueFactory(new PropertyValueFactory("paidKeyMoney"));
+        colKeyMoney.setCellValueFactory(new PropertyValueFactory("keyMoney"));
+        colStatus.setCellValueFactory(new PropertyValueFactory("status"));
+
         setCmbxRoomIdsData();
         setCmbxStudentIdsData();
         setCmbxReservationStatusData();
+
+        try {
+            setReservationTblData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         cmbxStudentIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 {
@@ -78,6 +109,14 @@ public class MakeReservationFormController implements Initializable {
                 }
         );
         setGeneratedId();
+    }
+
+    private void setReservationTblData() throws Exception {
+        Function<ReserveDTO, ReserveTM> function = (dto)->new ReserveTM(
+                dto.getReserveId(),dto.getStudent().getStudentId(),dto.getRoom().getRoomId(),
+                dto.getDate(),dto.getKeyMoney(),dto.getPaidKeyMoney(),(dto.getKeyMoney()-dto.getPaidKeyMoney()),dto.getReservationStatus()
+        );
+        reserveTbl.setItems(FXCollections.observableArrayList(dataConvertor.convert(reserveBO.getAllReservations(), function)));
     }
 
     private void setCmbxReservationStatusData() {

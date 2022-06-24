@@ -11,6 +11,7 @@ import lk.ijse.hms.util.FactoryConfiguration;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -42,7 +43,9 @@ public class ReserveDAOImpl implements ReserveDAO {
 
     @Override
     public List<Reserve> findAll() throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("from Reserve r");
+        return query.list();
     }
 
     @Override
