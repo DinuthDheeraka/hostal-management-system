@@ -20,6 +20,6 @@ public class AppInitializer extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Navigations.getInstance().setNewStage("Main-Form");
+        Navigations.getInstance().setNewStage("Login-Form");
     }
 }
