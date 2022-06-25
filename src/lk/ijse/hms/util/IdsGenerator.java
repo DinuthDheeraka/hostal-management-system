@@ -8,9 +8,10 @@ package lk.ijse.hms.util;
 public class IdsGenerator {
 
     public static String generateId(String prefix,String lastId){
-        if(lastId==null){
+        if(lastId.equals("[]")){
             return prefix+"000";
         }
+        System.out.println(lastId);
         int nextValue = Integer.parseInt(lastId.replace(prefix,"").substring(1,4))+1;
         return String.format(prefix+"%03d",nextValue);
     }

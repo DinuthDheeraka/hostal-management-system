@@ -16,7 +16,7 @@ public class BOFactory {
     private BOFactory(){}
 
     public static enum BOType{
-        STUDENT,ROOM,RESERVATION,PAYMENT,JOIN_QUERY,ROOM_SETTING_BO
+        STUDENT,ROOM,RESERVATION,PAYMENT,JOIN_QUERY,ROOM_SETTING_BO,SYSTEM_USER
     }
 
     public SuperBO getBO(BOType boType) throws IOException {
@@ -27,6 +27,7 @@ public class BOFactory {
             case PAYMENT:return new PaymentBOImpl();
             case JOIN_QUERY:return new JoinQueryBOImpl();
             case ROOM_SETTING_BO:return new RoomSettingBOImpl();
+            case SYSTEM_USER:return new SystemUserBOImpl();
             default:return null;
         }
     }

@@ -31,6 +31,7 @@ public class FactoryConfiguration {
         configuration.addAnnotatedClass(Reserve.class);
         configuration.addAnnotatedClass(Payment.class);
         configuration.addAnnotatedClass(RoomSetting.class);
+        configuration.addAnnotatedClass(SystemUser.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }

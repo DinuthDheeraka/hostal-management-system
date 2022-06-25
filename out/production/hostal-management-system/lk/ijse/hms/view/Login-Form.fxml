@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hms.controller.LoginFormController">
    <children>
-      <JFXTabPane layoutY="-3.0" prefHeight="684.0" prefWidth="600.0" stylesheets="@assets/styles/tab-pane-styles.css" tabMinWidth="295.0">
+      <JFXTabPane layoutY="-3.0" prefHeight="684.0" prefWidth="600.0" stylesheets="@assets/styles/tab-pane-styles.css" tabMinHeight="40.0" tabMinWidth="295.0">
          <tabs>
             <Tab text="SIGN IN">
               <content>
@@ -28,12 +28,12 @@
                         </ImageView>
                         <VBox layoutX="14.0" layoutY="153.0" prefHeight="99.0" prefWidth="570.0" spacing="70.0">
                            <children>
-                              <JFXTextField fx:id="txtUserName" labelFloat="true" promptText="Username">
+                              <JFXTextField fx:id="txtUserName" focusColor="BLACK" labelFloat="true" promptText="Username">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXPasswordField fx:id="txtPassword" promptText="Password">
+                              <JFXPasswordField fx:id="txtPassword" focusColor="BLACK" labelFloat="true" promptText="Password">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -79,16 +79,16 @@
                         </ImageView>
                         <VBox layoutX="15.0" layoutY="153.0" prefHeight="99.0" prefWidth="570.0" spacing="70.0">
                            <children>
-                              <JFXTextField fx:id="txtNewUserName" labelFloat="true" promptText="Username">
+                              <JFXTextField fx:id="txtNewUserName" focusColor="BLACK" labelFloat="true" promptText="Username">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="txtNewPassword" labelFloat="true" promptText="Password">
+                              <JFXPasswordField fx:id="txtNewPassword" focusColor="BLACK" promptText="Password">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="19.0" />
                                  </font>
-                              </JFXTextField>
+                              </JFXPasswordField>
                            </children>
                         </VBox>
                         <Label layoutX="20.0" layoutY="14.0" text="D" textFill="#5e5c5c" visible="false">
