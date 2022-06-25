@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.JoinQueryBO;
 import lk.ijse.hms.bo.custom.PaymentBO;
@@ -31,6 +33,15 @@ public class PaymentFormController implements Initializable {
     public JFXComboBox<String> cmbxRservationIds;
     public JFXTextField txtPaidAmount;
     public JFXTextField txtMonthlyRental;
+    public TableView paymentTbl;
+    public TableColumn colPaymentId;
+    public TableColumn colStudentId;
+    public TableColumn colReservationId;
+    public TableColumn colDate;
+    public TableColumn colMonth;
+    public TableColumn colMonthlyRental;
+    public TableColumn colPaidAmount;
+    public TableColumn colAmountToPay;
 
     //DI
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
@@ -46,6 +57,7 @@ public class PaymentFormController implements Initializable {
         setCmbxStudentIdsData();
         setCmbxReservationIdsData();
         setGeneratedId();
+        setPaymentTblData();
 
         cmbxRservationIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 {
@@ -60,6 +72,10 @@ public class PaymentFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setPaymentTblData() {
+
     }
 
     private void setReservationDataToTextFileds(String newValue) {
