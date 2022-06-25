@@ -46,4 +46,21 @@ public class PaymentBOImpl implements PaymentBO {
         );
         return dataConvertor.convert(paymentDAO.findAll(),function);
     }
+
+    @Override
+    public PaymentDTO getPayment(String paymentId) throws Exception {
+        Payment payment = paymentDAO.find(paymentId);
+        return new PaymentDTO(
+                payment.getPaymentId(),payment.getDate(),payment.getMonth(),payment.getAmountToPay(),
+                payment.getPaidAmount(),payment.getReservationId(),payment.getStudent()
+        );
+    }
+
+    @Override
+    public boolean updatePayment(PaymentDTO paymentDTO) throws Exception {
+        return paymentDAO.update(new Payment(
+                paymentDTO.getPaymentId(),paymentDTO.getDate(),paymentDTO.getMonth(),paymentDTO.getAmountToPay(),
+                paymentDTO.getPaidAmount(),paymentDTO.getReservationId(),paymentDTO.getStudent()
+        ));
+    }
 }

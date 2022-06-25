@@ -7,6 +7,8 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -130,6 +132,14 @@
                                              <columnResizePolicy>
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                              </columnResizePolicy>
+                                             <contextMenu>
+                                                <ContextMenu>
+                                                  <items>
+                                                    <MenuItem mnemonicParsing="false" onAction="#refreshCtxmOnAction" text="Refresh" />
+                                                      <MenuItem mnemonicParsing="false" onAction="#updateCtxmOnAction" text="Update" />
+                                                  </items>
+                                                </ContextMenu>
+                                             </contextMenu>
                                           </TableView>
                                           <TextField layoutX="8.0" layoutY="239.0" prefHeight="54.0" prefWidth="1859.0" style="-fx-background-color: null; -fx-border-color: #282829; -fx-border-radius: 20;" />
                                        </children>

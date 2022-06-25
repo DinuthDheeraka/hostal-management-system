@@ -28,7 +28,12 @@ public class PaymentDAOImpl implements PaymentDAO {
 
     @Override
     public boolean update(Payment entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
@@ -38,7 +43,10 @@ public class PaymentDAOImpl implements PaymentDAO {
 
     @Override
     public Payment find(String s) throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Payment payment = session.get(Payment.class,s);
+        session.close();
+        return payment;
     }
 
     @Override

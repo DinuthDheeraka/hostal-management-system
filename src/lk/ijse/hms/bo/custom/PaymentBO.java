@@ -9,4 +9,6 @@ public interface PaymentBO extends SuperBO {
     boolean addPayment(PaymentDTO paymentDTO) throws Exception;
     String getLastPaymentId() throws Exception;
     List<PaymentDTO> getAllPayments() throws Exception;
+    PaymentDTO getPayment(String paymentId) throws Exception;
+    boolean updatePayment(PaymentDTO paymentDTO) throws Exception;
 }

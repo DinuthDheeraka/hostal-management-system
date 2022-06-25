@@ -9,10 +9,14 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.JoinQueryBO;
 import lk.ijse.hms.bo.custom.PaymentBO;
@@ -46,6 +50,13 @@ public class PaymentFormController implements Initializable {
     public TableColumn colMonthlyRental;
     public TableColumn colPaidAmount;
     public TableColumn colAmountToPay;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent parent;
+
+    //Selected Payment Details
+    PaymentDTO selectedPaymentDTO = new PaymentDTO();
 
     //DI
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
@@ -81,11 +92,28 @@ public class PaymentFormController implements Initializable {
                 }
         );
 
+        paymentTbl.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if(newValue!=null)setSelectedPaymentData(newValue);
+                });
+
         try {
             txtPaymentId.setText(IdsGenerator.generateId("PM-",paymentBO.getLastPaymentId()));
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setSelectedPaymentData(PaymentTM newValue) {
+        Student student = new Student();
+        student.setStudentId(newValue.getStudentId());
+
+        selectedPaymentDTO.setReservationId(newValue.getReservationId());
+        selectedPaymentDTO.setStudent(student);
+        selectedPaymentDTO.setPaymentId(newValue.getPaymentId());
+        selectedPaymentDTO.setAmountToPay(newValue.getAmountToPay());
+        selectedPaymentDTO.setPaidAmount(newValue.getPaidAmount());
+        selectedPaymentDTO.setMonth(newValue.getMonth());
     }
 
     private void setPaymentTblData(){
@@ -157,5 +185,29 @@ public class PaymentFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void refreshCtxmOnAction(ActionEvent actionEvent) {
+        setPaymentTblData();
+    }
+
+    public void updateCtxmOnAction(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Update-Payment-Form.fxml"));
+
+        try {
+            parent = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Transfer Room Data to Update Form
+        UpdatePaymentFormController controller = fxmlLoader.getController();
+        controller.setValuesForInputFields(selectedPaymentDTO);
+
+        stage = new Stage();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+
+        Navigations.getInstance().transparentUi(stage,scene);
     }
 }
