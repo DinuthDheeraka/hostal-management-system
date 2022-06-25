@@ -5,5 +5,22 @@
  */
 package lk.ijse.hms.view.tdm;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaymentTM {
+    private String paymentId;
+    private Date date;
+    private String month;
+    private double amountToPay;
+    private double paidAmount;
+    private double balance;
+    private String reservationId;
+    private String studentId;
 }

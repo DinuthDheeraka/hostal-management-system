@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.JoinQueryBO;
 import lk.ijse.hms.bo.custom.PaymentBO;
@@ -19,12 +20,15 @@ import lk.ijse.hms.bo.custom.ReserveBO;
 import lk.ijse.hms.bo.custom.StudentBO;
 import lk.ijse.hms.dto.PaymentDTO;
 import lk.ijse.hms.entity.Student;
+import lk.ijse.hms.service.DataConvertor;
 import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
+import lk.ijse.hms.view.tdm.PaymentTM;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
 public class PaymentFormController implements Initializable {
     public JFXTextField txtMonth;
@@ -33,7 +37,7 @@ public class PaymentFormController implements Initializable {
     public JFXComboBox<String> cmbxRservationIds;
     public JFXTextField txtPaidAmount;
     public JFXTextField txtMonthlyRental;
-    public TableView paymentTbl;
+    public TableView<PaymentTM> paymentTbl;
     public TableColumn colPaymentId;
     public TableColumn colStudentId;
     public TableColumn colReservationId;
@@ -48,12 +52,22 @@ public class PaymentFormController implements Initializable {
     ReserveBO reserveBO = (ReserveBO) BOFactory.getInstance().getBO(BOFactory.BOType.RESERVATION);
     PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOType.PAYMENT);
     JoinQueryBO joinQueryBO = (JoinQueryBO) BOFactory.getInstance().getBO(BOFactory.BOType.JOIN_QUERY);
+    DataConvertor dataConvertor = DataConvertor.getInstance();
 
     public PaymentFormController() throws IOException {
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        colPaymentId.setCellValueFactory(new PropertyValueFactory("paymentId"));
+        colStudentId.setCellValueFactory(new PropertyValueFactory("studentId"));
+        colReservationId.setCellValueFactory(new PropertyValueFactory("reservationId"));
+        colDate.setCellValueFactory(new PropertyValueFactory("date"));
+        colMonth.setCellValueFactory(new PropertyValueFactory("month"));
+        colMonthlyRental.setCellValueFactory(new PropertyValueFactory("amountToPay"));
+        colPaidAmount.setCellValueFactory(new PropertyValueFactory("paidAmount"));
+        colAmountToPay.setCellValueFactory(new PropertyValueFactory("balance"));
+
         setCmbxStudentIdsData();
         setCmbxReservationIdsData();
         setGeneratedId();
@@ -74,8 +88,17 @@ public class PaymentFormController implements Initializable {
         }
     }
 
-    private void setPaymentTblData() {
-
+    private void setPaymentTblData(){
+        Function<PaymentDTO,PaymentTM> function = (dto)->new PaymentTM(
+                dto.getPaymentId(), dto.getDate(),dto.getMonth(),dto.getAmountToPay(),
+                dto.getPaidAmount(),dto.getAmountToPay()-dto.getPaidAmount(),dto.getReservationId(),
+                dto.getStudent().getStudentId()
+        );
+        try {
+            paymentTbl.setItems(FXCollections.observableArrayList(dataConvertor.convert(paymentBO.getAllPayments(),function)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setReservationDataToTextFileds(String newValue) {

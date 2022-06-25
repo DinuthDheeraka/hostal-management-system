@@ -116,18 +116,22 @@
                                                 </Lighting>
                                              </effect>
                                           </ImageView>
-                                          <TableView layoutY="303.0" prefHeight="563.0" prefWidth="1875.0">
+                                          <TableView fx:id="paymentTbl" layoutY="303.0" prefHeight="563.0" prefWidth="1875.0">
                                             <columns>
-                                              <TableColumn prefWidth="75.0" text="Payment-Id" />
-                                              <TableColumn prefWidth="75.0" text="Student-Id" />
-                                                <TableColumn prefWidth="75.0" text="Date" />
-                                                <TableColumn prefWidth="75.0" text="Month" />
-                                                <TableColumn prefWidth="75.0" text="Paid Amount" />
+                                              <TableColumn fx:id="colPaymentId" prefWidth="75.0" text="Payment-Id" />
+                                              <TableColumn fx:id="colStudentId" prefWidth="75.0" text="Student-Id" />
+                                                <TableColumn fx:id="colReservationId" prefWidth="75.0" text="Reservation-Id" />
+                                                <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
+                                                <TableColumn fx:id="colMonth" prefWidth="75.0" text="Month" />
+                                                <TableColumn fx:id="colMonthlyRental" prefWidth="75.0" text="Monthly Rental" />
+                                                <TableColumn fx:id="colPaidAmount" prefWidth="75.0" text="Paid Amount" />
+                                                <TableColumn fx:id="colAmountToPay" prefWidth="75.0" text="Amount to pay" />
                                             </columns>
                                              <columnResizePolicy>
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                              </columnResizePolicy>
                                           </TableView>
+                                          <TextField layoutX="8.0" layoutY="239.0" prefHeight="54.0" prefWidth="1859.0" style="-fx-background-color: null; -fx-border-color: #282829; -fx-border-radius: 20;" />
                                        </children>
                                     </AnchorPane>
                                 </content>

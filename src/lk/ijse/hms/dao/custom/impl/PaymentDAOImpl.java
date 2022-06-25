@@ -11,6 +11,7 @@ import lk.ijse.hms.util.FactoryConfiguration;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -42,14 +43,15 @@ public class PaymentDAOImpl implements PaymentDAO {
 
     @Override
     public List<Payment> findAll() throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("from Payment p");
+        return query.list();
     }
 
     @Override
     public String findLastId() throws Exception {
         Session session = FactoryConfiguration.getInstance().getSession();
         SQLQuery sqlQuery = session.createSQLQuery("select paymentId from Payment order by paymentId desc limit 1");
-        System.out.println(sqlQuery.getQueryString());
         return String.valueOf(sqlQuery.list());
     }
 
