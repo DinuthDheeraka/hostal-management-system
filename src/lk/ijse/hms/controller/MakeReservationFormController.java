@@ -8,6 +8,7 @@ package lk.ijse.hms.controller;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +37,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class MakeReservationFormController implements Initializable {
     public JFXComboBox<String> cmbxStudentIds;
@@ -65,6 +67,7 @@ public class MakeReservationFormController implements Initializable {
     public TableColumn colPaidKeyMoney;
     public TableColumn colAmountToPay;
     public TableColumn colStatus;
+    public JFXComboBox<String> cmbxPaymentStatus;
 
     //Selected Reservation Data
     private ReserveDTO selectedReserveDTO;
@@ -96,6 +99,7 @@ public class MakeReservationFormController implements Initializable {
 
         setCmbxRoomIdsData();
         setCmbxStudentIdsData();
+        setCmbxPaymentStatusData();
         setCmbxReservationStatusData();
 
         try {
@@ -120,12 +124,52 @@ public class MakeReservationFormController implements Initializable {
                 }
         );
 
+        cmbxPaymentStatus.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    if (newValue!=null){
+                        setFilteredDataByPaymentStatus(newValue);
+                    }
+                }
+        );
+
         reserveTbl.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if(newValue!=null)setSelectedReservationData(newValue);
                 });
 
         setGeneratedId();
+    }
+
+    private void setFilteredDataByPaymentStatus(String newValue) {
+        ObservableList<ReserveTM> reserveTMS = FXCollections.observableArrayList();
+
+        switch (newValue){
+            case "Fully Paid" :
+                reserveTMS = FXCollections.observableArrayList(reserveTbl.getItems()
+                        .stream()
+                        .filter(reserveTM -> reserveTM.getKeyMoney()-reserveTM.getPaidKeyMoney()==0)
+                        .collect(Collectors.toList())
+                );break;
+
+            case "Half Paid" :
+                reserveTMS = FXCollections.observableArrayList(reserveTbl.getItems()
+                        .stream()
+                        .filter(reserveTM -> reserveTM.getKeyMoney()-reserveTM.getPaidKeyMoney()>0)
+                        .collect(Collectors.toList())
+                );break;
+
+            case "Not Paid" :
+                reserveTMS = FXCollections.observableArrayList(reserveTbl.getItems()
+                        .stream()
+                        .filter(reserveTM -> reserveTM.getKeyMoney()-reserveTM.getPaidKeyMoney()==reserveTM.getKeyMoney())
+                        .collect(Collectors.toList())
+                );break;
+        }
+        reserveTbl.setItems(reserveTMS);
+    }
+
+    private void setCmbxPaymentStatusData() {
+        cmbxPaymentStatus.setItems(FXCollections.observableArrayList("Fully Paid","Half Paid","Not Paid"));
     }
 
     private void setSelectedReservationData(ReserveTM newValue) {

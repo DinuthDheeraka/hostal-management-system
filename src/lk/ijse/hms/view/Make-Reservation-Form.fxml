@@ -211,6 +211,7 @@
                               <Font size="21.0" />
                            </font>
                         </TextField>
+                        <JFXComboBox fx:id="cmbxPaymentStatus" layoutX="1570.0" layoutY="176.0" prefHeight="31.0" prefWidth="291.0" promptText="Filter by payment status" unFocusColor="#fff8f8" />
                      </children>
                   </AnchorPane>
               </content>
