@@ -216,4 +216,13 @@ public class RoomsFormController implements Initializable {
         SQLQuery sqlQuery = session.createSQLQuery("select roomId from Room order by roomId desc limit 1");
         System.out.println(sqlQuery.list().get(0));
     }
+
+    public void txtSearchBarOnAction(ActionEvent actionEvent) {
+        ObservableList<RoomTM> roomTMS = FXCollections.observableArrayList(
+                roomTbl.getItems().stream()
+                        .filter(roomTM -> roomTM.getRoomId().equals(txtSearchBar.getText()))
+                        .collect(Collectors.toList())
+        );
+        roomTbl.setItems(roomTMS);
+    }
 }

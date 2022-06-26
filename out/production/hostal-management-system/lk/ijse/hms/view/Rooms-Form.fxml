@@ -61,7 +61,10 @@
                               </ContextMenu>
                            </contextMenu>
                         </TableView>
-                        <TextField fx:id="txtSearchBar" layoutX="5.0" layoutY="277.0" minHeight="54.0" minWidth="1868.0" style="-fx-border-radius: 20; -fx-border-color: #cccfcd; -fx-background-color: null;" />
+                        <TextField fx:id="txtSearchBar" layoutX="5.0" layoutY="277.0" minHeight="54.0" minWidth="1868.0" onAction="#txtSearchBarOnAction" promptText="SEARCH" style="-fx-border-radius: 20; -fx-border-color: #cccfcd; -fx-background-color: null; -fx-text-fill: white;">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
                         <JFXButton buttonType="RAISED" layoutX="1621.0" layoutY="10.0" minHeight="55.0" minWidth="249.0" onAction="#addNewRoomBtnOnAction" style="-fx-background-color: green;" text="ADD NEW ROOM" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />

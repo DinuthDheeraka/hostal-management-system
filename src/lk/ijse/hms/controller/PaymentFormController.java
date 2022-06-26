@@ -8,6 +8,7 @@ package lk.ijse.hms.controller;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
@@ -31,8 +33,11 @@ import lk.ijse.hms.view.tdm.PaymentTM;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class PaymentFormController implements Initializable {
     public JFXTextField txtMonth;
@@ -50,6 +55,10 @@ public class PaymentFormController implements Initializable {
     public TableColumn colMonthlyRental;
     public TableColumn colPaidAmount;
     public TableColumn colAmountToPay;
+    public TextField txtSearchBar;
+    public JFXComboBox<String> cmbxPaymentStatus;
+    public JFXComboBox<String> cmbxFiltersMonths;
+    public JFXComboBox<String> cmbxFiltersYear;
 
     private Stage stage;
     private Scene scene;
@@ -83,11 +92,38 @@ public class PaymentFormController implements Initializable {
         setCmbxReservationIdsData();
         setGeneratedId();
         setPaymentTblData();
+        setCmbxFilterMonthsData();
+        setCmbxFilterYearsData();
+        setCmbxPaymentStatusData();
 
         cmbxRservationIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 {
                     if (newValue!=null){
                         setReservationDataToTextFileds(newValue);
+                    }
+                }
+        );
+
+        cmbxFiltersYear.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    if (newValue!=null){
+                        setFilterByYearPaymentData(newValue);
+                    }
+                }
+        );
+
+        cmbxFiltersMonths.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    if (newValue!=null){
+                        setFilterByMonthPaymentData(newValue);
+                    }
+                }
+        );
+
+        cmbxPaymentStatus.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    if (newValue!=null){
+                        setFilterByPaymentStatusData(newValue);
                     }
                 }
         );
@@ -104,6 +140,65 @@ public class PaymentFormController implements Initializable {
         }
     }
 
+    private void setFilterByPaymentStatusData(String newValue) {
+        ObservableList<PaymentTM> observableList = FXCollections.observableArrayList();
+
+        switch (newValue){
+            case  "Fully Paid" :
+                observableList = FXCollections.observableArrayList(
+                        paymentTbl.getItems().stream()
+                                .filter(paymentTM -> paymentTM.getBalance()==0)
+                                .collect(Collectors.toList())
+                );break;
+
+            case "Half Paid" :
+                observableList = FXCollections.observableArrayList(
+                        paymentTbl.getItems().stream()
+                                .filter(paymentTM -> paymentTM.getPaidAmount()>0)
+                                .collect(Collectors.toList())
+                );break;
+        }
+        paymentTbl.setItems(observableList);
+    }
+
+    private void setFilterByMonthPaymentData(String newValue) {
+        ObservableList<PaymentTM> observableList = FXCollections.observableArrayList(
+                paymentTbl.getItems().stream()
+                        .filter(paymentTM -> paymentTM.getMonth().endsWith("-"+cmbxFiltersMonths.getSelectionModel().getSelectedItem()))
+                        .collect(Collectors.toList())
+        );
+        paymentTbl.setItems(observableList);
+    }
+
+    private void setFilterByYearPaymentData(String newValue) {
+        ObservableList<PaymentTM> observableList = FXCollections.observableArrayList(
+                paymentTbl.getItems().stream()
+                        .filter(paymentTM -> paymentTM.getMonth().startsWith(cmbxFiltersYear.getSelectionModel().getSelectedItem()))
+                        .collect(Collectors.toList())
+        );
+        paymentTbl.setItems(observableList);
+    }
+
+    private void setCmbxFilterYearsData() {
+        ArrayList<String> years = new ArrayList();
+        for(int i = 2020; i<=LocalDate.now().getYear(); i++){
+            years.add(String.valueOf(i));
+        }
+        cmbxFiltersYear.setItems(FXCollections.observableArrayList(years));
+    }
+
+    private void setCmbxPaymentStatusData() {
+        cmbxPaymentStatus.setItems(FXCollections.observableArrayList("Fully Paid","Half Paid"));
+    }
+
+    private void setCmbxFilterMonthsData() {
+        ArrayList<String> months = new ArrayList();
+        for(int i = 1; i<=12; i++){
+            months.add(String.format("%02d",i));
+        }
+        cmbxFiltersMonths.setItems(FXCollections.observableArrayList(months));
+    }
+
     private void setSelectedPaymentData(PaymentTM newValue) {
         Student student = new Student();
         student.setStudentId(newValue.getStudentId());
@@ -116,7 +211,7 @@ public class PaymentFormController implements Initializable {
         selectedPaymentDTO.setMonth(newValue.getMonth());
     }
 
-    private void setPaymentTblData(){
+    private ObservableList<PaymentTM> setPaymentTblData(){
         Function<PaymentDTO,PaymentTM> function = (dto)->new PaymentTM(
                 dto.getPaymentId(), dto.getDate(),dto.getMonth(),dto.getAmountToPay(),
                 dto.getPaidAmount(),dto.getAmountToPay()-dto.getPaidAmount(),dto.getReservationId(),
@@ -124,9 +219,11 @@ public class PaymentFormController implements Initializable {
         );
         try {
             paymentTbl.setItems(FXCollections.observableArrayList(dataConvertor.convert(paymentBO.getAllPayments(),function)));
+            return FXCollections.observableArrayList(dataConvertor.convert(paymentBO.getAllPayments(),function));
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     private void setReservationDataToTextFileds(String newValue) {
@@ -209,5 +306,35 @@ public class PaymentFormController implements Initializable {
         stage.setScene(scene);
 
         Navigations.getInstance().transparentUi(stage,scene);
+    }
+
+    public void txtSearchBarOnAction(ActionEvent actionEvent) throws Exception {
+        ObservableList<PaymentTM> list = setPaymentTblData();
+
+        ObservableList<PaymentTM> observableList = FXCollections.observableArrayList();
+
+        if(txtSearchBar.getText().startsWith("PM-")){
+            //Filter by Payment-Id
+            observableList = FXCollections.observableArrayList(
+                    list.stream()
+                            .filter(paymentDTO -> paymentDTO.getPaymentId().contains(txtSearchBar.getText()))
+                            .collect(Collectors.toList())
+            );
+        }else if(txtSearchBar.getText().startsWith("ST-")){
+            //Filter by Student-Id
+            observableList = FXCollections.observableArrayList(
+                    list.stream()
+                            .filter(paymentTM -> paymentTM.getStudentId().contains(txtSearchBar.getText()))
+                            .collect(Collectors.toList())
+            );
+        }else if(txtSearchBar.getText().startsWith("RS-")){
+            //Filter by Reservation-Id
+            observableList = FXCollections.observableArrayList(
+                    list.stream()
+                            .filter(paymentTM -> paymentTM.getReservationId().contains(txtSearchBar.getText()))
+                            .collect(Collectors.toList())
+            );
+        }
+        paymentTbl.setItems(observableList);
     }
 }

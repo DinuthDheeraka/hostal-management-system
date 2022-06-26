@@ -141,7 +141,13 @@
                                                 </ContextMenu>
                                              </contextMenu>
                                           </TableView>
-                                          <TextField layoutX="8.0" layoutY="239.0" prefHeight="54.0" prefWidth="1859.0" style="-fx-background-color: null; -fx-border-color: #282829; -fx-border-radius: 20;" />
+                                          <TextField fx:id="txtSearchBar" layoutX="8.0" layoutY="229.0" onAction="#txtSearchBarOnAction" prefHeight="54.0" prefWidth="1859.0" promptText="SEARCH" style="-fx-background-color: null; -fx-border-color: #282829; -fx-border-radius: 20; -fx-text-fill: black; -fx-prompt-text-fill: black;">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font></TextField>
+                                          <JFXComboBox fx:id="cmbxPaymentStatus" layoutX="1607.0" layoutY="119.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by payment status" />
+                                          <JFXComboBox fx:id="cmbxFiltersMonths" layoutX="1335.0" layoutY="119.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by month" />
+                                          <JFXComboBox fx:id="cmbxFiltersYear" layoutX="1064.0" layoutY="119.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by Year" />
                                        </children>
                                     </AnchorPane>
                                 </content>
