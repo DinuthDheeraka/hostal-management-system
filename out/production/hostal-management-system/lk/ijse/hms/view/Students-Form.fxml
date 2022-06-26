@@ -70,7 +70,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <TextField fx:id="txtSearchBar" layoutX="4.0" layoutY="275.0" prefHeight="54.0" prefWidth="1868.0" style="-fx-border-radius: 20; -fx-background-color: null; -fx-border-color: #cccfcd;">
+                        <TextField fx:id="txtSearchBar" layoutX="4.0" layoutY="275.0" onAction="#txtSearchBarOnAction" prefHeight="54.0" prefWidth="1868.0" promptText="SERACH" style="-fx-border-radius: 20; -fx-background-color: null; -fx-border-color: #cccfcd; -fx-text-fill: white;">
                            <font>
                               <Font size="20.0" />
                            </font>

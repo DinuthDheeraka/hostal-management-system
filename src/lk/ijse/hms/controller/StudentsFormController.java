@@ -7,6 +7,7 @@ package lk.ijse.hms.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class StudentsFormController implements Initializable {
     public TableView<StudentTM> studentTbl;
@@ -161,5 +163,26 @@ public class StudentsFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void txtSearchBarOnAction(ActionEvent actionEvent) {
+        ObservableList<StudentTM> studentTMS = FXCollections.observableArrayList();
+
+        if(txtSearchBar.getText().startsWith("ST-")){
+            //Search by Student Id
+            studentTMS = FXCollections.observableArrayList(
+                    studentTbl.getItems().stream()
+                            .filter(studentTM -> studentTM.getStudentId().equals(txtSearchBar.getText()))
+                            .collect(Collectors.toList())
+            );
+        }else{
+            //Search by Student Name
+            studentTMS = FXCollections.observableArrayList(
+                    studentTbl.getItems().stream()
+                            .filter(studentTM -> studentTM.getName().contains(txtSearchBar.getText()))
+                            .collect(Collectors.toList())
+            );
+        }
+        studentTbl.setItems(studentTMS);
     }
 }
