@@ -49,8 +49,7 @@ public class LoginFormController implements Initializable {
 
     public void loginBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isExists = systemUserBO.getSystemUserByUserNameAndPassword(txtUserName.getText(),txtPassword.getText());
-            if(isExists){
+            if(systemUserBO.getSystemUserByUserNameAndPassword(txtUserName.getText(),txtPassword.getText())){
                 Navigations.getInstance().closeStage(actionEvent);
                 Navigations.getInstance().setNewStage("Main-Form");
             }else{

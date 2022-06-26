@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.MenuItem?>
@@ -76,6 +77,8 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </JFXButton>
+                        <JFXComboBox fx:id="cmbxRoomTypes" layoutX="14.0" layoutY="157.0" prefHeight="31.0" prefWidth="232.0" promptText="Select Type" stylesheets="@assets/styles/combo-box-styles.css" unFocusColor="WHITE" />
+                        <JFXComboBox fx:id="cmbxAvailability" layoutX="262.0" layoutY="157.0" prefHeight="31.0" prefWidth="245.0" promptText="Select Availability" stylesheets="@assets/styles/combo-box-styles.css" unFocusColor="WHITE" />
                      </children>
                   </AnchorPane>
               </content>

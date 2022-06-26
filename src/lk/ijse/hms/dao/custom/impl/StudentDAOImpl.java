@@ -43,8 +43,10 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public boolean delete(String s) throws Exception {
         Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         Student student = session.load(Student.class,s);
         session.delete(student);
+        transaction.commit();
         session.close();
         return true;
     }

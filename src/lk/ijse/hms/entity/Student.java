@@ -10,10 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,9 +36,9 @@ public class Student implements SuperEntity{
     private String gender;
     @CreationTimestamp
     private Date joinedDate;
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
     List<Reserve> reserves = new ArrayList();
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
     List<Payment> payments = new ArrayList();
 
     public Student(String studentId, String name, String address, String city, String district, String province, String contactNo, Date dob, String gender, Date joinedDate, List<Reserve> reserves) {

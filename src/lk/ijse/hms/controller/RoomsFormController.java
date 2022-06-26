@@ -5,7 +5,9 @@
  */
 package lk.ijse.hms.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +32,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class RoomsFormController implements Initializable {
     public TableView<RoomTM> roomTbl;
@@ -39,6 +42,8 @@ public class RoomsFormController implements Initializable {
     public TableColumn colAvailability;
     public TextField txtSearchBar;
     public TableColumn colKeyMoney;
+    public JFXComboBox<String> cmbxRoomTypes;
+    public JFXComboBox<String> cmbxAvailability;
 
     private Stage stage;
     private Scene scene;
@@ -66,6 +71,9 @@ public class RoomsFormController implements Initializable {
         colAvailability.setCellValueFactory(new PropertyValueFactory("availability"));
         colKeyMoney.setCellValueFactory(new PropertyValueFactory("keyMoney"));
 
+        setCmbxRoomTypesData();
+        setCmbxRoomAvailabilityData();
+
         roomTbl.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if(newValue!=null)setSelectedRoomData(newValue);
@@ -76,7 +84,49 @@ public class RoomsFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        tester();
+
+        cmbxRoomTypes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    if (newValue!=null){
+                        filterByRoomType(newValue);
+                    }
+                }
+        );
+
+        cmbxAvailability.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    if (newValue!=null){
+                        filterByRoomAvailability(newValue);
+                    }
+                }
+        );
+        //tester();
+    }
+
+    private void setCmbxRoomAvailabilityData() {
+        cmbxAvailability.setItems(FXCollections.observableArrayList("Available","Not Available"));
+    }
+
+    private void setCmbxRoomTypesData() {
+        cmbxRoomTypes.setItems(FXCollections.observableArrayList("Non-AC","Non-AC/Food","AC","AC/Food"));
+    }
+
+    private void filterByRoomAvailability(String newValue) {
+        ObservableList<RoomTM> observableList = FXCollections.observableArrayList(
+                roomTbl.getItems().stream()
+                        .filter(roomTM -> roomTM.getAvailability().equals(newValue))
+                        .collect(Collectors.toList())
+        );
+        roomTbl.setItems(observableList);
+    }
+
+    private void filterByRoomType(String newValue) {
+        ObservableList<RoomTM> observableList = FXCollections.observableArrayList(
+                roomTbl.getItems().stream()
+                        .filter(roomTM -> roomTM.getType().equals(newValue))
+                        .collect(Collectors.toList())
+        );
+        roomTbl.setItems(observableList);
     }
 
     private void setSelectedRoomData(RoomTM newValue) {
