@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,6 +28,7 @@ import lk.ijse.hms.util.Navigations;
 import lk.ijse.hms.view.tdm.StudentTM;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
@@ -45,6 +48,9 @@ public class StudentsFormController implements Initializable {
     public TableColumn colStdJoinedDate;
     public TextField txtSearchBar;
     public JFXButton addStudentBtn;
+    public LineChart lineChartStudentJoiningStatus;
+    public TextField txtSearchBar1;
+    public TextField txtSearchBar2;
 
     private Stage stage;
     private Scene scene;
@@ -184,5 +190,37 @@ public class StudentsFormController implements Initializable {
             );
         }
         studentTbl.setItems(studentTMS);
+    }
+
+    public void txtSerahBar1OnAction(ActionEvent actionEvent) {
+        lineChartStudentJoiningStatus.getData().clear();
+        setLineChartStudentJoiningStatus(txtSearchBar1.getText());
+    }
+
+    public void txtSerahBar2OnAction(ActionEvent actionEvent) {
+        setLineChartStudentJoiningStatus(txtSearchBar2.getText());
+    }
+
+    public void setLineChartStudentJoiningStatus(String year){
+        try {
+            lineChartStudentJoiningStatus.setTitle("Student joining rate for each month");
+
+            XYChart.Series thisYearStdGrowthChart = new XYChart.Series();
+
+            thisYearStdGrowthChart.setName(year);
+
+            String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+
+            //getting this student joining data
+            for(int i = 1; i<=12; i++){
+                BigInteger bigInteger = (studentBO.getStudentJoinedCountByMonth(String.format("%s-%02d", year,i)+"%"));
+                thisYearStdGrowthChart.getData().add(new XYChart.Data<>(months[i-1],bigInteger));
+            }
+
+            lineChartStudentJoiningStatus.getData().add(thisYearStdGrowthChart);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

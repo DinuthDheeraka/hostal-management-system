@@ -2,7 +2,11 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
@@ -86,7 +90,30 @@
             </Tab>
             <Tab text="STUDENTS JOINING RATE">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <TextField fx:id="txtSearchBar1" layoutX="15.0" layoutY="12.0" onAction="#txtSerahBar1OnAction" prefHeight="59.0" prefWidth="814.0" style="-fx-border-color: black; -fx-background-color: null; -fx-border-radius: 25;">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <TextField fx:id="txtSearchBar2" layoutX="1045.0" layoutY="12.0" onAction="#txtSerahBar2OnAction" prefHeight="59.0" prefWidth="814.0" style="-fx-border-color: black; -fx-border-radius: 25; -fx-background-color: null;">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <Label layoutX="860.0" layoutY="25.0" text="Compare with">
+                           <font>
+                              <Font name="Arial" size="25.0" />
+                           </font>
+                        </Label>
+                        <LineChart fx:id="lineChartStudentJoiningStatus" horizontalGridLinesVisible="false" layoutY="142.0" prefHeight="576.0" prefWidth="1866.0" stylesheets="@assets/styles/main-form-income-line-chart-styles.css" verticalGridLinesVisible="false">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children></AnchorPane>
               </content>
             </Tab>
          </tabs>
