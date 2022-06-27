@@ -9,16 +9,19 @@ import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.StudentBO;
@@ -51,6 +54,10 @@ public class StudentsFormController implements Initializable {
     public LineChart lineChartStudentJoiningStatus;
     public TextField txtSearchBar1;
     public TextField txtSearchBar2;
+    public Label lblMonth1;
+    public Label lblStdCount1;
+    public Label lblMonth2;
+    public Label lblStdCount2;
 
     private Stage stage;
     private Scene scene;
@@ -194,18 +201,18 @@ public class StudentsFormController implements Initializable {
 
     public void txtSerahBar1OnAction(ActionEvent actionEvent) {
         lineChartStudentJoiningStatus.getData().clear();
-        setLineChartStudentJoiningStatus(txtSearchBar1.getText());
+        setLineChartStudentJoiningStatus(txtSearchBar1.getText(),"1");
     }
 
     public void txtSerahBar2OnAction(ActionEvent actionEvent) {
-        setLineChartStudentJoiningStatus(txtSearchBar2.getText());
+        setLineChartStudentJoiningStatus(txtSearchBar2.getText(),"2");
     }
 
-    public void setLineChartStudentJoiningStatus(String year){
+    public void setLineChartStudentJoiningStatus(String year,String source){
         try {
             lineChartStudentJoiningStatus.setTitle("Student joining rate for each month");
 
-            XYChart.Series thisYearStdGrowthChart = new XYChart.Series();
+            XYChart.Series<String,BigInteger> thisYearStdGrowthChart = new XYChart.Series();
 
             thisYearStdGrowthChart.setName(year);
 
@@ -218,9 +225,27 @@ public class StudentsFormController implements Initializable {
             }
 
             lineChartStudentJoiningStatus.getData().add(thisYearStdGrowthChart);
+            addListinerToLineChartData(thisYearStdGrowthChart,source);
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addListinerToLineChartData(XYChart.Series<String,BigInteger> series,String source){
+        for (XYChart.Data<String,BigInteger> data: series.getData()){
+            data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    switch (source){
+                        case "1" : lblMonth1.setText(data.getXValue());
+                                   lblStdCount1.setText(String.valueOf(data.getYValue()));break;
+
+                        case "2" :  lblMonth2.setText(data.getXValue());
+                                    lblStdCount2.setText(String.valueOf(data.getYValue()));break;
+                    }
+                }
+            });
         }
     }
 }
