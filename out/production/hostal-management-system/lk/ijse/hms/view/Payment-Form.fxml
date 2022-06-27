@@ -122,6 +122,46 @@
                                               <NumberAxis side="LEFT" />
                                             </yAxis>
                                           </LineChart>
+                                          <Label layoutX="130.0" layoutY="758.0" text="Month" textFill="#e136c4">
+                                             <font>
+                                                <Font name="Arial" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblMonth1" layoutX="247.0" layoutY="759.0" text="September">
+                                             <font>
+                                                <Font name="Arial" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="448.0" layoutY="760.0" text="Income" textFill="#e136c4">
+                                             <font>
+                                                <Font name="Arial" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblIncome1" layoutX="592.0" layoutY="762.0" text="LKR 00">
+                                             <font>
+                                                <Font name="Arial" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="1107.0" layoutY="761.0" text="Month" textFill="#19d11d">
+                                             <font>
+                                                <Font name="Arial" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblMonth2" layoutX="1233.0" layoutY="761.0" text="September">
+                                             <font>
+                                                <Font name="Arial" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="1447.0" layoutY="763.0" text="Income" textFill="#19d11d">
+                                             <font>
+                                                <Font name="Arial" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblIncome2" layoutX="1590.0" layoutY="763.0" text="LKR 00">
+                                             <font>
+                                                <Font name="Arial" size="35.0" />
+                                             </font>
+                                          </Label>
                                        </children></AnchorPane>
                                 </content>
                               </Tab>

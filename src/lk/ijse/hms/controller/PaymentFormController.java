@@ -10,16 +10,19 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.JoinQueryBO;
@@ -64,6 +67,10 @@ public class PaymentFormController implements Initializable {
     public LineChart lineChartPaymentStatus;
     public TextField txtSearchBar2;
     public TextField txtSearchBar1;
+    public Label lblMonth1;
+    public Label lblIncome1;
+    public Label lblMonth2;
+    public Label lblIncome2;
 
     private Stage stage;
     private Scene scene;
@@ -345,18 +352,18 @@ public class PaymentFormController implements Initializable {
 
     public void txtSearchBar1OnAction(ActionEvent actionEvent) {
         lineChartPaymentStatus.getData().clear();
-        setLineChartPaymentStatus(txtSearchBar1.getText());
+        setLineChartPaymentStatus(txtSearchBar1.getText(),"1");
     }
 
     public void txtSearchBar2OnAction(ActionEvent actionEvent) {
-        setLineChartPaymentStatus(txtSearchBar2.getText());
+        setLineChartPaymentStatus(txtSearchBar2.getText(),"2");
     }
 
-    private void setLineChartPaymentStatus(String year){
+    private void setLineChartPaymentStatus(String year,String source){
         try {
             lineChartPaymentStatus.setTitle("Income status for each month");
 
-            XYChart.Series thisYearIncomeChart = new XYChart.Series();
+            XYChart.Series<String,Double> thisYearIncomeChart = new XYChart.Series();
             //XYChart.Series lastYearIncomeChart = new XYChart.Series();
 
             thisYearIncomeChart.setName(year);
@@ -370,15 +377,34 @@ public class PaymentFormController implements Initializable {
                 if(income!=null){
                     thisYearIncomeChart.getData().add(new XYChart.Data<>(months[i-1],income));
                 }else{
-                    thisYearIncomeChart.getData().add(new XYChart.Data<>(months[i-1],0));
+                    thisYearIncomeChart.getData().add(new XYChart.Data<>(months[i-1],Double.valueOf(0)));
                 }
             }
 
             lineChartPaymentStatus.getData().add(thisYearIncomeChart);
             //lineChrtIncomeStatus.getData().add(lastYearIncomeChart);
 
+            addListinerToLineChartData(thisYearIncomeChart,source);
+
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addListinerToLineChartData(XYChart.Series<String, Double> series, String source){
+        for (XYChart.Data<String,Double> data: series.getData()){
+            data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    switch (source){
+                        case "1" : lblMonth1.setText(data.getXValue());
+                                   lblIncome1.setText(String.valueOf(data.getYValue()));break;
+
+                        case "2" :  lblMonth2.setText(data.getXValue());
+                                    lblIncome2.setText(String.valueOf(data.getYValue()));break;
+                    }
+                }
+            });
         }
     }
 }
