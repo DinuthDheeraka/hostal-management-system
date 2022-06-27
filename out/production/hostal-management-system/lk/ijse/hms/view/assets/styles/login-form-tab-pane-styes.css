@@ -1,0 +1,13 @@
+.tab-header-background{
+    -fx-background-color:#7534e0;
+}
+.textPane{
+    -fx-background-color: white;
+    -fx-border-color:  #f7257d;
+    -fx-border-radius: 8px;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}

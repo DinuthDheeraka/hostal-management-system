@@ -172,7 +172,7 @@
             </AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="265.0" prefHeight="372.0" prefWidth="1223.0" style="-fx-background-color: white;">
                <children>
-                  <LineChart horizontalGridLinesVisible="false" layoutX="7.0" layoutY="6.0" prefHeight="358.0" prefWidth="906.0" verticalGridLinesVisible="false">
+                  <LineChart fx:id="lineChrtIncomeStatus" horizontalGridLinesVisible="false" layoutX="-1.0" layoutY="6.0" prefHeight="358.0" prefWidth="914.0" verticalGridLinesVisible="false">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -181,10 +181,20 @@
                     </yAxis>
                   </LineChart>
                </children></AnchorPane>
-            <AnchorPane layoutX="1.0" layoutY="648.0" prefHeight="289.0" prefWidth="1066.0" style="-fx-background-color: white;" />
+            <AnchorPane layoutX="1.0" layoutY="648.0" prefHeight="289.0" prefWidth="1066.0" style="-fx-background-color: white;">
+               <children>
+                  <LineChart fx:id="lineChrtStudentJoiningStatus" horizontalGridLinesVisible="false" layoutX="4.0" layoutY="10.0" prefHeight="278.0" prefWidth="914.0" verticalGridLinesVisible="false">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children></AnchorPane>
             <AnchorPane layoutX="1233.0" layoutY="265.0" prefHeight="372.0" prefWidth="643.0" style="-fx-background-color: white;">
                <children>
-                  <PieChart layoutX="16.0" layoutY="19.0" prefHeight="335.0" prefWidth="611.0" />
+                  <PieChart fx:id="pieChrtKeyMoneyStatus" layoutX="16.0" layoutY="19.0" prefHeight="335.0" prefWidth="611.0" stylesheets="@assets/styles/dash-board-pie-chart-styles.css" />
                </children></AnchorPane>
             <AnchorPane layoutX="1077.0" layoutY="648.0" prefHeight="289.0" prefWidth="799.0" style="-fx-background-color: white;" />
          </children>

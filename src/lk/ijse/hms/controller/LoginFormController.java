@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.SystemUserBO;
 import lk.ijse.hms.dto.SystemUserDTO;
@@ -26,6 +28,13 @@ public class LoginFormController implements Initializable {
     public JFXPasswordField txtPassword;
     public JFXTextField txtNewUserName;
     public JFXPasswordField txtNewPassword;
+    public JFXTextField txtShowPassword;
+    public ImageView imgHidePassword;
+    public ImageView imgShowPassword;
+    public JFXTextField txtSgnupShowPassword;
+    public ImageView sgnupImgHidePassword;
+    public ImageView sgnupImgShowPassword;
+
     //DI
     SystemUserBO systemUserBO = (SystemUserBO) BOFactory.getInstance().getBO(BOFactory.BOType.SYSTEM_USER);
 
@@ -78,5 +87,41 @@ public class LoginFormController implements Initializable {
 
     public void sgnupCancelBtnOnAction(ActionEvent actionEvent) {
         Navigations.getInstance().closeStage(actionEvent);
+    }
+
+    public void sgnupShowPassword(MouseEvent mouseEvent) {
+        sgnupImgShowPassword.setVisible(false);
+        sgnupImgHidePassword.setVisible(true);
+
+        txtNewPassword.setVisible(false);
+        txtSgnupShowPassword.setText(txtNewPassword.getText());
+        txtSgnupShowPassword.setVisible(true);
+    }
+
+    public void sgnupHidePassword(MouseEvent mouseEvent) {
+        sgnupImgShowPassword.setVisible(true);
+        sgnupImgHidePassword.setVisible(false);
+
+        txtNewPassword.setVisible(true);
+        txtNewPassword.setText(txtSgnupShowPassword.getText());
+        txtSgnupShowPassword.setVisible(false);
+    }
+
+    public void hidePassword(MouseEvent mouseEvent) {
+        imgShowPassword.setVisible(true);
+        imgHidePassword.setVisible(false);
+
+        txtPassword.setVisible(true);
+        txtPassword.setText(txtShowPassword.getText());
+        txtShowPassword.setVisible(false);
+    }
+
+    public void showPassword(MouseEvent mouseEvent) {
+        imgShowPassword.setVisible(false);
+        imgHidePassword.setVisible(true);
+
+        txtShowPassword.setText(txtPassword.getText());
+        txtShowPassword.setVisible(true);
+        txtPassword.setVisible(false);
     }
 }

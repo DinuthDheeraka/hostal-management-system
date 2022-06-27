@@ -6,8 +6,12 @@
 package lk.ijse.hms.controller;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hms.util.Navigations;
@@ -23,12 +27,27 @@ public class MainFormController implements Initializable {
     public AnchorPane mainFormContext;
     public Label lblSystemTime;
     public Label lblSystemDate;
+    public LineChart lineChrtIncomeStatus;
+    public PieChart pieChrtKeyMoneyStatus;
+    public LineChart lineChrtStudentJoiningStatus;
+
     public volatile boolean stop;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         showDate();
         showTime();
+        setPieChartKeyMoneyStatusData();
+    }
+
+    private void setPieChartKeyMoneyStatusData() {
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data(" Paid Students", 10),
+                new PieChart.Data(" Unpaid Students",20));
+
+        pieChrtKeyMoneyStatus.setTitle("Key money status for all Reservations");
+        pieChrtKeyMoneyStatus.setData(pieChartData);
     }
 
     public void studentsBtnOnAction(ActionEvent actionEvent) {
