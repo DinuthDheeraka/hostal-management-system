@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -59,6 +61,9 @@ public class PaymentFormController implements Initializable {
     public JFXComboBox<String> cmbxPaymentStatus;
     public JFXComboBox<String> cmbxFiltersMonths;
     public JFXComboBox<String> cmbxFiltersYear;
+    public LineChart lineChartPaymentStatus;
+    public TextField txtSearchBar2;
+    public TextField txtSearchBar1;
 
     private Stage stage;
     private Scene scene;
@@ -336,5 +341,44 @@ public class PaymentFormController implements Initializable {
             );
         }
         paymentTbl.setItems(observableList);
+    }
+
+    public void txtSearchBar1OnAction(ActionEvent actionEvent) {
+        lineChartPaymentStatus.getData().clear();
+        setLineChartPaymentStatus(txtSearchBar1.getText());
+    }
+
+    public void txtSearchBar2OnAction(ActionEvent actionEvent) {
+        setLineChartPaymentStatus(txtSearchBar2.getText());
+    }
+
+    private void setLineChartPaymentStatus(String year){
+        try {
+            lineChartPaymentStatus.setTitle("Income status for each month");
+
+            XYChart.Series thisYearIncomeChart = new XYChart.Series();
+            //XYChart.Series lastYearIncomeChart = new XYChart.Series();
+
+            thisYearIncomeChart.setName(year);
+            //lastYearIncomeChart.setName("Last year data");
+
+            String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+
+            //getting this student joining data
+            for(int i = 1; i<=12; i++){
+                Double income = paymentBO.getIncomeByMonth(String.format("%s-%02d",year,i)+"%");
+                if(income!=null){
+                    thisYearIncomeChart.getData().add(new XYChart.Data<>(months[i-1],income));
+                }else{
+                    thisYearIncomeChart.getData().add(new XYChart.Data<>(months[i-1],0));
+                }
+            }
+
+            lineChartPaymentStatus.getData().add(thisYearIncomeChart);
+            //lineChrtIncomeStatus.getData().add(lastYearIncomeChart);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

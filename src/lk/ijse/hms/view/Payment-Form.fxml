@@ -8,6 +8,7 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
@@ -96,7 +97,32 @@
                            <tabs>
                               <Tab text="ANALYZE PAYMENTS">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TextField fx:id="txtSearchBar1" layoutX="14.0" layoutY="14.0" onAction="#txtSearchBar1OnAction" prefHeight="60.0" prefWidth="814.0" style="-fx-border-color: black; -fx-border-radius: 25; -fx-background-color: null;">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField fx:id="txtSearchBar2" layoutX="1047.0" layoutY="14.0" onAction="#txtSearchBar2OnAction" prefHeight="60.0" prefWidth="814.0" style="-fx-background-color: null; -fx-border-color: black; -fx-border-radius: 25;">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label layoutX="860.0" layoutY="29.0" text="Compare with">
+                                             <font>
+                                                <Font name="Arial" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <LineChart fx:id="lineChartPaymentStatus" horizontalGridLinesVisible="false" layoutX="5.0" layoutY="146.0" prefHeight="535.0" prefWidth="1853.0" stylesheets="@assets/styles/main-form-std-line-chart-styles.css" verticalGridLinesVisible="false">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </LineChart>
+                                       </children></AnchorPane>
                                 </content>
                               </Tab>
                               <Tab text="PAYMENT HISTORY">
