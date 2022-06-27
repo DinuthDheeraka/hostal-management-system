@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.util.List;
 
 public class PaymentDAOImpl implements PaymentDAO {
@@ -66,5 +67,13 @@ public class PaymentDAOImpl implements PaymentDAO {
     @Override
     public List<String> findAllIds() throws Exception {
         return null;
+    }
+
+    @Override
+    public Double getIncomeByMonth(String month) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        SQLQuery sqlQuery = session.createSQLQuery("select SUM(p.paidAmount) from Payment p where p.date like :month");
+        sqlQuery.setParameter("month",month);
+        return (Double) (sqlQuery.list().get(0));
     }
 }

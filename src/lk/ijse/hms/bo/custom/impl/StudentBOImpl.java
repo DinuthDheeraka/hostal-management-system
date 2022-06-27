@@ -13,6 +13,7 @@ import lk.ijse.hms.entity.Student;
 import lk.ijse.hms.service.DataConvertor;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -76,5 +77,10 @@ public class StudentBOImpl implements StudentBO {
     @Override
     public String getLastStudentId() throws Exception {
         return studentDAO.findLastId();
+    }
+
+    @Override
+    public BigInteger getStudentJoinedCountByMonth(String month) throws IOException {
+        return studentDAO.getStudentJoinedCountByMonth(month);
     }
 }

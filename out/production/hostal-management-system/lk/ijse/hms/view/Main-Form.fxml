@@ -6,6 +6,7 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -172,7 +173,7 @@
             </AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="265.0" prefHeight="372.0" prefWidth="1223.0" style="-fx-background-color: white;">
                <children>
-                  <LineChart fx:id="lineChrtIncomeStatus" horizontalGridLinesVisible="false" layoutX="-1.0" layoutY="6.0" prefHeight="358.0" prefWidth="914.0" verticalGridLinesVisible="false">
+                  <LineChart fx:id="lineChrtIncomeStatus" horizontalGridLinesVisible="false" layoutX="-1.0" layoutY="6.0" prefHeight="358.0" prefWidth="914.0" stylesheets="@assets/styles/main-form-income-line-chart-styles.css" verticalGridLinesVisible="false">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -183,7 +184,7 @@
                </children></AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="648.0" prefHeight="289.0" prefWidth="1066.0" style="-fx-background-color: white;">
                <children>
-                  <LineChart fx:id="lineChrtStudentJoiningStatus" horizontalGridLinesVisible="false" layoutX="4.0" layoutY="10.0" prefHeight="278.0" prefWidth="914.0" verticalGridLinesVisible="false">
+                  <LineChart fx:id="lineChrtStudentJoiningStatus" horizontalGridLinesVisible="false" layoutX="4.0" layoutY="10.0" prefHeight="278.0" prefWidth="914.0" stylesheets="@assets/styles/main-form-std-line-chart-styles.css" verticalGridLinesVisible="false">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -196,7 +197,11 @@
                <children>
                   <PieChart fx:id="pieChrtKeyMoneyStatus" layoutX="16.0" layoutY="19.0" prefHeight="335.0" prefWidth="611.0" stylesheets="@assets/styles/dash-board-pie-chart-styles.css" />
                </children></AnchorPane>
-            <AnchorPane layoutX="1077.0" layoutY="648.0" prefHeight="289.0" prefWidth="799.0" style="-fx-background-color: white;" />
+            <AnchorPane layoutX="1077.0" layoutY="648.0" prefHeight="289.0" prefWidth="799.0" style="-fx-background-color: white;">
+               <children>
+                  <ProgressIndicator layoutX="708.0" layoutY="112.0" prefHeight="79.0" prefWidth="90.0" progress="0.35" />
+                  <ProgressIndicator layoutX="708.0" layoutY="208.0" prefHeight="79.0" prefWidth="90.0" progress="0.56" />
+               </children></AnchorPane>
          </children>
       </AnchorPane>
    </children>

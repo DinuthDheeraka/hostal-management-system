@@ -63,4 +63,9 @@ public class PaymentBOImpl implements PaymentBO {
                 paymentDTO.getPaidAmount(),paymentDTO.getReservationId(),paymentDTO.getStudent()
         ));
     }
+
+    @Override
+    public Double getIncomeByMonth(String month) throws IOException {
+        return paymentDAO.getIncomeByMonth(month);
+    }
 }

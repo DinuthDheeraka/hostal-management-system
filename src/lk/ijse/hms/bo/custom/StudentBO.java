@@ -3,6 +3,8 @@ package lk.ijse.hms.bo.custom;
 import lk.ijse.hms.bo.SuperBO;
 import lk.ijse.hms.dto.StudentDTO;
 
+import java.io.IOException;
+import java.math.BigInteger;
 import java.util.List;
 
 public interface StudentBO extends SuperBO {
@@ -14,4 +16,5 @@ public interface StudentBO extends SuperBO {
     boolean addStudent(StudentDTO studentDTO) throws Exception;
     boolean updateStudent(StudentDTO studentDTO) throws Exception;
     String getLastStudentId() throws Exception;
+    BigInteger getStudentJoinedCountByMonth(String month) throws IOException;
 }

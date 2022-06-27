@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
@@ -79,5 +80,13 @@ public class StudentDAOImpl implements StudentDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Query query = session.createQuery("select s.studentId from Student s");
         return query.list();
+    }
+
+    @Override
+    public BigInteger getStudentJoinedCountByMonth(String month) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        SQLQuery sqlQuery = session.createSQLQuery("select count(s.studentId) from Student s where s.joinedDate like :month");
+        sqlQuery.setParameter("month",month);
+        return (BigInteger) sqlQuery.list().get(0);
     }
 }

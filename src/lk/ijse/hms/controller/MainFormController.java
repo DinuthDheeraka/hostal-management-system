@@ -12,11 +12,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.hms.bo.BOFactory;
+import lk.ijse.hms.bo.custom.PaymentBO;
+import lk.ijse.hms.bo.custom.StudentBO;
 import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -33,11 +38,76 @@ public class MainFormController implements Initializable {
 
     public volatile boolean stop;
 
+    //DI
+    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
+    PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOType.PAYMENT);
+
+    public MainFormController() throws IOException {
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         showDate();
         showTime();
         setPieChartKeyMoneyStatusData();
+        setLineChrtStudentJoiningStatus();
+        tester();
+    }
+
+    private void tester() {
+        try {
+            lineChrtIncomeStatus.setTitle("Income status for each month");
+
+            XYChart.Series thisYearIncomeChart = new XYChart.Series();
+            //XYChart.Series lastYearIncomeChart = new XYChart.Series();
+
+            thisYearIncomeChart.setName("This year data");
+            //lastYearIncomeChart.setName("Last year data");
+
+            String[] months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+
+            //getting this student joining data
+            for(int i = 1; i<=12; i++){
+                Double income = paymentBO.getIncomeByMonth(String.format("%d-%02d",LocalDate.now().getYear(),i)+"%");
+                if(income!=null){
+                    thisYearIncomeChart.getData().add(new XYChart.Data<>(months[i-1],income));
+                }else{
+                    thisYearIncomeChart.getData().add(new XYChart.Data<>(months[i-1],0));
+                }
+            }
+
+            lineChrtIncomeStatus.getData().add(thisYearIncomeChart);
+            //lineChrtIncomeStatus.getData().add(lastYearIncomeChart);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setLineChrtStudentJoiningStatus() {
+        try {
+            lineChrtStudentJoiningStatus.setTitle("Student joining rate for each month");
+
+            XYChart.Series thisYearStdGrowthChart = new XYChart.Series();
+            XYChart.Series lastYearStdGrowthChart = new XYChart.Series();
+
+            thisYearStdGrowthChart.setName("This year data");
+            lastYearStdGrowthChart.setName("Last year data");
+
+            String[] months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+
+            //getting this student joining data
+            for(int i = 1; i<=12; i++){
+                BigInteger bigInteger = (studentBO.getStudentJoinedCountByMonth(String.format("%d-%02d",LocalDate.now().getYear(),i)+"%"));
+                thisYearStdGrowthChart.getData().add(new XYChart.Data<>(months[i-1],bigInteger));
+            }
+
+            lineChrtStudentJoiningStatus.getData().add(thisYearStdGrowthChart);
+            lineChrtStudentJoiningStatus.getData().add(lastYearStdGrowthChart);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setPieChartKeyMoneyStatusData() {
