@@ -14,18 +14,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.StudentBO;
 import lk.ijse.hms.dto.StudentDTO;
 import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
+import lk.ijse.hms.util.RegexValidator;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class AddStudentFormController implements Initializable {
     public Label txtTitle;
@@ -142,5 +147,21 @@ public class AddStudentFormController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void validate(KeyEvent keyEvent) {
+
+        LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+
+        Pattern name = Pattern.compile("[A-Za-z .]{3,}");
+        map.put(txtName,name);
+
+        Pattern tele = Pattern.compile("[0-9]{9}$");
+        map.put(txtContactNo,tele);
+
+        Pattern address = Pattern.compile("[A-Za-z/, - 0-9.]{4,}");
+        map.put(txtAddress,address);
+
+        RegexValidator.validate(map,addBtn);
     }
 }

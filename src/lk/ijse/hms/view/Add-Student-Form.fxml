@@ -31,20 +31,20 @@
             </ImageView>
             <VBox layoutX="13.0" layoutY="25.0" prefHeight="637.0" prefWidth="766.0" spacing="40.0">
                <children>
-                  <JFXTextField fx:id="txtStdId" focusColor="#514e4e" labelFloat="true" promptText="Student-Id" unFocusColor="#868686">
+                  <JFXTextField fx:id="txtStdId" focusColor="#514e4e" labelFloat="true" onKeyPressed="#validate" promptText="Student-Id" unFocusColor="#868686">
                      <font>
                         <Font size="18.0" />
                      </font></JFXTextField>
-                  <JFXTextField fx:id="txtName" focusColor="#514e4e" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Name" unFocusColor="#868686">
+                  <JFXTextField fx:id="txtName" focusColor="#514e4e" labelFloat="true" layoutX="10.0" layoutY="10.0" onKeyPressed="#validate" promptText="Name" unFocusColor="#868686">
                      <font>
                         <Font size="18.0" />
                      </font></JFXTextField>
-                  <JFXTextField fx:id="txtContactNo" focusColor="#514e4e" labelFloat="true" layoutX="10.0" layoutY="41.0" promptText="Contact Number" unFocusColor="#868686">
+                  <JFXTextField fx:id="txtContactNo" focusColor="#514e4e" labelFloat="true" layoutX="10.0" layoutY="41.0" onKeyPressed="#validate" promptText="Contact Number" unFocusColor="#868686">
                      <font>
                         <Font size="18.0" />
                      </font></JFXTextField>
                   <JFXDatePicker fx:id="dpkDOB" defaultColor="#868686" prefHeight="31.0" prefWidth="778.0" promptText="Select Date of Birth" />
-                  <JFXTextField fx:id="txtAddress" focusColor="#514e4e" labelFloat="true" promptText="Enter Address" unFocusColor="#868686">
+                  <JFXTextField fx:id="txtAddress" focusColor="#514e4e" labelFloat="true" onKeyPressed="#validate" promptText="Enter Address" unFocusColor="#868686">
                      <font>
                         <Font size="18.0" />
                      </font></JFXTextField>
