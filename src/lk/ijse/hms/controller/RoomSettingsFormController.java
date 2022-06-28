@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -18,6 +19,7 @@ import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.RoomSettingBO;
 import lk.ijse.hms.dto.RoomSettingDTO;
 import lk.ijse.hms.service.DataConvertor;
+import lk.ijse.hms.util.Navigations;
 import lk.ijse.hms.view.tdm.RoomSettingTM;
 
 import java.io.IOException;
@@ -81,10 +83,54 @@ public class RoomSettingsFormController implements Initializable {
     public void txtSearchBarOnAction(ActionEvent actionEvent) {
     }
 
-    public void addBtnOnAction(ActionEvent actionEvent) {
+    public void addBtnOnAction(ActionEvent actionEvent){
+        if("UPDATE".equals(addBtn.getText())){
+            try {
+                roomSettingBO.updateRoomSetting(
+                        new RoomSettingDTO(txtId.getText(),txtType.getText(),Integer.valueOf(txtMaxCount.getText()))
+                );
+                new Alert(Alert.AlertType.CONFIRMATION,"Updated Room Setting").show();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,"Unable to Update Room Setting").show();
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                roomSettingBO.addRoomSetting(new RoomSettingDTO(
+                        txtId.getText(),txtType.getText(),Integer.valueOf(txtMaxCount.getText())
+                ));
+                new Alert(Alert.AlertType.CONFIRMATION,"Added Room Setting Successfully").show();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,"Unable to Add Room Setting").show();
+                e.printStackTrace();
+            }
+        }
     }
 
     public void addCtrlBtnOnAction(ActionEvent actionEvent) {
+        txtId.setDisable(false);
         addBtn.setText("ADD");
+    }
+
+    public void refreshCtxmOnAction(ActionEvent actionEvent) {
+        try {
+            setRoomSettingTblData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCtxmOnAction(ActionEvent actionEvent) {
+        try {
+            roomSettingBO.deleteRoomSetting(txtId.getText());
+            new Alert(Alert.AlertType.CONFIRMATION,"Deleted Room Setting").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,"Unable to Delete Room Setting").show();
+            e.printStackTrace();
+        }
+    }
+
+    public void closeBtnOnAction(ActionEvent actionEvent) {
+        Navigations.getInstance().closeStage(actionEvent);
     }
 }

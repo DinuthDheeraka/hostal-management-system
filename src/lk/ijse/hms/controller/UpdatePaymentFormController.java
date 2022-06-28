@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.PaymentBO;
 import lk.ijse.hms.bo.custom.ReserveBO;
@@ -60,7 +61,9 @@ public class UpdatePaymentFormController implements Initializable {
 
             paymentBO.updatePayment(paymentDTO);
 
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated Payment Details").show();
         } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,"Unable to Update Payment Details").show();
             e.printStackTrace();
         }
     }

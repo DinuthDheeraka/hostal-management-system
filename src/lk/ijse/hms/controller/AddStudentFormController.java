@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.StudentBO;
@@ -110,7 +111,10 @@ public class AddStudentFormController implements Initializable {
                         Date.from(dpkDOB.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),cmbxGender.getSelectionModel().getSelectedItem(),
                         studentDTO.getJoinedDate()
                 ));
+                new Alert(Alert.AlertType.CONFIRMATION,"Updated Student Successfully").show();
+
             } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,"Unable to Update Student!!").show();
                 e.printStackTrace();
             }
         }else{
@@ -122,8 +126,11 @@ public class AddStudentFormController implements Initializable {
                         Date.from(dpkDOB.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),cmbxGender.getSelectionModel().getSelectedItem(),
                         null
                 ));
+                new Alert(Alert.AlertType.CONFIRMATION,"Added Student Successfully").show();
                 setGeneratedId();
+
             } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,"Unable to Add Student!!").show();
                 e.printStackTrace();
             }
         }

@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.SystemUserBO;
 import lk.ijse.hms.dto.SystemUserDTO;
+import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,6 +52,7 @@ public class UpdateUserDetailFormController implements Initializable {
                 systemUserBO.updateSystemUser(systemUserDTO);
                 new Alert(Alert.AlertType.CONFIRMATION,"Updated Login Details").show();
             } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,"Unable to Update Login Details").show();
                 e.printStackTrace();
             }
 
@@ -58,5 +60,9 @@ public class UpdateUserDetailFormController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void cancelBtnOnAction(ActionEvent actionEvent) {
+        Navigations.getInstance().closeStage(actionEvent);
     }
 }

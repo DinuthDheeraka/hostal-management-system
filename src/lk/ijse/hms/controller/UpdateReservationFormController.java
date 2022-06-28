@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.ReserveBO;
@@ -101,7 +102,10 @@ public class UpdateReservationFormController implements Initializable {
                 roomBO.updateRoom(roomDTO);
             }
 
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated Reservation Details").show();
+
         } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,"Unable to Update Reservation Details").show();
             e.printStackTrace();
         }
     }

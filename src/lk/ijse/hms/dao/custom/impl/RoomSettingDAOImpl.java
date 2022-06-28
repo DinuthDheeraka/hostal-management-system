@@ -9,6 +9,7 @@ import lk.ijse.hms.dao.custom.RoomSettingDAO;
 import lk.ijse.hms.entity.RoomSetting;
 import lk.ijse.hms.util.FactoryConfiguration;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
@@ -17,22 +18,40 @@ import java.util.List;
 public class RoomSettingDAOImpl implements RoomSettingDAO {
     @Override
     public boolean add(RoomSetting entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public boolean update(RoomSetting entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public boolean delete(String s) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(session.load(RoomSetting.class, s));
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public RoomSetting find(String s) throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        RoomSetting roomSetting = session.get(RoomSetting.class,s);
+        session.close();
+        return roomSetting;
     }
 
     @Override

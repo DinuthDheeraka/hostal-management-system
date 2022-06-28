@@ -87,6 +87,7 @@ public class AddRoomsFormController implements Initializable {
                         txtRoomId.getText(),cmbxRoomType.getSelectionModel().getSelectedItem(),
                         Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
             ));
+                new Alert(Alert.AlertType.CONFIRMATION,"Updated Room Successfully").show();
         } else{
 
             //Add New Room
@@ -97,7 +98,10 @@ public class AddRoomsFormController implements Initializable {
                             Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
                     ));
                     setGeneratedId();
+                    new Alert(Alert.AlertType.ERROR,"Added Room Successfully").show();
+
                 } catch (Exception e) {
+                    new Alert(Alert.AlertType.ERROR,"Unable to Update Room!!").show();
                     e.printStackTrace();
                 }
             }else{

@@ -182,7 +182,7 @@
             </AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="265.0" prefHeight="372.0" prefWidth="1223.0" style="-fx-background-color: white;">
                <children>
-                  <LineChart fx:id="lineChrtIncomeStatus" horizontalGridLinesVisible="false" layoutX="-1.0" layoutY="6.0" prefHeight="358.0" prefWidth="1091.0" stylesheets="@assets/styles/main-form-income-line-chart-styles.css" verticalGridLinesVisible="false">
+                  <LineChart fx:id="lineChrtIncomeStatus" horizontalGridLinesVisible="false" layoutX="-1.0" layoutY="6.0" prefHeight="358.0" prefWidth="1223.0" stylesheets="@assets/styles/main-form-income-line-chart-styles.css" verticalGridLinesVisible="false">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -193,7 +193,7 @@
                </children></AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="648.0" prefHeight="289.0" prefWidth="1066.0" style="-fx-background-color: white;">
                <children>
-                  <LineChart fx:id="lineChrtStudentJoiningStatus" horizontalGridLinesVisible="false" layoutX="4.0" layoutY="10.0" prefHeight="278.0" prefWidth="914.0" stylesheets="@assets/styles/main-form-std-line-chart-styles.css" verticalGridLinesVisible="false">
+                  <LineChart fx:id="lineChrtStudentJoiningStatus" horizontalGridLinesVisible="false" layoutX="4.0" layoutY="10.0" prefHeight="278.0" prefWidth="1057.0" stylesheets="@assets/styles/main-form-std-line-chart-styles.css" verticalGridLinesVisible="false">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>

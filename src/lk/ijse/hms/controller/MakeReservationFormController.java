@@ -278,15 +278,8 @@ public class MakeReservationFormController implements Initializable {
     private void updateRoomStatus() {
         try {
             RoomDTO roomDTO = roomBO.getRoom(cmbxRoomIds.getSelectionModel().getSelectedItem());
-            Room room = new Room(
-                    roomDTO.getRoomId(),roomDTO.getType(),roomDTO.getMonthlyRental(),
-                    "Not Available",null,roomDTO.getKeyMoney());
-
-            roomBO.updateRoom(new RoomDTO(
-                    room.getRoomId(),room.getType(),room.getMonthlyRental(),room.getAvailability(),
-                    room.getKeyMoney()
-            ));
-
+            roomDTO.setAvailability("Not Available");
+            roomBO.updateRoom(roomDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }

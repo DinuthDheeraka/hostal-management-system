@@ -17,10 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -283,7 +280,10 @@ public class PaymentFormController implements Initializable {
                     cmbxRservationIds.getSelectionModel().getSelectedItem(), student
             ));
             setGeneratedId();
+
+            new Alert(Alert.AlertType.CONFIRMATION,"Payment Successful").show();
         } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,"Payment Unsuccessful").show();
             e.printStackTrace();
         }
     }

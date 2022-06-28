@@ -41,4 +41,31 @@ public class RoomSettingBOImpl implements RoomSettingBO {
     public int getMaxRoomCount(String roomType) throws IOException {
         return roomSettingDAO.getMaxRoomCount(roomType);
     }
+
+    @Override
+    public boolean addRoomSetting(RoomSettingDTO roomSettingDTO) throws Exception {
+        return roomSettingDAO.add(new RoomSetting(
+                roomSettingDTO.getRoomCategoryId(),roomSettingDTO.getType(),roomSettingDTO.getMaxCount()
+        ));
+    }
+
+    @Override
+    public boolean deleteRoomSetting(String id) throws Exception {
+        return roomSettingDAO.delete(id);
+    }
+
+    @Override
+    public RoomSettingDTO getRoomSetting(String id) throws Exception {
+        RoomSetting roomSetting = roomSettingDAO.find(id);
+        return new RoomSettingDTO(
+                roomSetting.getRoomCategoryId(),roomSetting.getType(),roomSetting.getMaxCount()
+        );
+    }
+
+    @Override
+    public boolean updateRoomSetting(RoomSettingDTO roomSettingDTO) throws Exception {
+        return roomSettingDAO.update(new RoomSetting(
+                roomSettingDTO.getRoomCategoryId(),roomSettingDTO.getType(),roomSettingDTO.getMaxCount()
+        ));
+    }
 }
