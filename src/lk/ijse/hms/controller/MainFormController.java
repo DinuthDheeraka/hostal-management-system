@@ -9,12 +9,17 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.PaymentBO;
 import lk.ijse.hms.bo.custom.ReserveBO;
@@ -39,6 +44,11 @@ public class MainFormController implements Initializable {
     public PieChart pieChrtKeyMoneyStatus;
     public LineChart lineChrtStudentJoiningStatus;
     public Label lblUserName;
+    private String password;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent parent;
 
     public volatile boolean stop;
 
@@ -198,8 +208,28 @@ public class MainFormController implements Initializable {
         lblSystemDate.setText(String.valueOf(LocalDate.now()));
     }
 
-    public void setUserName(String userName){
+    public void setUserName(String userName,String password){
         lblUserName.setText(userName);
+        this.password = password;
     }
 
+    public void lblUserOnClick(MouseEvent mouseEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Update-User-Detail-Form.fxml"));
+
+        try {
+            parent = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Transfer User Data to Main Form
+        UpdateUserDetailFormController controller = fxmlLoader.getController();
+        controller.setCurrentLoginData(lblUserName.getText(),this.password);
+
+        stage = new Stage();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+
+        Navigations.getInstance().transparentUi(stage,scene);
+    }
 }

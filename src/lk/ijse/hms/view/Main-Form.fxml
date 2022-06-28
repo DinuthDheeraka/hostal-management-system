@@ -68,7 +68,7 @@
                   <Image url="@assets/images/i.png" />
                </image>
             </ImageView>
-            <Label fx:id="lblUserName" layoutX="1163.0" layoutY="17.0" text="Dinuth">
+            <Label fx:id="lblUserName" layoutX="1163.0" layoutY="17.0" onMouseClicked="#lblUserOnClick" text="Dinuth">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>

@@ -43,7 +43,15 @@ public class SystemUserBOImpl implements SystemUserBO {
     }
 
     @Override
-    public boolean getSystemUserByUserNameAndPassword(String userName, String password) throws IOException {
+    public boolean isExistsSystemUserByUserNameAndPassword(String userName, String password) throws IOException {
         return systemUserDAO.findUserByUserNameAndPassword(userName,password);
+    }
+
+    @Override
+    public SystemUserDTO getSystemUserByUserNameAndPassword(String userName, String password) throws IOException {
+        SystemUser systemUser = systemUserDAO.getSystemUserByUserNameAndPassword(userName,password);
+        return new SystemUserDTO(
+                systemUser.getUserId(),systemUser.getUserName(),systemUser.getPassword()
+        );
     }
 }

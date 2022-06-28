@@ -75,4 +75,13 @@ public class SystemUserDAOImpl implements SystemUserDAO {
         query.setParameter("un",userName);
         return query.list().size()>0;
     }
+
+    @Override
+    public SystemUser getSystemUserByUserNameAndPassword(String userName, String password) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("from SystemUser su where su.password = :pw AND su.userName = :un");
+        query.setParameter("pw",password);
+        query.setParameter("un",userName);
+        return (SystemUser) query.list().get(0);
+    }
 }

@@ -66,7 +66,7 @@ public class LoginFormController implements Initializable {
 
     public void loginBtnOnAction(ActionEvent actionEvent) {
         try {
-            if(systemUserBO.getSystemUserByUserNameAndPassword(txtUserName.getText(),txtPassword.getText())){
+            if(systemUserBO.isExistsSystemUserByUserNameAndPassword(txtUserName.getText(),txtPassword.getText())){
                 Navigations.getInstance().closeStage(actionEvent);
                 //Navigations.getInstance().setNewStage("Main-Form");
 
@@ -80,7 +80,7 @@ public class LoginFormController implements Initializable {
 
                 //Transfer User Data to Main Form
                 MainFormController controller = fxmlLoader.getController();
-                controller.setUserName(txtUserName.getText());
+                controller.setUserName(txtUserName.getText(),txtPassword.getText());
 
                 stage = new Stage();
                 scene = new Scene(parent);
