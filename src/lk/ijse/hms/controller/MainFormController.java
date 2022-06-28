@@ -23,8 +23,10 @@ import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.PaymentBO;
 import lk.ijse.hms.bo.custom.ReserveBO;
+import lk.ijse.hms.bo.custom.RoomBO;
 import lk.ijse.hms.bo.custom.StudentBO;
 import lk.ijse.hms.dto.ReserveDTO;
+import lk.ijse.hms.dto.RoomDTO;
 import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
@@ -44,6 +46,9 @@ public class MainFormController implements Initializable {
     public PieChart pieChrtKeyMoneyStatus;
     public LineChart lineChrtStudentJoiningStatus;
     public Label lblUserName;
+    public Label lblTotalRooms;
+    public Label lblAvailableRooms;
+    public Label lblBookedRooms;
     private String password;
 
     private Stage stage;
@@ -56,6 +61,7 @@ public class MainFormController implements Initializable {
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
     PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOType.PAYMENT);
     ReserveBO reserveBO = (ReserveBO) BOFactory.getInstance().getBO(BOFactory.BOType.RESERVATION);
+    RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
 
     public MainFormController() throws IOException {
     }
@@ -64,12 +70,30 @@ public class MainFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         showDate();
         showTime();
+        setRoomsStatusForLables();
         setPieChartKeyMoneyStatusData();
         setLineChrtStudentJoiningStatus();
-        tester();
+        setLineChrtIncomeStatus();
     }
 
-    private void tester() {
+    private void setRoomsStatusForLables() {
+        try {
+            List<RoomDTO> dtos = roomBO.getAllRooms();
+
+            lblTotalRooms.setText(String.format("%02d",dtos.size()));
+
+            lblAvailableRooms.setText(String.format("%02d",
+                    dtos.stream().filter(roomDTO -> roomDTO.getAvailability().equals("Available")).count()
+            ));
+            lblBookedRooms.setText(String.format("%02d",
+                    dtos.stream().filter(roomDTO -> roomDTO.getAvailability().equals("Not Available")).count()
+            ));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setLineChrtIncomeStatus() {
         try {
             lineChrtIncomeStatus.setTitle("Income status for each month");
 
@@ -231,5 +255,13 @@ public class MainFormController implements Initializable {
         stage.setScene(scene);
 
         Navigations.getInstance().transparentUi(stage,scene);
+    }
+
+    public void closeBtnOnAction(ActionEvent actionEvent) {
+        System.exit(1);
+    }
+
+    public void minimizeBtnOnAction(ActionEvent actionEvent) {
+        Navigations.getInstance().minimizeStage(actionEvent);
     }
 }

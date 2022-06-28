@@ -16,4 +16,5 @@ public interface RoomBO extends SuperBO {
     RoomDTO getRoom(String roomId) throws Exception;
     String getLastRoomId() throws Exception;
     Long getAddedRoomCountByType(String roomType) throws IOException;
+    boolean updateRoomByType(String newType,String oldType) throws IOException;
 }

@@ -89,4 +89,17 @@ public class RoomDAOImpl implements RoomDAO {
         query.setParameter("type",roomType);
         return (Long) query.list().get(0);
     }
+
+    @Override
+    public boolean updateRoomByType(String newType, String oldType) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("update Room as r set r.type = :newType where r.type = :oldType");
+        query.setParameter("newType",newType);
+        query.setParameter("oldType",oldType);
+        query.executeUpdate();
+        transaction.commit();
+        session.close();
+        return true;
+    }
 }

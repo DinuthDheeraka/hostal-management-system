@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hms.bo.BOFactory;
+import lk.ijse.hms.bo.custom.RoomBO;
 import lk.ijse.hms.bo.custom.RoomSettingBO;
 import lk.ijse.hms.dto.RoomSettingDTO;
 import lk.ijse.hms.service.DataConvertor;
@@ -39,9 +40,12 @@ public class RoomSettingsFormController implements Initializable {
     public JFXTextField txtMaxCount;
     public JFXButton addCtrlBtn;
 
+    private String selectedRoomType;
+
     //DI
     DataConvertor dataConvertor = DataConvertor.getInstance();
     RoomSettingBO roomSettingBO = (RoomSettingBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM_SETTING_BO);
+    RoomBO roomBO = (RoomBO) BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
 
     public RoomSettingsFormController() throws IOException {
     }
@@ -70,6 +74,7 @@ public class RoomSettingsFormController implements Initializable {
         txtType.setText(newValue.getType());
         txtMaxCount.setText(String.valueOf(newValue.getMaxCount()));
         txtId.setEditable(false);
+        selectedRoomType = newValue.getType();
     }
 
     private void setRoomSettingTblData() throws Exception {
@@ -90,16 +95,22 @@ public class RoomSettingsFormController implements Initializable {
                         new RoomSettingDTO(txtId.getText(),txtType.getText(),Integer.valueOf(txtMaxCount.getText()))
                 );
                 new Alert(Alert.AlertType.CONFIRMATION,"Updated Room Setting").show();
+
+                roomBO.updateRoomByType(txtType.getText(),selectedRoomType);
+                System.out.println(selectedRoomType);
+
             } catch (Exception e) {
                 new Alert(Alert.AlertType.ERROR,"Unable to Update Room Setting").show();
                 e.printStackTrace();
             }
+
         }else{
             try {
                 roomSettingBO.addRoomSetting(new RoomSettingDTO(
                         txtId.getText(),txtType.getText(),Integer.valueOf(txtMaxCount.getText())
                 ));
                 new Alert(Alert.AlertType.CONFIRMATION,"Added Room Setting Successfully").show();
+
             } catch (Exception e) {
                 new Alert(Alert.AlertType.ERROR,"Unable to Add Room Setting").show();
                 e.printStackTrace();

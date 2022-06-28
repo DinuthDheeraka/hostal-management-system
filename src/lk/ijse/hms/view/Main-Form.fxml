@@ -73,6 +73,16 @@
                   <Font name="Arial" size="20.0" />
                </font>
             </Label>
+            <JFXButton layoutX="1841.0" layoutY="9.0" onAction="#closeBtnOnAction" prefHeight="35.0" prefWidth="45.0" style="-fx-border-color: #4c4a4d;" text="X">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="1789.0" layoutY="9.0" onAction="#minimizeBtnOnAction" prefHeight="35.0" prefWidth="45.0" style="-fx-border-color: #4c4a4d;" text="-">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </JFXButton>
          </children></AnchorPane>
       <AnchorPane fx:id="mainFormContext" layoutX="11.0" layoutY="63.0" prefHeight="939.0" prefWidth="1875.0" style="-fx-background-color: #d9d7d7; -fx-border-color: #d9d7d7;">
          <children>
@@ -206,7 +216,39 @@
                <children>
                   <PieChart fx:id="pieChrtKeyMoneyStatus" layoutX="16.0" layoutY="19.0" prefHeight="335.0" prefWidth="611.0" stylesheets="@assets/styles/dash-board-pie-chart-styles.css" />
                </children></AnchorPane>
-            <AnchorPane layoutX="1077.0" layoutY="648.0" prefHeight="289.0" prefWidth="799.0" style="-fx-background-color: white;" />
+            <AnchorPane layoutX="1077.0" layoutY="648.0" prefHeight="289.0" prefWidth="799.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="14.0" layoutY="186.0" text="Total Rooms" textFill="#a966eb">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="243.0" layoutY="187.0" text="Available Rooms" textFill="#7fe364">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="540.0" layoutY="188.0" text="Booked Rooms" textFill="#ff8041">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTotalRooms" layoutX="54.0" layoutY="49.0" text="05" textFill="#a966eb">
+                     <font>
+                        <Font name="Arial" size="96.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblAvailableRooms" layoutX="320.0" layoutY="49.0" text="02" textFill="#7fe364">
+                     <font>
+                        <Font name="Arial" size="96.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblBookedRooms" layoutX="608.0" layoutY="49.0" text="05" textFill="#ff8041">
+                     <font>
+                        <Font name="Arial" size="96.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
          </children>
       </AnchorPane>
    </children>

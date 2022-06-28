@@ -91,4 +91,9 @@ public class Navigations {
 
         stage.show();
     }
+
+    public void minimizeStage(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
 }

@@ -75,4 +75,9 @@ public class RoomBOImpl implements RoomBO {
     public Long getAddedRoomCountByType(String roomType) throws IOException {
         return roomDAO.getAddedRoomCountByType(roomType);
     }
+
+    @Override
+    public boolean updateRoomByType(String newType, String oldType) throws IOException {
+        return roomDAO.updateRoomByType(newType,oldType);
+    }
 }
