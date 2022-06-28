@@ -44,7 +44,7 @@
                         <Line endX="-100.0" endY="45.0" layoutX="115.0" layoutY="10.0" startX="-100.0" visible="false" />
                         <Line endX="-60.0" layoutX="122.0" layoutY="55.0" startX="-107.0" visible="false" />
                         <Line endX="-100.0" endY="40.0" layoutX="162.0" layoutY="-10.0" startX="-100.0" startY="19.0" visible="false" />
-                        <ImageView fitHeight="145.0" fitWidth="190.0" layoutX="198.0" layoutY="-1.0" pickOnBounds="true">
+                        <ImageView fitHeight="213.0" fitWidth="274.0" layoutX="155.0" layoutY="-57.0" pickOnBounds="true">
                            <image>
                               <Image url="@assets/images/360_F_450488834_UJxglEY74ZV7GhsGSD3kbVIy8gYkM0xG.jpg" />
                            </image>
@@ -106,7 +106,7 @@
                               <Font name="Arial Bold" size="17.0" />
                            </font>
                         </JFXButton>
-                        <ImageView fitHeight="145.0" fitWidth="198.0" layoutX="196.0" layoutY="2.0" pickOnBounds="true">
+                        <ImageView fitHeight="207.0" fitWidth="269.0" layoutX="159.0" layoutY="-54.0" pickOnBounds="true">
                            <image>
                               <Image url="@assets/images/360_F_450488834_UJxglEY74ZV7GhsGSD3kbVIy8gYkM0xG.jpg" />
                            </image>

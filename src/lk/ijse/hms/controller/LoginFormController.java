@@ -8,10 +8,14 @@ package lk.ijse.hms.controller;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.SystemUserBO;
 import lk.ijse.hms.dto.SystemUserDTO;
@@ -34,6 +38,10 @@ public class LoginFormController implements Initializable {
     public JFXTextField txtSgnupShowPassword;
     public ImageView sgnupImgHidePassword;
     public ImageView sgnupImgShowPassword;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent parent;
 
     //DI
     SystemUserBO systemUserBO = (SystemUserBO) BOFactory.getInstance().getBO(BOFactory.BOType.SYSTEM_USER);
@@ -60,7 +68,25 @@ public class LoginFormController implements Initializable {
         try {
             if(systemUserBO.getSystemUserByUserNameAndPassword(txtUserName.getText(),txtPassword.getText())){
                 Navigations.getInstance().closeStage(actionEvent);
-                Navigations.getInstance().setNewStage("Main-Form");
+                //Navigations.getInstance().setNewStage("Main-Form");
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Main-Form.fxml"));
+
+                try {
+                    parent = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //Transfer User Data to Main Form
+                MainFormController controller = fxmlLoader.getController();
+                controller.setUserName(txtUserName.getText());
+
+                stage = new Stage();
+                scene = new Scene(parent);
+                stage.setScene(scene);
+
+                Navigations.getInstance().transparentUi(stage,scene);
             }else{
                 new Alert(Alert.AlertType.ERROR,"Invalid Username or Password!").show();
             }

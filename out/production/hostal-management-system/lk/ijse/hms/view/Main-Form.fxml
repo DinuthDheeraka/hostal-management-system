@@ -6,7 +6,6 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -64,6 +63,16 @@
             <Line endX="-100.0" endY="43.0" layoutX="115.0" layoutY="6.0" startX="-100.0" stroke="#1e1c1e" />
             <Line endX="-52.0" layoutX="116.0" layoutY="49.0" startX="-100.0" stroke="#1e1c1e" />
             <Line endX="-100.0" endY="35.0" layoutX="164.0" layoutY="-12.0" startX="-100.0" startY="17.0" stroke="#1e1c1e" />
+            <ImageView fitHeight="32.0" fitWidth="29.0" layoutX="1123.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/images/i.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblUserName" layoutX="1163.0" layoutY="17.0" text="Dinuth">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
       <AnchorPane fx:id="mainFormContext" layoutX="11.0" layoutY="63.0" prefHeight="939.0" prefWidth="1875.0" style="-fx-background-color: #d9d7d7; -fx-border-color: #d9d7d7;">
          <children>
@@ -173,7 +182,7 @@
             </AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="265.0" prefHeight="372.0" prefWidth="1223.0" style="-fx-background-color: white;">
                <children>
-                  <LineChart fx:id="lineChrtIncomeStatus" horizontalGridLinesVisible="false" layoutX="-1.0" layoutY="6.0" prefHeight="358.0" prefWidth="914.0" stylesheets="@assets/styles/main-form-income-line-chart-styles.css" verticalGridLinesVisible="false">
+                  <LineChart fx:id="lineChrtIncomeStatus" horizontalGridLinesVisible="false" layoutX="-1.0" layoutY="6.0" prefHeight="358.0" prefWidth="1091.0" stylesheets="@assets/styles/main-form-income-line-chart-styles.css" verticalGridLinesVisible="false">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -197,11 +206,7 @@
                <children>
                   <PieChart fx:id="pieChrtKeyMoneyStatus" layoutX="16.0" layoutY="19.0" prefHeight="335.0" prefWidth="611.0" stylesheets="@assets/styles/dash-board-pie-chart-styles.css" />
                </children></AnchorPane>
-            <AnchorPane layoutX="1077.0" layoutY="648.0" prefHeight="289.0" prefWidth="799.0" style="-fx-background-color: white;">
-               <children>
-                  <ProgressIndicator layoutX="708.0" layoutY="112.0" prefHeight="79.0" prefWidth="90.0" progress="0.35" />
-                  <ProgressIndicator layoutX="708.0" layoutY="208.0" prefHeight="79.0" prefWidth="90.0" progress="0.56" />
-               </children></AnchorPane>
+            <AnchorPane layoutX="1077.0" layoutY="648.0" prefHeight="289.0" prefWidth="799.0" style="-fx-background-color: white;" />
          </children>
       </AnchorPane>
    </children>

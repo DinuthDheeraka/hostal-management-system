@@ -17,7 +17,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.PaymentBO;
+import lk.ijse.hms.bo.custom.ReserveBO;
 import lk.ijse.hms.bo.custom.StudentBO;
+import lk.ijse.hms.dto.ReserveDTO;
 import lk.ijse.hms.util.Navigations;
 
 import java.io.IOException;
@@ -26,6 +28,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainFormController implements Initializable {
@@ -35,12 +38,14 @@ public class MainFormController implements Initializable {
     public LineChart lineChrtIncomeStatus;
     public PieChart pieChrtKeyMoneyStatus;
     public LineChart lineChrtStudentJoiningStatus;
+    public Label lblUserName;
 
     public volatile boolean stop;
 
     //DI
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
     PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOType.PAYMENT);
+    ReserveBO reserveBO = (ReserveBO) BOFactory.getInstance().getBO(BOFactory.BOType.RESERVATION);
 
     public MainFormController() throws IOException {
     }
@@ -112,12 +117,31 @@ public class MainFormController implements Initializable {
 
     private void setPieChartKeyMoneyStatusData() {
 
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data(" Paid Students", 10),
-                new PieChart.Data(" Unpaid Students",20));
+        try {
+            List<ReserveDTO> reserveDTOS = reserveBO.getAllReservations();
+            Long paid = reserveDTOS.stream()
+                    .filter(reserveDTO -> reserveDTO.getKeyMoney()-reserveDTO.getPaidKeyMoney()==0)
+                    .count();
 
-        pieChrtKeyMoneyStatus.setTitle("Key money status for all Reservations");
-        pieChrtKeyMoneyStatus.setData(pieChartData);
+            Long unPaid = reserveDTOS.stream()
+                    .filter(reserveDTO -> reserveDTO.getKeyMoney()-reserveDTO.getPaidKeyMoney()==reserveDTO.getKeyMoney())
+                    .count();
+
+            Long halfPaid = reserveDTOS.stream()
+                    .filter(reserveDTO -> reserveDTO.getKeyMoney()-reserveDTO.getPaidKeyMoney()>0)
+                    .count();
+
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                    new PieChart.Data(" Paid students", paid),
+                    new PieChart.Data(" Half paid students", halfPaid),
+                    new PieChart.Data(" Unpaid students",unPaid));
+
+            pieChrtKeyMoneyStatus.setTitle("Key money status for all Reservations");
+            pieChrtKeyMoneyStatus.setData(pieChartData);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void studentsBtnOnAction(ActionEvent actionEvent) {
@@ -172,6 +196,10 @@ public class MainFormController implements Initializable {
 
     public void showDate(){
         lblSystemDate.setText(String.valueOf(LocalDate.now()));
+    }
+
+    public void setUserName(String userName){
+        lblUserName.setText(userName);
     }
 
 }
