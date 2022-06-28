@@ -26,58 +26,24 @@
          <tabs>
             <Tab text="MAKE RESERVATION">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                      <children>
-                        <ImageView fitHeight="900.0" fitWidth="1875.0" layoutY="1.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@assets/images/1JynjM.jpg" />
-                           </image>
-                           <effect>
-                              <Lighting diffuseConstant="1.41">
-                                 <bumpInput>
-                                    <Shadow />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant />
-                                 </light>
-                              </Lighting>
-                           </effect>
-                        </ImageView>
                         <JFXComboBox fx:id="cmbxStudentIds" focusColor="#212022" layoutX="15.0" layoutY="64.0" prefHeight="31.0" prefWidth="299.0" promptText="Select Student" unFocusColor="#ac17eb" />
                         <VBox layoutX="378.0" layoutY="56.0" prefHeight="300.0" prefWidth="1448.0" spacing="20.0">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                                  <children>
-                                    <JFXTextField fx:id="txtStdName" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Name" unFocusColor="#1b1a1a">
+                                    <JFXTextField fx:id="txtStdName" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Name" unFocusColor="#b307dd">
                                        <font>
                                           <Font size="21.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtStdContactNo" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Contact-No" unFocusColor="#1b1a1a">
+                                    <JFXTextField fx:id="txtStdContactNo" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Contact-No" unFocusColor="#b307dd">
                                        <font>
                                           <Font size="21.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtStdGender" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Gender" unFocusColor="#1b1a1a">
-                                       <font>
-                                          <Font size="21.0" />
-                                       </font>
-                                    </JFXTextField>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
-                                 <children>
-                                    <JFXTextField fx:id="txtStdAddress" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Address" unFocusColor="#1b1a1a">
-                                       <font>
-                                          <Font size="21.0" />
-                                       </font>
-                                    </JFXTextField>
-                                    <JFXTextField fx:id="txtStdCity" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="City" unFocusColor="#1b1a1a">
-                                       <font>
-                                          <Font size="21.0" />
-                                       </font>
-                                    </JFXTextField>
-                                    <JFXTextField fx:id="txtStdDistrict" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="District" unFocusColor="#1b1a1a">
+                                    <JFXTextField fx:id="txtStdGender" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Gender" unFocusColor="#b307dd">
                                        <font>
                                           <Font size="21.0" />
                                        </font>
@@ -86,17 +52,36 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                                  <children>
-                                    <JFXTextField fx:id="txtStdProvince" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Province" unFocusColor="#1b1a1a">
+                                    <JFXTextField fx:id="txtStdAddress" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Address" unFocusColor="#b307dd">
                                        <font>
                                           <Font size="21.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtStdDOB" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Date of Birth" unFocusColor="#1b1a1a">
+                                    <JFXTextField fx:id="txtStdCity" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="City" unFocusColor="#b307dd">
                                        <font>
                                           <Font size="21.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtStdRegDate" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Registered Date" unFocusColor="#1b1a1a">
+                                    <JFXTextField fx:id="txtStdDistrict" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="District" unFocusColor="#b307dd">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <JFXTextField fx:id="txtStdProvince" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Province" unFocusColor="#b307dd">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="txtStdDOB" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Date of Birth" unFocusColor="#b307dd">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="txtStdRegDate" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Registered Date" unFocusColor="#b307dd">
                                        <font>
                                           <Font size="21.0" />
                                        </font>
@@ -108,17 +93,17 @@
                         <JFXComboBox fx:id="cmbxRoomIds" focusColor="#282728" layoutX="14.0" layoutY="456.0" prefHeight="31.0" prefWidth="299.0" promptText="Select Room" unFocusColor="#ff22c0" />
                         <HBox layoutX="377.0" layoutY="442.0" prefHeight="100.0" prefWidth="1484.0" spacing="25.0">
                            <children>
-                              <JFXTextField fx:id="txtRoomType" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Type" unFocusColor="#1e1d1d">
+                              <JFXTextField fx:id="txtRoomType" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Type" unFocusColor="#ff03a8">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="txtRoomRent" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Monthly Rental" unFocusColor="#1e1d1d">
+                              <JFXTextField fx:id="txtRoomRent" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Monthly Rental" unFocusColor="#ff03a8">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="txtRoomAvailability" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Availability" unFocusColor="#1e1d1d">
+                              <JFXTextField fx:id="txtRoomAvailability" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Availability" unFocusColor="#ff03a8">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
@@ -127,31 +112,31 @@
                         </HBox>
                         <HBox layoutX="377.0" layoutY="626.0" prefHeight="100.0" prefWidth="483.0" spacing="25.0">
                            <children>
-                              <JFXTextField fx:id="txtRoomKeyMoney" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Room Key Money" unFocusColor="#1e1d1d">
+                              <JFXTextField fx:id="txtRoomKeyMoney" focusColor="BLACK" labelFloat="true" minWidth="478.0" promptText="Room Key Money" unFocusColor="#2c05da">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="txtRoomPaidKeyMoney" focusColor="BLACK" labelFloat="true" layoutX="10.0" layoutY="10.0" minWidth="478.0" promptText="Paid Key Money" unFocusColor="#1e1d1d">
+                              <JFXTextField fx:id="txtRoomPaidKeyMoney" focusColor="BLACK" labelFloat="true" layoutX="10.0" layoutY="10.0" minWidth="478.0" promptText="Paid Key Money" unFocusColor="#2c05da">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </JFXTextField>
                            </children>
                         </HBox>
-                        <JFXTextField fx:id="txtReservationId" layoutX="15.0" layoutY="626.0" prefHeight="31.0" prefWidth="306.0" promptText="Reservation Id" unFocusColor="#252424">
+                        <JFXTextField fx:id="txtReservationId" layoutX="15.0" layoutY="626.0" prefHeight="31.0" prefWidth="306.0" promptText="Reservation Id" unFocusColor="#2c05da">
                            <font>
                               <Font size="21.0" />
                            </font></JFXTextField>
-                        <JFXComboBox fx:id="cmbxReservationCurrentStatus" layoutX="1381.0" layoutY="640.0" prefHeight="31.0" prefWidth="478.0" promptText="Select Reservation Status" unFocusColor="#171717" />
+                        <JFXComboBox fx:id="cmbxReservationCurrentStatus" layoutX="1381.0" layoutY="640.0" prefHeight="31.0" prefWidth="478.0" promptText="Select Reservation Status" unFocusColor="#0713ff" />
                         <JFXButton buttonType="RAISED" layoutX="1543.0" layoutY="822.0" onAction="#makeReservationBtnOnAction" prefHeight="66.0" prefWidth="323.0" style="-fx-background-color: green;" text="MAKE RESERVATION" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="17.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="1211.0" layoutY="822.0" onAction="#canselBtnOnAction" prefHeight="66.0" prefWidth="323.0" style="-fx-border-color: black;" text="CANSEL" textFill="#0a0a0a">
+                        <JFXButton layoutX="1211.0" layoutY="822.0" onAction="#canselBtnOnAction" prefHeight="66.0" prefWidth="323.0" style="-fx-border-color: black;" text="CANSEL" textFill="#0a0a0a">
                            <font>
-                              <Font name="System Bold" size="17.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </JFXButton>
                      </children>

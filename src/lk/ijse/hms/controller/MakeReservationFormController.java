@@ -154,6 +154,7 @@ public class MakeReservationFormController implements Initializable {
             case "Half Paid" :
                 reserveTMS = FXCollections.observableArrayList(reserveTbl.getItems()
                         .stream()
+                        .filter(reserveTM -> reserveTM.getPaidKeyMoney()!=0)
                         .filter(reserveTM -> reserveTM.getKeyMoney()-reserveTM.getPaidKeyMoney()>0)
                         .collect(Collectors.toList())
                 );break;
