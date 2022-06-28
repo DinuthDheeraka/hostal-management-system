@@ -13,16 +13,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.RoomBO;
 import lk.ijse.hms.bo.custom.RoomSettingBO;
 import lk.ijse.hms.dto.RoomDTO;
 import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
+import lk.ijse.hms.util.RegexValidator;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class AddRoomsFormController implements Initializable {
     public Label txtTitle;
@@ -135,5 +140,17 @@ public class AddRoomsFormController implements Initializable {
             e.printStackTrace();
         }
         return true;
+    }
+
+    public void validate(KeyEvent keyEvent) {
+
+        LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+
+        Pattern money = Pattern.compile("([0-9]{1,}.[0-9]{2}$|[0-9]{1,}$)");
+        map.put(txtKeyMoney,money);
+
+        map.put(txtMonthlyRental,money);
+
+        RegexValidator.validate(map,addBtn);
     }
 }

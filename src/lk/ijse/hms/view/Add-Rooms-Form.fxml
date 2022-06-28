@@ -32,15 +32,18 @@
                <children>
                   <JFXTextField fx:id="txtRoomId" focusColor="#383839" labelFloat="true" promptText="Room-Id">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="19.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtMonthlyRental" focusColor="#383839" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Monthly Rental">
+                  <JFXTextField fx:id="txtMonthlyRental" focusColor="#383839" labelFloat="true" layoutX="10.0" layoutY="10.0" onKeyPressed="#validate" promptText="Monthly Rental">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="19.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtKeyMoney" focusColor="#101011" promptText="Key Money" />
+                  <JFXTextField fx:id="txtKeyMoney" focusColor="#101011" labelFloat="true" onKeyPressed="#validate" promptText="Key Money">
+                     <font>
+                        <Font size="19.0" />
+                     </font></JFXTextField>
                   <JFXComboBox fx:id="cmbxRoomType" focusColor="#3b3b3c" prefHeight="31.0" prefWidth="582.0" promptText="Select Type" />
                   <JFXComboBox fx:id="cmbxRoomAvailability" focusColor="#3b3b3c" layoutX="10.0" layoutY="72.0" prefHeight="31.0" prefWidth="582.0" promptText="Select Availability" />
                </children>
