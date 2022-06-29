@@ -48,6 +48,7 @@ public class AddRoomsFormController implements Initializable {
         setRoomTypeCmbxData();
         setRoomAvailabilityCmbxData();
         setGeneratedId();
+        txtRoomId.setEditable(false);
 
         try {
             txtRoomId.setText(IdsGenerator.generateId("RM-",roomBO.getLastRoomId()));

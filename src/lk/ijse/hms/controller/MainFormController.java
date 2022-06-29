@@ -162,6 +162,7 @@ public class MainFormController implements Initializable {
                     .count();
 
             Long halfPaid = reserveDTOS.stream()
+                    .filter(reserveDTO -> reserveDTO.getPaidKeyMoney()!=0)
                     .filter(reserveDTO -> reserveDTO.getKeyMoney()-reserveDTO.getPaidKeyMoney()>0)
                     .count();
 

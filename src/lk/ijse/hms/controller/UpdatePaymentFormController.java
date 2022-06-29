@@ -51,6 +51,7 @@ public class UpdatePaymentFormController implements Initializable {
         setCmbxReservationIdsData();
         setCmbxStudentIdsData();
         updateBtn.setDisable(true);
+        txtPaymentId.setEditable(false);
     }
 
     public void updateBtnOnAction(ActionEvent actionEvent) {

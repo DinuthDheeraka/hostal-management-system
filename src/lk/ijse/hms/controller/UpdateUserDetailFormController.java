@@ -40,6 +40,8 @@ public class UpdateUserDetailFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updateBtn.setDisable(true);
+        txtPassword.setEditable(false);
+        txtUserName.setEditable(false);
     }
 
     public void setCurrentLoginData(String userName,String password){
