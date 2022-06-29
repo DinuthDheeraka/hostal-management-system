@@ -41,17 +41,17 @@
       </TableView>
       <HBox layoutX="14.0" layoutY="125.0" prefHeight="44.0" prefWidth="1094.0" spacing="20.0">
          <children>
-            <JFXTextField fx:id="txtId" labelFloat="true" minWidth="340.0" promptText="Category Id">
+            <JFXTextField fx:id="txtId" labelFloat="true" minWidth="340.0" onMousePressed="#validate" promptText="Category Id">
                <font>
                   <Font size="19.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtType" labelFloat="true" minWidth="340.0" promptText="Type">
+            <JFXTextField fx:id="txtType" labelFloat="true" minWidth="340.0" onMousePressed="#validate" promptText="Type">
                <font>
                   <Font size="19.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtMaxCount" labelFloat="true" minWidth="340.0" promptText="Max Count">
+            <JFXTextField fx:id="txtMaxCount" labelFloat="true" minWidth="340.0" onMousePressed="#validate" promptText="Max Count">
                <font>
                   <Font size="19.0" />
                </font>

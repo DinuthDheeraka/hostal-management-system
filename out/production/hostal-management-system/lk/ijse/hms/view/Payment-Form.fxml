@@ -28,23 +28,8 @@
          <tabs>
             <Tab text="MAKE PAYMENTS">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                      <children>
-                        <ImageView fitHeight="905.0" fitWidth="1886.0" layoutY="-2.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@assets/images/1JynjM.jpg" />
-                           </image>
-                           <effect>
-                              <Lighting>
-                                 <bumpInput>
-                                    <Shadow />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant />
-                                 </light>
-                              </Lighting>
-                           </effect>
-                        </ImageView>
                         <LineChart horizontalGridLinesVisible="false" layoutX="-12.0" layoutY="151.0" prefHeight="471.0" prefWidth="1875.0" verticalGridLinesVisible="false">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
@@ -53,18 +38,21 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </LineChart>
-                        <TextField layoutX="24.0" layoutY="43.0" prefHeight="67.0" prefWidth="1824.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" />
-                        <JFXButton buttonType="RAISED" layoutX="975.0" layoutY="818.0" onAction="#canselBtnOnAction" prefHeight="58.0" prefWidth="440.0" style="-fx-border-color: black;" text="CANSEL">
+                        <TextField layoutX="24.0" layoutY="43.0" prefHeight="67.0" prefWidth="1824.0" promptText="SEARCH" style="-fx-background-color: null; -fx-border-color: black; -fx-border-radius: 30;">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <JFXButton layoutX="975.0" layoutY="818.0" onAction="#canselBtnOnAction" prefHeight="58.0" prefWidth="455.0" style="-fx-border-color: black;" text="CANSEL">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="1460.0" layoutY="817.0" onAction="#makePaymentBtnOnAction" prefHeight="58.0" prefWidth="397.0" style="-fx-background-color: green;" text="MAKE PAYMENT" textFill="WHITE">
+                        <JFXButton fx:id="makePaymentBtn" buttonType="RAISED" layoutX="1435.0" layoutY="817.0" onAction="#makePaymentBtnOnAction" prefHeight="58.0" prefWidth="422.0" style="-fx-background-color: green;" text="MAKE PAYMENT" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXTextField fx:id="txtMonth" labelFloat="true" layoutX="22.0" layoutY="832.0" prefHeight="44.0" prefWidth="407.0" promptText="Month" unFocusColor="#1b1a1a">
+                        <JFXTextField fx:id="txtMonth" labelFloat="true" layoutX="22.0" layoutY="832.0" onKeyPressed="#validate" prefHeight="44.0" prefWidth="407.0" promptText="Month" unFocusColor="#1b1a1a">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -76,7 +64,7 @@
                            </font>
                         </JFXTextField>
                         <JFXComboBox fx:id="cmbxRservationIds" labelFloat="true" layoutX="975.0" layoutY="700.0" prefHeight="31.0" prefWidth="442.0" promptText="Select Reservation-Id" unFocusColor="#1b1a1a" />
-                        <JFXTextField fx:id="txtPaidAmount" labelFloat="true" layoutX="455.0" layoutY="832.0" prefHeight="44.0" prefWidth="483.0" promptText="Paid Amount" unFocusColor="#1b1a1a">
+                        <JFXTextField fx:id="txtPaidAmount" labelFloat="true" layoutX="455.0" layoutY="832.0" onKeyPressed="#validate" prefHeight="44.0" prefWidth="483.0" promptText="Paid Amount" unFocusColor="#1b1a1a">
                            <font>
                               <Font size="20.0" />
                            </font>

@@ -15,18 +15,22 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.RoomBO;
 import lk.ijse.hms.bo.custom.RoomSettingBO;
 import lk.ijse.hms.dto.RoomSettingDTO;
 import lk.ijse.hms.service.DataConvertor;
 import lk.ijse.hms.util.Navigations;
+import lk.ijse.hms.util.RegexValidator;
 import lk.ijse.hms.view.tdm.RoomSettingTM;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 
 public class RoomSettingsFormController implements Initializable {
     public TextField txtSearchBar;
@@ -143,5 +147,21 @@ public class RoomSettingsFormController implements Initializable {
 
     public void closeBtnOnAction(ActionEvent actionEvent) {
         Navigations.getInstance().closeStage(actionEvent);
+    }
+
+    public void validate(MouseEvent mouseEvent) {
+
+        LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+
+        Pattern id = Pattern.compile("RM-[0-9]{4}");
+        map.put(txtId,id);
+
+        Pattern type = Pattern.compile("[0-9 A-Za-z/ - .()]{2,}");
+        map.put(txtType,type);
+
+        Pattern maxCount = Pattern.compile("[0-9]{1,}");
+        map.put(txtMaxCount,maxCount);
+
+        RegexValidator.validate(map,addBtn);
     }
 }

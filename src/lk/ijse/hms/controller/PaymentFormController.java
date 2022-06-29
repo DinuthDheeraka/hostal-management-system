@@ -5,6 +5,7 @@
  */
 package lk.ijse.hms.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
@@ -31,14 +33,17 @@ import lk.ijse.hms.entity.Student;
 import lk.ijse.hms.service.DataConvertor;
 import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
+import lk.ijse.hms.util.RegexValidator;
 import lk.ijse.hms.view.tdm.PaymentTM;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class PaymentFormController implements Initializable {
@@ -68,6 +73,7 @@ public class PaymentFormController implements Initializable {
     public Label lblIncome1;
     public Label lblMonth2;
     public Label lblIncome2;
+    public JFXButton makePaymentBtn;
 
     private Stage stage;
     private Scene scene;
@@ -406,5 +412,18 @@ public class PaymentFormController implements Initializable {
                 }
             });
         }
+    }
+
+    public void validate(KeyEvent keyEvent) {
+
+        LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+
+        Pattern money = Pattern.compile("([0-9]{1,}.[0-9]{2}$|[0-9]{1,}$)");
+        map.put(txtPaidAmount,money);
+
+        Pattern month = Pattern.compile("[0-9]{4}-[0-9]{2}");
+        map.put(txtMonth,month);
+
+        RegexValidator.validate(map,makePaymentBtn);
     }
 }

@@ -117,7 +117,7 @@
                                     <Font size="21.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="txtRoomPaidKeyMoney" focusColor="BLACK" labelFloat="true" layoutX="10.0" layoutY="10.0" minWidth="478.0" promptText="Paid Key Money" unFocusColor="#2c05da">
+                              <JFXTextField fx:id="txtRoomPaidKeyMoney" focusColor="BLACK" labelFloat="true" layoutX="10.0" layoutY="10.0" minWidth="478.0" onKeyPressed="#validate" promptText="Paid Key Money" unFocusColor="#2c05da">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
@@ -129,7 +129,7 @@
                               <Font size="21.0" />
                            </font></JFXTextField>
                         <JFXComboBox fx:id="cmbxReservationCurrentStatus" layoutX="1381.0" layoutY="640.0" prefHeight="31.0" prefWidth="478.0" promptText="Select Reservation Status" unFocusColor="#0713ff" />
-                        <JFXButton buttonType="RAISED" layoutX="1543.0" layoutY="822.0" onAction="#makeReservationBtnOnAction" prefHeight="66.0" prefWidth="323.0" style="-fx-background-color: green;" text="MAKE RESERVATION" textFill="WHITE">
+                        <JFXButton fx:id="makeReservationBtn" buttonType="RAISED" layoutX="1543.0" layoutY="822.0" onAction="#makeReservationBtnOnAction" prefHeight="66.0" prefWidth="323.0" style="-fx-background-color: green;" text="MAKE RESERVATION" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
