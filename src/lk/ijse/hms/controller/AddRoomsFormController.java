@@ -105,7 +105,7 @@ public class AddRoomsFormController implements Initializable {
                             Double.valueOf(txtMonthlyRental.getText()),cmbxRoomAvailability.getSelectionModel().getSelectedItem(),Double.valueOf(txtKeyMoney.getText())
                     ));
                     setGeneratedId();
-                    new Alert(Alert.AlertType.ERROR,"Added Room Successfully").show();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Added Room Successfully").show();
 
                 } catch (Exception e) {
                     new Alert(Alert.AlertType.ERROR,"Unable to Update Room!!").show();

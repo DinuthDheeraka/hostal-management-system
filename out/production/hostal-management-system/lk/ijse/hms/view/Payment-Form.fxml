@@ -30,7 +30,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                      <children>
-                        <LineChart horizontalGridLinesVisible="false" layoutX="-12.0" layoutY="151.0" prefHeight="471.0" prefWidth="1875.0" verticalGridLinesVisible="false">
+                        <LineChart fx:id="lineChartMakePayment" horizontalGridLinesVisible="false" layoutX="-12.0" layoutY="151.0" prefHeight="471.0" prefWidth="1875.0" stylesheets="@assets/styles/main-form-income-line-chart-styles.css" verticalGridLinesVisible="false">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -38,7 +38,7 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </LineChart>
-                        <TextField layoutX="24.0" layoutY="43.0" prefHeight="67.0" prefWidth="1824.0" promptText="SEARCH" style="-fx-background-color: null; -fx-border-color: black; -fx-border-radius: 30;">
+                        <TextField fx:id="txtMakePaymentSearchBar" layoutX="24.0" layoutY="43.0" onAction="#txtMakePaymentSearchBarOnAction" prefHeight="67.0" prefWidth="1824.0" promptText="SEARCH" style="-fx-background-color: null; -fx-border-color: black; -fx-border-radius: 30;">
                            <font>
                               <Font size="20.0" />
                            </font></TextField>
@@ -159,10 +159,10 @@
                                        <children>
                                           <ImageView fitHeight="868.0" fitWidth="1875.0" layoutY="-1.0" pickOnBounds="true">
                                              <image>
-                                                <Image url="@assets/images/1JynjM.jpg" />
+                                                <Image url="@assets/images/photo-1563013544-824ae1b704d3.jpg" />
                                              </image>
                                              <effect>
-                                                <Lighting diffuseConstant="1.32">
+                                                <Lighting diffuseConstant="2.0">
                                                    <bumpInput>
                                                       <Shadow />
                                                    </bumpInput>
@@ -195,13 +195,13 @@
                                                 </ContextMenu>
                                              </contextMenu>
                                           </TableView>
-                                          <TextField fx:id="txtSearchBar" layoutX="8.0" layoutY="229.0" onAction="#txtSearchBarOnAction" prefHeight="54.0" prefWidth="1859.0" promptText="SEARCH" style="-fx-background-color: null; -fx-border-color: #282829; -fx-border-radius: 20; -fx-text-fill: black; -fx-prompt-text-fill: black;">
+                                          <TextField fx:id="txtSearchBar" layoutX="8.0" layoutY="217.0" onAction="#txtSearchBarOnAction" prefHeight="66.0" prefWidth="1859.0" promptText="SEARCH" style="-fx-background-color: null; -fx-border-color: #282829; -fx-border-radius: 20; -fx-text-fill: black; -fx-prompt-text-fill: black;">
                                              <font>
                                                 <Font size="20.0" />
                                              </font></TextField>
-                                          <JFXComboBox fx:id="cmbxPaymentStatus" layoutX="1607.0" layoutY="119.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by payment status" />
-                                          <JFXComboBox fx:id="cmbxFiltersMonths" layoutX="1335.0" layoutY="119.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by month" />
-                                          <JFXComboBox fx:id="cmbxFiltersYear" layoutX="1064.0" layoutY="119.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by Year" />
+                                          <JFXComboBox fx:id="cmbxPaymentStatus" layoutX="557.0" layoutY="102.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by payment status" />
+                                          <JFXComboBox fx:id="cmbxFiltersMonths" layoutX="285.0" layoutY="102.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by month" />
+                                          <JFXComboBox fx:id="cmbxFiltersYear" layoutX="14.0" layoutY="102.0" prefHeight="31.0" prefWidth="254.0" promptText="Filter by Year" />
                                        </children>
                                     </AnchorPane>
                                 </content>

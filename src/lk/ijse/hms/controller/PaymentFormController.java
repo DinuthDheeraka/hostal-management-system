@@ -74,6 +74,8 @@ public class PaymentFormController implements Initializable {
     public Label lblMonth2;
     public Label lblIncome2;
     public JFXButton makePaymentBtn;
+    public LineChart lineChartMakePayment;
+    public TextField txtMakePaymentSearchBar;
 
     private Stage stage;
     private Scene scene;
@@ -148,6 +150,8 @@ public class PaymentFormController implements Initializable {
                 .addListener((observable, oldValue, newValue) -> {
                     if(newValue!=null)setSelectedPaymentData(newValue);
                 });
+
+        setLineChartPaymentStatus(String.valueOf(LocalDate.now().getYear()),"3",lineChartMakePayment);
 
         try {
             txtPaymentId.setText(IdsGenerator.generateId("PM-",paymentBO.getLastPaymentId()));
@@ -359,14 +363,14 @@ public class PaymentFormController implements Initializable {
 
     public void txtSearchBar1OnAction(ActionEvent actionEvent) {
         lineChartPaymentStatus.getData().clear();
-        setLineChartPaymentStatus(txtSearchBar1.getText(),"1");
+        setLineChartPaymentStatus(txtSearchBar1.getText(),"1",lineChartPaymentStatus);
     }
 
     public void txtSearchBar2OnAction(ActionEvent actionEvent) {
-        setLineChartPaymentStatus(txtSearchBar2.getText(),"2");
+        setLineChartPaymentStatus(txtSearchBar2.getText(),"2",lineChartPaymentStatus);
     }
 
-    private void setLineChartPaymentStatus(String year,String source){
+    private void setLineChartPaymentStatus(String year,String source,LineChart lineChart){
         try {
             lineChartPaymentStatus.setTitle("Income status for each month");
 
@@ -388,10 +392,12 @@ public class PaymentFormController implements Initializable {
                 }
             }
 
-            lineChartPaymentStatus.getData().add(thisYearIncomeChart);
+            lineChart.getData().add(thisYearIncomeChart);
             //lineChrtIncomeStatus.getData().add(lastYearIncomeChart);
 
-            addListinerToLineChartData(thisYearIncomeChart,source);
+            if(!source.equals("3")){
+                addListinerToLineChartData(thisYearIncomeChart,source);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -426,5 +432,10 @@ public class PaymentFormController implements Initializable {
         map.put(txtMonth,month);
 
         RegexValidator.validate(map,makePaymentBtn);
+    }
+
+    public void txtMakePaymentSearchBarOnAction(ActionEvent actionEvent) {
+        lineChartMakePayment.getData().clear();
+        setLineChartPaymentStatus(txtMakePaymentSearchBar.getText(),"3",lineChartMakePayment);
     }
 }
