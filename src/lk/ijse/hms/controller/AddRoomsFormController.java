@@ -120,10 +120,10 @@ public class AddRoomsFormController implements Initializable {
         txtTitle.setText("UPDATE ROOM");
         addBtn.setText("UPDATE ROOM");
         txtRoomId.setText(roomDTO.getRoomId());
-        txtMonthlyRental.setText(String.valueOf(roomDTO.getMonthlyRental()));
+        txtMonthlyRental.setText(String.format("%.2f",roomDTO.getMonthlyRental()));
         cmbxRoomType.getSelectionModel().select(roomDTO.getType());
         cmbxRoomAvailability.getSelectionModel().select(roomDTO.getAvailability());
-        txtKeyMoney.setText(String.valueOf(roomDTO.getKeyMoney()));
+        txtKeyMoney.setText(String.format("%.2f",roomDTO.getKeyMoney()));
     }
 
     public void setGeneratedId(){

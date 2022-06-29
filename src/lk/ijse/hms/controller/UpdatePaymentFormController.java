@@ -101,8 +101,8 @@ public class UpdatePaymentFormController implements Initializable {
         cmbxReservationIds.getSelectionModel().select(selectedPaymentDTO.getReservationId());
         txtPaymentId.setText(selectedPaymentDTO.getPaymentId());
         txtMonth.setText(selectedPaymentDTO.getMonth());
-        txtMonthlyRental.setText(String.valueOf(selectedPaymentDTO.getAmountToPay()));
-        txtPaidAmount.setText(String.valueOf(selectedPaymentDTO.getPaidAmount()));
+        txtMonthlyRental.setText(String.format("%.2f",selectedPaymentDTO.getAmountToPay()));
+        txtPaidAmount.setText(String.format("%.2f",selectedPaymentDTO.getPaidAmount()));
     }
 
     public void validate(KeyEvent keyEvent) {

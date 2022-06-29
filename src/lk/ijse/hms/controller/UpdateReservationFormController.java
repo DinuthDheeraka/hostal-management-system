@@ -130,8 +130,8 @@ public class UpdateReservationFormController implements Initializable {
             e.printStackTrace();
         }
         txtReserveId.setText(selectedReserveDTO.getReserveId());
-        txtKeyMoney.setText(String.valueOf(selectedReserveDTO.getKeyMoney()));
-        txtPaidKeyMoney.setText(String.valueOf(selectedReserveDTO.getPaidKeyMoney()));
+        txtKeyMoney.setText(String.format("%.2f",selectedReserveDTO.getKeyMoney()));
+        txtPaidKeyMoney.setText(String.format("%.2f",selectedReserveDTO.getPaidKeyMoney()));
         cmbxStudentIds.getSelectionModel().select(selectedReserveDTO.getStudent().getStudentId());
         cmbxRoomIds.getSelectionModel().select(selectedReserveDTO.getRoom().getRoomId());
         cmbxStatus.getSelectionModel().select(selectedReserveDTO.getReservationStatus());
