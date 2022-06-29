@@ -96,7 +96,7 @@
                         <Line endX="-100.0" endY="45.0" layoutX="114.0" layoutY="16.0" startX="-100.0" visible="false" />
                         <Line endX="-60.0" layoutX="121.0" layoutY="15.0" startX="-107.0" visible="false" />
                         <Line endX="-100.0" endY="40.0" layoutX="161.0" layoutY="-4.0" startX="-100.0" startY="19.0" visible="false" />
-                        <JFXButton buttonType="RAISED" layoutX="305.0" layoutY="575.0" onAction="#sgnpLoginBtnOnAction" prefHeight="52.0" prefWidth="286.0" style="-fx-background-color: #e813b6;" text="LOGIN" textFill="WHITE">
+                        <JFXButton fx:id="signupBtn" buttonType="RAISED" layoutX="305.0" layoutY="575.0" onAction="#sgnpLoginBtnOnAction" prefHeight="52.0" prefWidth="286.0" style="-fx-background-color: #e813b6;" text="LOGIN" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="17.0" />
                            </font>
@@ -111,12 +111,12 @@
                               <Image url="@assets/images/360_F_450488834_UJxglEY74ZV7GhsGSD3kbVIy8gYkM0xG.jpg" />
                            </image>
                         </ImageView>
-                        <JFXTextField fx:id="txtNewUserName" focusColor="BLACK" labelFloat="true" layoutX="13.0" layoutY="150.0" prefHeight="44.0" prefWidth="575.0" promptText="Username">
+                        <JFXTextField fx:id="txtNewUserName" focusColor="BLACK" labelFloat="true" layoutX="13.0" layoutY="150.0" onKeyPressed="#validate" prefHeight="44.0" prefWidth="575.0" promptText="Username">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </JFXTextField>
-                        <JFXPasswordField fx:id="txtNewPassword" focusColor="BLACK" labelFloat="true" layoutX="15.0" layoutY="279.0" prefHeight="42.0" prefWidth="577.0" promptText="Password">
+                        <JFXPasswordField fx:id="txtNewPassword" focusColor="BLACK" labelFloat="true" layoutX="15.0" layoutY="279.0" onKeyPressed="#validate" prefHeight="42.0" prefWidth="577.0" promptText="Password">
                            <font>
                               <Font size="20.0" />
                            </font>

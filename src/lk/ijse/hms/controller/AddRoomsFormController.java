@@ -62,6 +62,7 @@ public class AddRoomsFormController implements Initializable {
                     }
                 }
         );
+        addBtn.setDisable(true);
     }
 
     private void setRoomAvailabilityCmbxData() {

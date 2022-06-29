@@ -108,6 +108,7 @@ public class MakeReservationFormController implements Initializable {
         setCmbxStudentIdsData();
         setCmbxPaymentStatusData();
         setCmbxReservationStatusData();
+        makeReservationBtn.setDisable(true);
 
         try {
             setReservationTblData();

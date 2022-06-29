@@ -58,6 +58,7 @@ public class AddStudentFormController implements Initializable {
         setCmbxProvinceData();
         setCmbxGenderData();
         setGeneratedId();
+        addBtn.setDisable(true);
     }
 
     private void setCmbxGenderData() {

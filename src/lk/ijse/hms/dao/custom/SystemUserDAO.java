@@ -8,4 +8,5 @@ import java.io.IOException;
 public interface SystemUserDAO extends CrudDAO<SystemUser,String> {
     boolean findUserByUserNameAndPassword(String userName,String password) throws IOException;
     SystemUser getSystemUserByUserNameAndPassword(String userName,String password) throws IOException;
+    boolean isPasswordExists(String password) throws IOException;
 }

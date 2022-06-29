@@ -110,6 +110,7 @@ public class PaymentFormController implements Initializable {
         setCmbxFilterMonthsData();
         setCmbxFilterYearsData();
         setCmbxPaymentStatusData();
+        makePaymentBtn.setDisable(true);
 
         cmbxRservationIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 {

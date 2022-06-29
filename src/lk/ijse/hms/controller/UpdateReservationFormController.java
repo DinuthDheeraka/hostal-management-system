@@ -61,6 +61,7 @@ public class UpdateReservationFormController implements Initializable {
             e.printStackTrace();
         }
         setCmbxReservationStatusData();
+        updateBtn.setDisable(true);
     }
 
     private void setCmbxReservationStatusData() {

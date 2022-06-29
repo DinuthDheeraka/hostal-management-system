@@ -20,7 +20,7 @@
       </AnchorPane>
       <AnchorPane layoutX="1.0" layoutY="59.0" prefHeight="621.0" prefWidth="508.0" style="-fx-background-color: white;">
          <children>
-            <JFXButton buttonType="RAISED" layoutX="257.0" layoutY="563.0" onAction="#updateBtnOnAction" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #8b19e3;" text="UPDATE" textFill="WHITE">
+            <JFXButton fx:id="updateBtn" buttonType="RAISED" layoutX="257.0" layoutY="563.0" onAction="#updateBtnOnAction" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #8b19e3;" text="UPDATE" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -41,12 +41,12 @@
             </VBox>
             <VBox layoutX="3.0" layoutY="246.0" prefHeight="200.0" prefWidth="497.0" spacing="40.0">
                <children>
-                  <JFXTextField fx:id="txtNewUserName" labelFloat="true" promptText="New Username">
+                  <JFXTextField fx:id="txtNewUserName" labelFloat="true" onKeyPressed="#validate" promptText="New Username">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtNewPassword" labelFloat="true" promptText="New Password">
+                  <JFXTextField fx:id="txtNewPassword" labelFloat="true" onKeyPressed="#validate" promptText="New Password">
                      <font>
                         <Font size="22.0" />
                      </font>

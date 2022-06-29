@@ -5,6 +5,7 @@
  */
 package lk.ijse.hms.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -13,7 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lk.ijse.hms.bo.BOFactory;
@@ -21,10 +24,13 @@ import lk.ijse.hms.bo.custom.SystemUserBO;
 import lk.ijse.hms.dto.SystemUserDTO;
 import lk.ijse.hms.util.IdsGenerator;
 import lk.ijse.hms.util.Navigations;
+import lk.ijse.hms.util.RegexValidator;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class LoginFormController implements Initializable {
 
@@ -38,6 +44,7 @@ public class LoginFormController implements Initializable {
     public JFXTextField txtSgnupShowPassword;
     public ImageView sgnupImgHidePassword;
     public ImageView sgnupImgShowPassword;
+    public JFXButton signupBtn;
 
     private Stage stage;
     private Scene scene;
@@ -96,19 +103,38 @@ public class LoginFormController implements Initializable {
     }
 
     public void sgnpLoginBtnOnAction(ActionEvent actionEvent) {
-        try {
             try {
                 //Add New System User
-                systemUserBO.addSystemUser(new SystemUserDTO(lastUserId,txtNewUserName.getText(),txtNewPassword.getText()));
+                if(!systemUserBO.isPasswordExists(txtNewPassword.getText())){
+                    systemUserBO.addSystemUser(new SystemUserDTO(lastUserId,txtNewUserName.getText(),txtNewPassword.getText()));
+
+                    Navigations.getInstance().closeStage(actionEvent);
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Main-Form.fxml"));
+
+                    try {
+                        parent = fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    //Transfer User Data to Main Form
+                    MainFormController controller = fxmlLoader.getController();
+                    controller.setUserName(txtNewUserName.getText(),txtNewPassword.getText());
+
+                    stage = new Stage();
+                    scene = new Scene(parent);
+                    stage.setScene(scene);
+
+                    Navigations.getInstance().transparentUi(stage,scene);
+
+                }else{
+                    new Alert(Alert.AlertType.ERROR,"Password is Already Exists").show();
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            Navigations.getInstance().closeStage(actionEvent);
-            Navigations.getInstance().setNewStage("Main-Form");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void sgnupCancelBtnOnAction(ActionEvent actionEvent) {
@@ -149,5 +175,18 @@ public class LoginFormController implements Initializable {
         txtShowPassword.setText(txtPassword.getText());
         txtShowPassword.setVisible(true);
         txtPassword.setVisible(false);
+    }
+
+    public void validate(KeyEvent keyEvent) {
+
+        LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+
+        Pattern userName = Pattern.compile("[A-Za-z ]{3,10}");
+        map.put(txtNewUserName,userName);
+
+        Pattern password = Pattern.compile("[0-9A-Za-z {},*&^%#@!]{3,10}$");
+        map.put(txtNewPassword,password);
+
+        RegexValidator.validate(map,signupBtn);
     }
 }

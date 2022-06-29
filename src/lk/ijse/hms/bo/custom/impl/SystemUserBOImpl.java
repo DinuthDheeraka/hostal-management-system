@@ -54,4 +54,9 @@ public class SystemUserBOImpl implements SystemUserBO {
                 systemUser.getUserId(),systemUser.getUserName(),systemUser.getPassword()
         );
     }
+
+    @Override
+    public boolean isPasswordExists(String password) throws IOException {
+        return systemUserDAO.isPasswordExists(password);
+    }
 }

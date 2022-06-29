@@ -12,4 +12,5 @@ public interface SystemUserBO extends SuperBO {
     String getLastUserId() throws Exception;
     boolean isExistsSystemUserByUserNameAndPassword(String userName,String password) throws IOException;
     SystemUserDTO getSystemUserByUserNameAndPassword(String userName,String password) throws IOException;
+    boolean isPasswordExists(String password) throws IOException;
 }

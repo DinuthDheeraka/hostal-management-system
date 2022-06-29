@@ -50,6 +50,7 @@ public class UpdatePaymentFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setCmbxReservationIdsData();
         setCmbxStudentIdsData();
+        updateBtn.setDisable(true);
     }
 
     public void updateBtnOnAction(ActionEvent actionEvent) {
