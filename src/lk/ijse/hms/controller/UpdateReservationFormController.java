@@ -5,6 +5,7 @@
  */
 package lk.ijse.hms.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -12,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.hms.bo.BOFactory;
 import lk.ijse.hms.bo.custom.ReserveBO;
 import lk.ijse.hms.bo.custom.RoomBO;
@@ -21,10 +24,13 @@ import lk.ijse.hms.dto.RoomDTO;
 import lk.ijse.hms.entity.Room;
 import lk.ijse.hms.entity.Student;
 import lk.ijse.hms.util.Navigations;
+import lk.ijse.hms.util.RegexValidator;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class UpdateReservationFormController implements Initializable {
 
@@ -34,6 +40,7 @@ public class UpdateReservationFormController implements Initializable {
     public JFXComboBox<String> cmbxStudentIds;
     public JFXComboBox<String> cmbxRoomIds;
     public JFXComboBox<String> cmbxStatus;
+    public JFXButton updateBtn;
 
     ReserveDTO selectedReserveDTO = new ReserveDTO();
 
@@ -127,5 +134,17 @@ public class UpdateReservationFormController implements Initializable {
         cmbxStudentIds.getSelectionModel().select(selectedReserveDTO.getStudent().getStudentId());
         cmbxRoomIds.getSelectionModel().select(selectedReserveDTO.getRoom().getRoomId());
         cmbxStatus.getSelectionModel().select(selectedReserveDTO.getReservationStatus());
+    }
+
+    public void validate(KeyEvent keyEvent) {
+        LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+
+        Pattern money = Pattern.compile("([0-9]{1,}.[0-9]{2}$|[0-9]{1,}$)");
+        map.put(txtKeyMoney,money);
+
+        map.put(txtPaidKeyMoney,money);
+
+
+        RegexValidator.validate(map,updateBtn);
     }
 }

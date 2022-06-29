@@ -38,24 +38,24 @@
                   </JFXTextField>
                   <JFXComboBox fx:id="cmbxStudentIds" focusColor="BLACK" labelFloat="true" prefHeight="31.0" prefWidth="693.0" promptText="Select Student-Id" />
                   <JFXComboBox fx:id="cmbxReservationIds" focusColor="BLACK" labelFloat="true" prefHeight="31.0" prefWidth="694.0" promptText="Select Reservation-Id" />
-                  <JFXTextField fx:id="txtMonthlyRental" focusColor="BLACK" labelFloat="true" promptText="Monthly Rental">
+                  <JFXTextField fx:id="txtMonthlyRental" focusColor="BLACK" labelFloat="true" onKeyPressed="#validate" promptText="Monthly Rental">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtPaidAmount" focusColor="BLACK" labelFloat="true" promptText="Paid Amount">
+                  <JFXTextField fx:id="txtPaidAmount" focusColor="BLACK" labelFloat="true" onKeyPressed="#validate" promptText="Paid Amount">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtMonth" focusColor="BLACK" labelFloat="true" promptText="Month">
+                  <JFXTextField fx:id="txtMonth" focusColor="BLACK" labelFloat="true" onKeyPressed="#validate" promptText="Month">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </JFXTextField>
                </children>
             </VBox>
-            <JFXButton buttonType="RAISED" layoutX="460.0" layoutY="693.0" onAction="#updateBtnOnAction" prefHeight="52.0" prefWidth="247.0" style="-fx-background-color: green;" text="UPDATE" textFill="WHITE">
+            <JFXButton fx:id="updateBtn" buttonType="RAISED" layoutX="460.0" layoutY="693.0" onAction="#updateBtnOnAction" prefHeight="52.0" prefWidth="247.0" style="-fx-background-color: green;" text="UPDATE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
