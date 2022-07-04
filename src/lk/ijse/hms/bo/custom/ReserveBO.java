@@ -12,4 +12,5 @@ public interface ReserveBO extends SuperBO {
     List<ReserveDTO> getAllReservations() throws Exception;
     ReserveDTO getReserve(String reserveId) throws Exception;
     boolean updateReservation(ReserveDTO reserveDTO) throws Exception;
+    boolean deleteReservation(String id) throws Exception;
 }

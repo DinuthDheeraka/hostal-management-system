@@ -70,4 +70,9 @@ public class ReserveBOImpl implements ReserveBO {
                 reserveDTO.getRoom(),reserveDTO.getReservationStatus(),reserveDTO.getPaidKeyMoney()
         ));
     }
+
+    @Override
+    public boolean deleteReservation(String id) throws Exception {
+        return reserveDAO.delete(id);
+    }
 }

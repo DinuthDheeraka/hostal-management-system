@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -181,7 +182,9 @@ public class RoomsFormController implements Initializable {
     public void deleteCtxmOnAction(ActionEvent actionEvent) {
         try {
             roomBO.deleteRoom(selectedRoomId);
+            new Alert(Alert.AlertType.CONFIRMATION,"Room Deleted Successfully").show();
         } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,"Unable to Delete Room").show();
             e.printStackTrace();
         }
     }

@@ -38,7 +38,12 @@ public class ReserveDAOImpl implements ReserveDAO {
 
     @Override
     public boolean delete(String s) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(session.load(Reserve.class, s));
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

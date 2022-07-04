@@ -340,6 +340,19 @@ public class MakeReservationFormController implements Initializable {
     }
 
     public void deleteCtxmOnAction(ActionEvent actionEvent) {
+        try {
+            //Update room status
+            RoomDTO roomDTO = roomBO.getRoom(selectedReserveDTO.getRoom().getRoomId());
+            roomDTO.setAvailability("Available");
+            roomBO.updateRoom(roomDTO);
+
+            //delete reservation
+            reserveBO.deleteReservation(selectedReserveDTO.getReserveId());
+            new Alert(Alert.AlertType.CONFIRMATION,"Deleted Reservation").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,"Unable to Delete Reservation").show();
+            e.printStackTrace();
+        }
     }
 
     public void validate(KeyEvent keyEvent) {
